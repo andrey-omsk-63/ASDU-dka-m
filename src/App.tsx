@@ -4,13 +4,21 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-//import TabContext from '@mui/lab/TabContext';
-//import TabPanel from '@mui/lab/TabPanel';
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
 //import Modal from '@mui/material/Modal';
 
 //import axios from 'axios';
 
-//import Logins from './components/Logins';
+import Condition from './components/Condition';
+import Technology from './components/Technology';
+import Eguipment from './components/Eguipment';
+
+import BindDirections from './components/BindDirections';
+import BindOutputs  from './components/BindOutputs';
+import BindPlans from './components/BindPlans';
+import Journal from './components/Journal';
+
 
 const App = () => {
   const styleAppMulka = {
@@ -54,9 +62,11 @@ const App = () => {
     maxHeight: '21px',
     minHeight: '21px',
     marginTop: 3,
-    backgroundColor: 'white',
+    backgroundColor: '#F1F5FB',
     color: 'black',
-    textAlign: 'left',
+    //minWidth: '90%',
+    //maxWidth: '90%',
+    //textAlign: 'left',
     textTransform: 'unset !important',
   };
 
@@ -65,9 +75,34 @@ const App = () => {
     maxHeight: '21px',
     minHeight: '21px',
     marginTop: 3,
-    backgroundColor: 'white',
+    backgroundColor: '#F1F5FB',
     color: 'black',
     textTransform: 'unset !important',
+  };
+
+  const ButtonKnobLevel1 = (soob: string, val: string) => {
+    return (
+      <Grid container>
+        <Grid item xs>
+          <Button sx={styleButt01} variant="contained" onClick={() => setValue(val)}>
+            <b>{soob}</b>
+          </Button>
+        </Grid>
+      </Grid>
+    );
+  };
+
+  const ButtonKnobLevel2 = (soob: string, val: string) => {
+    return (
+      <Grid container>
+        <Grid item xs={2}></Grid>
+        <Grid item xs={10}>
+          <Button sx={styleButt02} variant="contained" onClick={() => setValue(val)}>
+            {soob}
+          </Button>
+        </Grid>
+      </Grid>
+    );
   };
 
   const [value, setValue] = React.useState('0');
@@ -81,85 +116,60 @@ const App = () => {
           </Box>
         </Grid>
         <Grid container sx={{ marginRight: 2 }}>
-          <Grid item xs={2.5} sx={styleAppMenu}>
-            <Grid item sx={{ padding: 0.5 }}>
-              <Stack direction="column">
-                <Box sx={{ fontSize: 21, marginTop: 1, textAlign: 'center', color: '#5B1080' }}>
-                  Главное меню ДКА-М
-                </Box>
-                <Grid container>
-                  <Grid item xs>
-                    <Button sx={styleButt01} variant="contained" onClick={() => setValue('1')}>
-                      <b>Состояние </b>
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs>
-                    <Button sx={styleButt01} variant="contained" onClick={() => setValue('1')}>
-                      <b>Обмен </b>
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs>
-                    <Button sx={styleButt01} variant="contained" onClick={() => setValue('1')}>
-                      <b>Технология </b>
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs>
-                    <Button sx={styleButt01} variant="contained" onClick={() => setValue('1')}>
-                      <b>Оборудование </b>
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs>
-                    <Box sx={{ fontSize: 17, marginTop: 3, marginLeft: 2 }}>
-                      <b>Привязка </b>
-                    </Box>
-                  </Grid>
-                </Grid>
+          <TabContext value={value}>
+            <Grid item xs={2.6} sx={styleAppMenu}>
 
-                <Grid container>
-                  <Grid item xs={2}></Grid>
-                  <Grid item xs={10}>
-                    <Button sx={styleButt02} variant="contained" onClick={() => setValue('1')}>
-                      Выходы
-                    </Button>
+              <Grid item sx={{ padding: 0.5 }}>
+                <Stack direction="column">
+                  <Box sx={{ fontSize: 21, marginTop: 1, textAlign: 'center', color: '#5B1080' }}>
+                    <b>ДКАМ</b>
+                  </Box>
+                  {ButtonKnobLevel1('Состояние', '1')}
+                  {ButtonKnobLevel1('Технология', '2')}
+                  {ButtonKnobLevel1('Оборудование', '3')}
+                  <Grid container>
+                    <Grid item xs>
+                      <Box sx={{ fontSize: 17, marginTop: 3, marginLeft: 2 }}>
+                        <b>Привязка</b>
+                      </Box>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs={2}></Grid>
-                  <Grid item xs={10}>
-                    <Button sx={styleButt02} variant="contained" onClick={() => setValue('1')}>
-                      Направления
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs={2}></Grid>
-                  <Grid item xs={10}>
-                    <Button sx={styleButt02} variant="contained" onClick={() => setValue('1')}>
-                      Планы
-                    </Button>
-                  </Grid>
-                </Grid>
+                  {ButtonKnobLevel2('Выходы', '41')}
+                  {ButtonKnobLevel2('Направления', '42')}
+                  {ButtonKnobLevel2('Планы', '43')}
+                  {ButtonKnobLevel2('Диаграмма', '44')}
 
-                <Grid container>
-                  <Grid item xs>
-                    <Button sx={styleButt01} variant="contained" onClick={() => setValue('1')}>
-                      <b>Журнал</b>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Stack>
+                  {ButtonKnobLevel1('Журнал', '5')}
+                </Stack>
+              </Grid>
             </Grid>
-          </Grid>
 
-          <Grid item xs sx={styleAppMenu}></Grid>
+            <Grid item xs sx={styleAppMenu}>
+              <TabPanel value="0"></TabPanel>
+              <TabPanel value="1">
+                <Condition />
+              </TabPanel>
+              <TabPanel value="2">
+                <Technology />
+              </TabPanel>
+              <TabPanel value="3">
+                <Eguipment />
+              </TabPanel>
+              <TabPanel value="41">
+                <BindDirections />
+              </TabPanel>
+              <TabPanel value="42">
+                <BindOutputs />
+              </TabPanel>
+              <TabPanel value="43">
+                <BindPlans />
+              </TabPanel>
+              <TabPanel value="5">
+                <Journal />
+              </TabPanel>
+            </Grid>
+
+          </TabContext>
         </Grid>
         <Grid item xs={12} sx={styleAppPodv}>
           <Box sx={{ textAlign: 'center', fontSize: 14 }}>
