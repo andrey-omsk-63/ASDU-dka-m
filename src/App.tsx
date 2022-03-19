@@ -13,12 +13,11 @@ import TabPanel from '@mui/lab/TabPanel';
 import Condition from './components/Condition';
 import Technology from './components/Technology';
 import Eguipment from './components/Eguipment';
-
 import BindDirections from './components/BindDirections';
-import BindOutputs  from './components/BindOutputs';
+import BindOutputs from './components/BindOutputs';
 import BindPlans from './components/BindPlans';
+import BindDiagram from './components/BindDiagram';
 import Journal from './components/Journal';
-
 
 const App = () => {
   const styleAppMulka = {
@@ -40,7 +39,7 @@ const App = () => {
     marginLeft: 0.5,
     height: '86vh',
     backgroundColor: '#F1F5FB',
-    opacity: 0.85,
+    opacity: 0.95,
   };
 
   const styleAppPodv = {
@@ -64,9 +63,6 @@ const App = () => {
     marginTop: 3,
     backgroundColor: '#F1F5FB',
     color: 'black',
-    //minWidth: '90%',
-    //maxWidth: '90%',
-    //textAlign: 'left',
     textTransform: 'unset !important',
   };
 
@@ -118,10 +114,16 @@ const App = () => {
         <Grid container sx={{ marginRight: 2 }}>
           <TabContext value={value}>
             <Grid item xs={2.6} sx={styleAppMenu}>
-
               <Grid item sx={{ padding: 0.5 }}>
                 <Stack direction="column">
-                  <Box sx={{ fontSize: 21, marginTop: 1, textAlign: 'center', color: '#5B1080' }}>
+                  <Box
+                    sx={{
+                      fontSize: 21,
+                      marginTop: 1,
+                      textAlign: 'left',
+                      marginLeft: 2,
+                      color: '#5B1080',
+                    }}>
                     <b>ДКАМ</b>
                   </Box>
                   {ButtonKnobLevel1('Состояние', '1')}
@@ -164,11 +166,13 @@ const App = () => {
               <TabPanel value="43">
                 <BindPlans />
               </TabPanel>
+              <TabPanel value="44">
+                <BindDiagram />
+              </TabPanel>
               <TabPanel value="5">
                 <Journal />
               </TabPanel>
             </Grid>
-
           </TabContext>
         </Grid>
         <Grid item xs={12} sx={styleAppPodv}>
