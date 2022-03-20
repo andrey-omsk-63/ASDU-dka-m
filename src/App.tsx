@@ -158,10 +158,10 @@ const App = () => {
                 <Eguipment />
               </TabPanel>
               <TabPanel value="41">
-                <BindDirections />
+                <BindOutputs />
               </TabPanel>
               <TabPanel value="42">
-                <BindOutputs />
+                <BindDirections />
               </TabPanel>
               <TabPanel value="43">
                 <BindPlans />
