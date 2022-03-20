@@ -15,7 +15,7 @@ import Modal from '@mui/material/Modal';
 
 const Condition = () => {
   const styleButt01 = {
-    fontSize: 14,
+    fontSize: 15,
     maxHeight: '18px',
     minHeight: '18px',
     marginTop: -2,
@@ -31,25 +31,6 @@ const Condition = () => {
     backgroundColor: 'white',
   };
 
-  // const styleBox02 = {
-  //   border: 1,
-  //   borderColor: 'primary.main',
-  //   borderRadius: 1,
-  //   backgroundColor: 'white',
-  //   marginTop: 0.5,
-  // };
-
-  // const styleBox03 = {
-  //   border: 1,
-  //   borderRadius: 1,
-  //   backgroundColor: 'white',
-  //   borderColor: 'primary.main',
-  //   height: '22.3vh',
-  //   marginTop: 0.5,
-  //   marginLeft: -3,
-  //   marginRight: -3,
-  // };
-
   const styleSet = {
     position: 'absolute',
     top: '12vh',
@@ -57,6 +38,7 @@ const Condition = () => {
     width: 512,
     bgcolor: 'background.paper',
     border: '3px solid #000',
+    borderColor: 'primary.main',
     borderRadius: 2,
     boxShadow: 24,
     p: 3,
