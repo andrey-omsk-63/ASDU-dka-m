@@ -43,8 +43,8 @@ const BindRight = () => {
 
   const styleButtBingModal = {
     fontSize: 23,
-    maxHeight: '18px',
-    minHeight: '18px',
+    maxHeight: '27px',
+    minHeight: '27px',
     marginBottom: 3,
     backgroundColor: 'white',
     color: 'black',
