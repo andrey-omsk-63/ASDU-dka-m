@@ -9,11 +9,11 @@ import Grid from '@mui/material/Grid';
 //import Tabs from '@mui/material/Tabs';
 //import Tab from '@mui/material/Tab';
 
-import BindRight from './Bind/BindRight';
+import BindRight from './BindComponents/BindRight';
 
 //import axios from 'axios';
 
-const BindOutputs = () => {
+const BindDirections = () => {
   const styleBox = {
     border: 1,
     borderRadius: 1,
@@ -36,4 +36,4 @@ const BindOutputs = () => {
   );
 };
 
-export default BindOutputs;
+export default BindDirections;

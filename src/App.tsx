@@ -13,11 +13,11 @@ import TabPanel from '@mui/lab/TabPanel';
 import Condition from './components/Condition';
 import Technology from './components/Technology';
 import Eguipment from './components/Eguipment';
-import BindDirections from './components/BindDirections';
-import BindOutputs from './components/BindOutputs';
-import BindPlans from './components/BindPlans';
-import BindDiagram from './components/BindDiagram';
-import Journal from './components/Journal';
+import BindDirections from './components/Bind/BindDirections';
+import BindOutputs from './components/Bind/BindOutputs';
+import BindPlans from './components/Bind/BindPlans';
+import BindDiagram from './components/Bind/BindDiagram';
+import Journal from './components/Journal/Journal';
 
 const App = () => {
   const styleAppMulka = {

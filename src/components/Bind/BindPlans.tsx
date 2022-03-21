@@ -2,18 +2,18 @@ import * as React from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-// import Button from '@mui/material/Button';
+//import Button from '@mui/material/Button';
 // import TextField from '@mui/material/TextField';
 // import Modal from '@mui/material/Modal';
 
 //import Tabs from '@mui/material/Tabs';
 //import Tab from '@mui/material/Tab';
 
-import BindRight from './Bind/BindRight';
+import BindRight from './BindComponents/BindRight';
 
 //import axios from 'axios';
 
-const BindDirections = () => {
+const BindPlans = () => {
   const styleBox = {
     border: 1,
     borderRadius: 1,
@@ -36,4 +36,4 @@ const BindDirections = () => {
   );
 };
 
-export default BindDirections;
+export default BindPlans;
