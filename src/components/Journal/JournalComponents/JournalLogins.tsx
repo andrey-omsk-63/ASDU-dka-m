@@ -6,15 +6,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
-
-//import PointsMenuLevel1 from './PointsMenuLevel1';
-
 import axios from 'axios';
-//import { InputAdornment } from '@mui/material';
-
-//import { XctrlInfo } from '../../interfaceGl.d';
 
 export interface LogMessage {
   logData: LogDatum[];
@@ -59,7 +51,6 @@ const JournalLogins = (props: { logName: string }) => {
     borderColor: 'primary.main',
     backgroundColor: '#F1F5FB',
     opacity: 0.8,
-    //height: '53vh',
   };
 
   const styleXTG02 = {
@@ -123,7 +114,6 @@ const JournalLogins = (props: { logName: string }) => {
   const styleBut01 = {
     fontSize: 11,
     marginRight: 0.5,
-    //width: '12%',
     maxWidth: '5.5vh',
     minWidth: '5.5vh',
     maxHeight: '21px',
@@ -152,7 +142,6 @@ const JournalLogins = (props: { logName: string }) => {
     position: 'absolute',
     fontSize: 14,
     marginTop: -3.3,
-    //marginTop: -12,
     marginLeft: 42,
     maxWidth: '19vh',
     minWidth: '19vh',
@@ -168,8 +157,6 @@ const JournalLogins = (props: { logName: string }) => {
     fontSize: 14,
     marginTop: -3.3,
     marginLeft: 65.9,
-    // marginLeft: 'auto',
-    // marginRight: 0,
     maxHeight: '21px',
     minHeight: '21px',
     width: '4%',
@@ -180,7 +167,6 @@ const JournalLogins = (props: { logName: string }) => {
     maxHeight: '21px',
     minHeight: '21px',
     backgroundColor: '#F1F3F4',
-    //color: 'primary.main',
     color: 'blue',
     textTransform: 'unset !important',
   };
@@ -392,25 +378,24 @@ const JournalLogins = (props: { logName: string }) => {
 
   return (
     <Box>
-
       <Box sx={{ fontSize: 11, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
         <Grid container>
           <Grid item xs={12}>
             <Box sx={{ marginRight: -1.5 }}>
               <Grid container>
                 <Grid item xs={12} sx={styleXt04}>
-                  <Box sx={{ border: 0, marginTop: 0, }}>
+                  {/* Кнопка СБРОС */}
+                  <Box sx={{ border: 0, marginTop: 0 }}>
                     <Button sx={styleReset} variant="contained" onClick={() => setValue(4)}>
                       <b>Сброс настроек</b>
                     </Button>
                   </Box>
-
+                  {/* Кнопка ПОИСК */}
                   <Box sx={styleServis}>
                     <Button sx={styleServisKnop} variant="contained" onClick={handleOpenSet}>
                       <b>Поиск</b>
                     </Button>
-                    <Modal
-                      open={openSet} disableEnforceFocus onClose={handleCloseSet}>
+                    <Modal open={openSet} disableEnforceFocus onClose={handleCloseSet}>
                       <Box sx={styleSet}>
                         <Box
                           component="form"
@@ -425,8 +410,7 @@ const JournalLogins = (props: { logName: string }) => {
                       </Box>
                     </Modal>
                   </Box>
-
-
+                  {/* Тело журнала */}
                   <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
                     <HeaderLogins />
                   </Box>

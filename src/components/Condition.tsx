@@ -18,7 +18,7 @@ const Condition = () => {
     fontSize: 15,
     maxHeight: '18px',
     minHeight: '18px',
-    marginTop: -2,
+    marginTop: -3,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -44,12 +44,12 @@ const Condition = () => {
     p: 3,
   };
 
-  const styleModalEnd = {
-    position: 'absolute',
-    top: '0%',
-    left: '90%',
-    fontSize: 21,
-  };
+  // const styleModalEnd = {
+  //   position: 'absolute',
+  //   top: '0%',
+  //   left: '90%',
+  //   fontSize: 21,
+  // };
 
   const Col01Grid01 = () => {
     return (
@@ -387,6 +387,13 @@ const Condition = () => {
   };
 
   const ModalEnd = () => {
+    const styleModalEnd = {
+      position: 'absolute',
+      top: '0%',
+      left: '90%',
+      fontSize: 21,
+    };
+
     return (
       <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
         &#10060;

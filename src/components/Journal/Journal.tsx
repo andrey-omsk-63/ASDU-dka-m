@@ -17,9 +17,8 @@ const Journal = () => {
   const styleApp01 = {
     fontSize: 14,
     marginRight: 0.5,
-    //width: '25%',
-    maxWidth: '18vh',
-    minWidth: '18vh',
+    maxWidth: '21vh',
+    minWidth: '21vh',
     maxHeight: '21px',
     minHeight: '21px',
     backgroundColor: '#F1F3F4',
@@ -46,6 +45,7 @@ const Journal = () => {
     backgroundColor: '#F1F3F4',
     color: 'black',
     marginRight: 1,
+    marginBottom: 0.5,
     textTransform: 'unset !important',
   };
 
@@ -61,6 +61,18 @@ const Journal = () => {
     borderRadius: 2,
     boxShadow: 24,
     p: 3,
+  };
+
+  const styleModalEnd = {
+    position: 'absolute',
+    maxWidth: '3vh',
+    minWidth: '3vh',
+    maxHeight: '16px',
+    minHeight: '16px',
+    backgroundColor: 'fff',
+    top: '0.5%',
+    left: '88%',
+    fontSize: 15,
   };
 
   const [open, setOpen] = React.useState(false);
@@ -87,20 +99,27 @@ const Journal = () => {
     let stroka = '';
     let strDat = '';
 
-    for (let i = 0; i < points.length; i++) {
-      stroka = points[i];
-      strDat = stroka.slice(11, 13) + '.' + stroka.slice(8, 10) + '.' + stroka.slice(3, 7);
-      resStr.push(
-        <Button key={i} sx={styleModalMenu} variant="contained" onClick={() => handleClose(i)}>
-          <b>{strDat}</b>
-        </Button>,
-      );
-    }
     resStr.push(
-      <Button key={777} sx={styleModalMenu} variant="contained" onClick={() => handleClose(777)}>
-        <b>Выход</b>
+      <Button key={777} sx={styleModalEnd} onClick={() => handleClose(777)}>
+        &#10060;
       </Button>,
     );
+    if (isOpen) {
+      for (let i = 0; i < points.length; i++) {
+        stroka = points[points.length - i - 1];
+        strDat = stroka.slice(11, 13) + '.' + stroka.slice(8, 10) + '.' + stroka.slice(3, 7);
+        resStr.push(
+          <Button
+            key={i}
+            sx={styleModalMenu}
+            variant="contained"
+            onClick={() => handleClose(points.length - i - 1)}>
+            <b>{strDat}</b>
+          </Button>,
+        );
+      }
+    }
+
     return resStr;
   };
 
@@ -110,11 +129,7 @@ const Journal = () => {
         <Button sx={styleApp01} variant="contained" onClick={handleOpen}>
           <b>Выбор по дате</b>
         </Button>
-        <Modal
-          open={open}
-          // aria-labelledby="modal-modal-title"
-          // aria-describedby="modal-modal-description"
-          >
+        <Modal open={open}>
           <Box sx={styleModal}>
             <Stack direction="column">{SpisData()}</Stack>
           </Box>
@@ -124,6 +139,7 @@ const Journal = () => {
   };
 
   const [points, setPoints] = React.useState<Array<string>>([]);
+  const [isOpen, setIsOpen] = React.useState(false);
   const ipAdress: string = 'http://localhost:3000/otladkaGlob.json';
   //const ipAdress = window.location.href;
 
@@ -131,6 +147,7 @@ const Journal = () => {
     // axios.post(ipAdress).then(({ data }) => {
     axios.get(ipAdress).then(({ data }) => {
       setPoints(data.fileNames);
+      setIsOpen(true);
     });
   }, [ipAdress]);
 

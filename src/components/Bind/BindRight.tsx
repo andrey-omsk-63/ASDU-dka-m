@@ -25,7 +25,7 @@ const BindRight = () => {
     fontSize: 15,
     maxHeight: '18px',
     minHeight: '18px',
-    marginTop: -3,
+    marginTop: -2,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -36,7 +36,6 @@ const BindRight = () => {
     maxHeight: '18px',
     minHeight: '18px',
     marginBottom: 1.5,
-    //marginRight: 0.7,
     backgroundColor: 'white',
     color: 'black',
     textTransform: 'unset !important',
@@ -109,18 +108,12 @@ const BindRight = () => {
 
                 <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
                   <Grid item xs={11.3}>
-                    {/* <Stack direction="column">
-                      <> */}
-                    {/* <Grid item xs> */}
                     <Button sx={styleButtBing} variant="contained">
                       <b>Открыть файл</b>
                     </Button>
                     <Button sx={styleButtBing} variant="contained">
                       <b>Сохран.файл</b>
                     </Button>
-                    {/* </Grid> */}
-                    {/* </>
-                    </Stack> */}
                     <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
                     <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
 
@@ -141,7 +134,7 @@ const BindRight = () => {
 
           <Box sx={{ marginTop: 0.5 }}>
             <Grid container sx={styleBox}>
-              <Grid item xs={12} sx={{ height: '30vh' }}>
+              <Grid item xs={12} sx={{ height: '31.5vh' }}>
                 <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('22')}>
                   <b>Время</b>
                 </Button>
@@ -177,10 +170,8 @@ const BindRight = () => {
                     <Button sx={styleButtBingModal} variant="contained">
                       <b>Сохранить файл</b>
                     </Button>
-
                     <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
                     <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
-
                     <Button sx={styleButtBingModal} variant="contained">
                       <b>Записать ДК</b>
                     </Button>
