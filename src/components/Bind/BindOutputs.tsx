@@ -3,11 +3,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-// import TextField from '@mui/material/TextField';
-// import Modal from '@mui/material/Modal';
-
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
+import Modal from '@mui/material/Modal';
 
 import BindRight from './BindComponents/BindRight';
 
@@ -36,16 +34,29 @@ const BindOutputs = () => {
     borderColor: 'primary.main',
     textAlign: 'center',
     backgroundColor: '#C0C0C0',
-    p: 1,
+    paddingTop: 1,
   };
 
-  // const styleXTG02 = {
-  //   borderRadius: 1,
-  //   borderBottom: 1,
-  //   borderColor: 'primary.main',
-  //   textAlign: 'center',
-  //   backgroundColor: '#C0C0C0',
-  // };
+  const styleXTG03 = {
+    borderRight: 1,
+    borderBottom: 1,
+    borderColor: 'primary.main',
+    padding: 0.2,
+  };
+
+  const styleSet = {
+    position: 'absolute',
+    top: '1vh',
+    right: '5vh',
+    width: 700,
+    bgcolor: 'background.paper',
+    border: '3px solid #000',
+    borderColor: 'primary.main',
+    borderRadius: 2,
+    boxShadow: 24,
+    paddingRight: 3,
+    paddingTop: 3,
+  };
 
   const HeaderLBindOutputs = () => {
     return (
@@ -75,23 +86,124 @@ const BindOutputs = () => {
     );
   };
 
+  const StrokaBindOutputs = () => {
+    let resStr = [];
+
+    for (let i = 0; i < 69; i++) {
+      resStr.push(
+        <Grid key={Math.random()} container item xs={12}>
+          <Grid key={Math.random()} xs={1.5} item sx={styleXTG03}>
+            {i + 1}
+          </Grid>
+          <Grid key={Math.random()} xs={2} item sx={styleXTG03}>
+            Контр. конфликта
+          </Grid>
+          <Grid key={Math.random()} xs={2} item sx={styleXTG03}>
+            Контр. перегорания
+          </Grid>
+          <Grid key={Math.random()} xs={2} item sx={styleXTG03}>
+            Мощность
+          </Grid>
+          <Grid key={Math.random()} xs={1.5} item sx={styleXTG03}>
+            Лампы
+          </Grid>
+          <Grid key={Math.random()} xs={1.5} item sx={styleXTG03}>
+            Тип нагрузки
+          </Grid>
+          <Grid key={Math.random()} xs item sx={styleXTG03}>
+            № СБ Integra
+          </Grid>
+        </Grid>,
+      );
+    }
+    return resStr;
+  };
+
+  const OutputNormal = () => {
+    return (
+      <Box sx={{ marginTop: -3, fontSize: 12 }}>
+        <HeaderLBindOutputs />
+        <Box sx={{ border: 0, overflowX: 'auto', height: '80.5vh' }}>
+          {StrokaBindOutputs()}
+        </Box>
+      </Box>
+    )
+  }
+
+  const OutputModal = () => {
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSet}>
+          <ModalEnd />
+          <Grid container sx={{ fontSize: 21 }}>
+            <Box sx={{ marginTop: -3, fontSize: 18 }}>
+              <HeaderLBindOutputs />
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>
+                {StrokaBindOutputs()}
+              </Box>
+            </Box>
+          </Grid>
+        </Box>
+      </Modal>
+    )
+  }
+
+  const handleOpenModal = (nom: string) => {
+    setOpenSet(true);
+    setValue(nom);
+  };
+
+  const ModalEnd = () => {
+    const styleModalEnd = {
+      position: 'absolute',
+      top: '-2%',
+      left: '94%',
+      fontSize: 24,
+      color: 'black',
+    };
+
+    return (
+      <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
+        <b>&#10006;</b>
+      </Button>
+    );
+  };
+
+  const [value, setValue] = React.useState('0');
+  const [openSet, setOpenSet] = React.useState(false);
+
+  const handleCloseSet = (event: any, reason: string) => {
+    if (reason !== 'backdropClick') setOpenSet(false);
+  };
+
+  const handleCloseSetBut = () => {
+    setOpenSet(false);
+  };
+
+  const BindLeft = () => {
+    return (
+      <Grid item xs={9.4} sx={styleBox}>
+        <TabContext value={value}>
+          <Box sx={{ border: 0, height: '85.2vh' }}>
+            <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
+              Назначение выходов
+            </Button>
+            <OutputNormal />
+            <TabPanel value="33">
+              <OutputModal />
+            </TabPanel>
+          </Box>
+        </TabContext>
+      </Grid>
+    )
+  }
+
   return (
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
       <Grid container>
         <Grid item xs={12}>
           <Grid container sx={{ height: '85.7vh' }}>
-            <Grid item xs={9.4} sx={styleBox}>
-              <Box sx={{ border: 0, height: '85.2vh' }}>
-                <Button sx={styleButtBox} variant="contained">
-                  Назначение выходов
-                </Button>
-
-                <Grid container sx={{ marginTop: -3, fontSize: 12 }}>
-                  <HeaderLBindOutputs />
-                  {/* <Col01Grid01 /> */}
-                </Grid>
-              </Box>
-            </Grid>
+            <BindLeft />
             <Grid item xs={0.05}></Grid>
             <BindRight />
           </Grid>

@@ -67,15 +67,16 @@ const BindRight = () => {
 
   const styleModalEnd = {
     position: 'absolute',
-    top: '0%',
-    left: '90%',
-    fontSize: 21,
+    top: '-3%',
+    left: '91.5%',
+    fontSize: 24,
+    color: 'black',
   };
 
   const ModalEnd = () => {
     return (
       <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
-        &#10060;
+        <b>&#10006;</b>
       </Button>
     );
   };
@@ -109,18 +110,14 @@ const BindRight = () => {
 
                 <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
                   <Grid item xs={11.3}>
-                    {/* <Stack direction="column">
-                      <> */}
-                    {/* <Grid item xs> */}
+
                     <Button sx={styleButtBing} variant="contained">
                       <b>Открыть файл</b>
                     </Button>
                     <Button sx={styleButtBing} variant="contained">
                       <b>Сохран.файл</b>
                     </Button>
-                    {/* </Grid> */}
-                    {/* </>
-                    </Stack> */}
+
                     <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
                     <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
 

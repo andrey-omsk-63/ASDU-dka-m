@@ -2,12 +2,7 @@ import * as React from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-// import Button from '@mui/material/Button';
-// import TextField from '@mui/material/TextField';
-// import Modal from '@mui/material/Modal';
-
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
+import Stack from '@mui/material/Stack';
 
 import BindRight from './BindComponents/BindRight';
 
@@ -21,12 +16,32 @@ const BindDirections = () => {
     borderColor: 'primary.main',
   };
 
+  const BindLeft = () => {
+    return (
+      <Grid item xs={9.4}>
+        <Stack direction="column">
+          <Grid container sx={styleBox}>
+            <Grid item xs={12} sx={{ height: '42.4vh' }}>
+              <Grid container></Grid>
+            </Grid>
+          </Grid>
+          <Grid container >
+            <Grid item xs sx={{ height: '0.3vh' }}></Grid>
+          </Grid>
+          <Grid container sx={styleBox}>
+            <Grid item xs sx={{ height: '42.4vh' }}></Grid>
+          </Grid>
+        </Stack>
+      </Grid>
+    )
+  }
+
   return (
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
       <Grid container>
         <Grid item xs={12}>
           <Grid container sx={{ height: '85.7vh' }}>
-            <Grid item xs={9.4} sx={styleBox}></Grid>
+            <BindLeft />
             <Grid item xs={0.05}></Grid>
             <BindRight />
           </Grid>

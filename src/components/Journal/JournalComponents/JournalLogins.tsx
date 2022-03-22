@@ -6,6 +6,11 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 
+//import Tabs from '@mui/material/Tabs';
+//import Tab from '@mui/material/Tab';
+
+//import PointsMenuLevel1 from './PointsMenuLevel1';
+
 import axios from 'axios';
 
 export interface LogMessage {
@@ -299,7 +304,7 @@ const JournalLogins = (props: { logName: string }) => {
       maskPoints[0].info = points[i].message.slice(29);
 
       massPoints.push(maskPoints[0]);
-      //setIsRead(false);
+      //setIsRead(false);  !!!!!!!!!!!!!!!!!!
       //flagMake = false;
     }
   };
@@ -325,7 +330,7 @@ const JournalLogins = (props: { logName: string }) => {
 
   React.useEffect(() => {
     axios.get(ipAdress).then(({ data }) => {
-      console.log('data:', data);
+      //console.log('data:', data);
       setPoints(data.logData);
       setIsOpen(true);
       setIsRead(true);
@@ -334,12 +339,8 @@ const JournalLogins = (props: { logName: string }) => {
 
   //console.log('points:', points);
 
-  // if (isOpen && isRead) MakeMassPoints();
-  if (isOpen && isRead) {
-    MakeMassPoints();
-    flagSbros = false;
-  }
-
+  if (isOpen && isRead) MakeMassPoints();
+  
   const [openSet, setOpenSet] = React.useState(false);
   const handleOpenSet = () => setOpenSet(true);
 
@@ -378,24 +379,25 @@ const JournalLogins = (props: { logName: string }) => {
 
   return (
     <Box>
+
       <Box sx={{ fontSize: 11, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
         <Grid container>
           <Grid item xs={12}>
             <Box sx={{ marginRight: -1.5 }}>
               <Grid container>
                 <Grid item xs={12} sx={styleXt04}>
-                  {/* Кнопка СБРОС */}
-                  <Box sx={{ border: 0, marginTop: 0 }}>
+                  <Box sx={{ border: 0, marginTop: 0, }}>
                     <Button sx={styleReset} variant="contained" onClick={() => setValue(4)}>
                       <b>Сброс настроек</b>
                     </Button>
                   </Box>
-                  {/* Кнопка ПОИСК */}
+
                   <Box sx={styleServis}>
                     <Button sx={styleServisKnop} variant="contained" onClick={handleOpenSet}>
                       <b>Поиск</b>
                     </Button>
-                    <Modal open={openSet} disableEnforceFocus onClose={handleCloseSet}>
+                    <Modal
+                      open={openSet} disableEnforceFocus onClose={handleCloseSet}>
                       <Box sx={styleSet}>
                         <Box
                           component="form"
@@ -410,7 +412,8 @@ const JournalLogins = (props: { logName: string }) => {
                       </Box>
                     </Modal>
                   </Box>
-                  {/* Тело журнала */}
+
+
                   <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
                     <HeaderLogins />
                   </Box>

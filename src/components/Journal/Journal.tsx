@@ -14,6 +14,16 @@ import JournalLogins from './JournalComponents/JournalLogins';
 let extData = '__.__.____';
 
 const Journal = () => {
+  const styleJournal = {
+    marginTop: -3.5,
+    background: 'linear-gradient(45deg, #FFC0C0 45%, #0384CF 90%)',
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    marginLeft: -2.9, 
+    marginRight: -3, 
+    height: '85.6vh'
+  }
+
   const styleApp01 = {
     fontSize: 14,
     marginRight: 0.5,
@@ -73,6 +83,7 @@ const Journal = () => {
     top: '0.5%',
     left: '88%',
     fontSize: 15,
+    color: 'black',
   };
 
   const [open, setOpen] = React.useState(false);
@@ -101,7 +112,7 @@ const Journal = () => {
 
     resStr.push(
       <Button key={777} sx={styleModalEnd} onClick={() => handleClose(777)}>
-        &#10060;
+        <b>&#10006;</b>
       </Button>,
     );
     if (isOpen) {
@@ -154,7 +165,7 @@ const Journal = () => {
   const [value, setValue] = React.useState('0');
 
   return (
-    <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3, height: '85.5vh' }}>
+    <Box sx={styleJournal}>
       <TabContext value={value}>
         <Box sx={{ marginLeft: 0.5, marginTop: 0.5 }}>
           <Stack direction="row">

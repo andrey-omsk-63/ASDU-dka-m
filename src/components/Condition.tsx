@@ -7,9 +7,6 @@ import Button from '@mui/material/Button';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
-// import TextField from '@mui/material/TextField';
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
 
 //import axios from 'axios';
 
@@ -43,13 +40,6 @@ const Condition = () => {
     boxShadow: 24,
     p: 3,
   };
-
-  // const styleModalEnd = {
-  //   position: 'absolute',
-  //   top: '0%',
-  //   left: '90%',
-  //   fontSize: 21,
-  // };
 
   const Col01Grid01 = () => {
     return (
@@ -389,14 +379,15 @@ const Condition = () => {
   const ModalEnd = () => {
     const styleModalEnd = {
       position: 'absolute',
-      top: '0%',
-      left: '90%',
-      fontSize: 21,
+      top: '-3%',
+      left: '91%',
+      fontSize: 24,
+      color: 'black',
     };
 
     return (
       <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
-        &#10060;
+        <b>&#10006;</b>
       </Button>
     );
   };
