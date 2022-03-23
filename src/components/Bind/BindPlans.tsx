@@ -18,7 +18,7 @@ const BindPlans = () => {
 
   const BindLeft = () => {
     return (
-      <Grid item xs={9.4}>
+      <Grid item xs={9.3}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
             <Grid item xs={12} sx={{ height: '24.4vh' }}>

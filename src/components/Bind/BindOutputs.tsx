@@ -20,9 +20,9 @@ const BindOutputs = () => {
   };
 
   const styleButtBox = {
-    fontSize: 15,
-    maxHeight: '18px',
-    minHeight: '18px',
+    fontSize: 19,
+    maxHeight: '21px',
+    minHeight: '21px',
     marginTop: -3.5,
     backgroundColor: 'white',
     color: '#5B1080',
@@ -152,9 +152,9 @@ const BindOutputs = () => {
   const ModalEnd = () => {
     const styleModalEnd = {
       position: 'absolute',
-      top: '-2%',
+      top: '-1%',
       left: '94%',
-      fontSize: 24,
+      fontSize: 21,
       color: 'black',
     };
 
@@ -178,11 +178,11 @@ const BindOutputs = () => {
 
   const BindLeft = () => {
     return (
-      <Grid item xs={9.4} sx={styleBox}>
+      <Grid item xs={9.3} sx={styleBox}>
         <TabContext value={value}>
-          <Box sx={{ border: 0, height: '85.2vh' }}>
+          <Box sx={{ height: '85.2vh' }}>
             <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
-              Назначение выходов
+              <b>Назначение выходов</b>
             </Button>
             <OutputNormal />
             <TabPanel value="33">

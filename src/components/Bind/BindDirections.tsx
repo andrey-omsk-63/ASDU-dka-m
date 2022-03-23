@@ -21,9 +21,9 @@ const BindDirections = () => {
   };
 
   const styleButtBox = {
-    fontSize: 15,
-    maxHeight: '18px',
-    minHeight: '18px',
+    fontSize: 19,
+    maxHeight: '21px',
+    minHeight: '21px',
     marginTop: -3.5,
     backgroundColor: 'white',
     color: '#5B1080',
@@ -175,7 +175,7 @@ const BindDirections = () => {
   const StrokaTopTab = () => {
     let resStr = [];
 
-    for (let i = 0; i < 160; i++) {
+    for (let i = 0; i < 69; i++) {
       resStr.push(
         <Grid key={Math.random()} container item xs={12}>
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
@@ -237,7 +237,7 @@ const BindDirections = () => {
   const StrokaBattomTab = () => {
     let resStr = [];
 
-    for (let i = 0; i < 160; i++) {
+    for (let i = 0; i < 69; i++) {
       resStr.push(
         <Grid key={Math.random()} container item xs={12}>
           <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
@@ -280,7 +280,7 @@ const BindDirections = () => {
     return (
       <Box sx={{ border: 0 }}>
         <Button sx={styleButtBox} variant="contained">
-          Назначение выходов
+          <b>Назначение выходов</b>
         </Button>
         <Box sx={{ border: 0, marginTop: -2, fontSize: 12, height: '41.5vh' }}>
           <HeaderTopTab />
@@ -294,7 +294,7 @@ const BindDirections = () => {
     return (
       <Box sx={{ border: 0 }}>
         <Button sx={styleButtBox} variant="contained">
-          Привязка фаз
+          <b>Привязка фаз</b>
         </Button>
         <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '40vh' }}>
           <HeaderBattomTab />
@@ -306,7 +306,7 @@ const BindDirections = () => {
 
   const BindLeft = () => {
     return (
-      <Grid item xs={9.4}>
+      <Grid item xs={9.3}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
             <Grid item xs={12} sx={{ fontSize: 12, height: '42.4vh' }}>

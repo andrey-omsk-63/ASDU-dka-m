@@ -25,24 +25,26 @@ const Journal = () => {
   }
 
   const styleApp01 = {
-    fontSize: 14,
+    fontSize: 17,
     marginRight: 0.5,
-    maxWidth: '21vh',
-    minWidth: '21vh',
-    maxHeight: '21px',
-    minHeight: '21px',
+    maxWidth: '22vh',
+    minWidth: '22vh',
+    maxHeight: '24px',
+    minHeight: '24px',
     backgroundColor: '#F1F3F4',
     color: 'black',
     textTransform: 'unset !important',
   };
 
   const styleApp02 = {
-    fontSize: 14,
-    marginRight: 0.5,
+    fontSize: 17,
+    marginRight: -0.5,
     borderRadius: 1,
-    width: '12%',
-    maxHeight: '21px',
-    minHeight: '21px',
+    maxWidth: '14vh',
+    minWidth: '14vh',
+    //width: '14%',
+    maxHeight: '24px',
+    minHeight: '24px',
     backgroundColor: '#FFE295',
     color: 'black',
     textAlign: 'center',

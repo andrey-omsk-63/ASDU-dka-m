@@ -12,10 +12,12 @@ import Modal from '@mui/material/Modal';
 
 const Condition = () => {
   const styleButt01 = {
-    fontSize: 15,
-    maxHeight: '18px',
-    minHeight: '18px',
-    marginTop: -3,
+    fontSize: 19,
+    maxHeight: '21px',
+    minHeight: '21px',
+    //maxWidth: '22vh',
+    //minWidth: '22vh',
+    marginTop: -2,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -270,7 +272,7 @@ const Condition = () => {
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '13.6vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('11')}>
-                  Информация
+                  <b>Информация</b>
                 </Button>
                 <Grid container sx={{ fontSize: 12 }}>
                   <Col01Grid01 />
@@ -282,7 +284,7 @@ const Condition = () => {
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '24.6vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('12')}>
-                  Состояние
+                  <b>Состояние</b>
                 </Button>
                 <Grid container sx={{ fontSize: 12 }}>
                   <Col01Grid02 />
@@ -295,7 +297,7 @@ const Condition = () => {
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '22.5vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('14')}>
-                  Время
+                  <b>Время</b>
                 </Button>
                 <Grid container sx={{ fontSize: 12.9 }}>
                   <Col01Grid04 />
@@ -316,7 +318,8 @@ const Condition = () => {
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '32vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('21')}>
-                  GPRS
+                  <b>GPRS</b>
+
                 </Button>
                 <Grid container sx={{ fontSize: 12 }}>
                   <Col02Grid01 />
@@ -329,7 +332,7 @@ const Condition = () => {
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '13.5vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('22')}>
-                  GPRS
+                  <b>LAN</b>
                 </Button>
                 <Grid container sx={{ fontSize: 12 }}>
                   <Col02Grid02 />
@@ -350,7 +353,7 @@ const Condition = () => {
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '43vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('32')}>
-                  Настройки УСДК
+                  <b>Настр.УСДК</b>
                 </Button>
                 <Grid container sx={{ fontSize: 12 }}>
                   <Col03Grid02 />
@@ -363,7 +366,7 @@ const Condition = () => {
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '18.5vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('33')}>
-                  Настройки LAN
+                  <b>Настр.LAN</b>
                 </Button>
                 <Grid container sx={{ fontSize: 11.5 }}>
                   <Col03Grid03 />
@@ -376,8 +379,7 @@ const Condition = () => {
     );
   };
 
-  const ModalEnd = () => {
-    const styleModalEnd = {
+  const ModalEnd = () => {    const styleModalEnd = {
       position: 'absolute',
       top: '-3%',
       left: '91%',

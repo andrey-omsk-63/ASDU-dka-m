@@ -57,22 +57,26 @@ const App = () => {
   };
 
   const styleButt01 = {
-    fontSize: 16,
-    maxHeight: '21px',
-    minHeight: '21px',
-    marginTop: 3,
+    fontSize: 17.5,
+    maxHeight: '27px',
+    minHeight: '27px',
+    //maxWidth: '18vh',
+    //minWidth: '18vh',
+    marginTop: 4,
     backgroundColor: '#F1F5FB',
     color: 'black',
+
     textTransform: 'unset !important',
   };
 
   const styleButt02 = {
-    fontSize: 15,
-    maxHeight: '21px',
-    minHeight: '21px',
-    marginTop: 3,
+    fontSize: 17.5,
+    maxHeight: '27px',
+    minHeight: '27px',
+    marginTop: 4,
     backgroundColor: '#F1F5FB',
-    color: 'black',
+    //color: 'DarkGreen',
+    color: '#003300',
     textTransform: 'unset !important',
   };
 
@@ -91,17 +95,17 @@ const App = () => {
   const ButtonKnobLevel2 = (soob: string, val: string) => {
     return (
       <Grid container>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={10}>
+        <Grid item xs={1}></Grid>
+        <Grid item xs>
           <Button sx={styleButt02} variant="contained" onClick={() => setValue(val)}>
-            {soob}
+            <b>{soob}</b>
           </Button>
         </Grid>
       </Grid>
     );
   };
 
-  const [value, setValue] = React.useState('0');
+  const [value, setValue] = React.useState('1');
 
   return (
     <>
@@ -114,11 +118,11 @@ const App = () => {
         <Grid container sx={{ marginRight: 2 }}>
           <TabContext value={value}>
             <Grid item xs={2.6} sx={styleAppMenu}>
-              <Grid item sx={{ padding: 0.5 }}>
+              <Grid item sx={{ padding: 0.1 }}>
                 <Stack direction="column">
                   <Box
                     sx={{
-                      fontSize: 21,
+                      fontSize: 24,
                       marginTop: 1,
                       textAlign: 'left',
                       marginLeft: 4,
@@ -131,7 +135,7 @@ const App = () => {
                   {ButtonKnobLevel1('Оборудование', '3')}
                   <Grid container>
                     <Grid item xs>
-                      <Box sx={{ fontSize: 17, marginTop: 3, marginLeft: 2 }}>
+                      <Box sx={{ fontSize: 19, marginTop: 3, marginLeft: 2 }}>
                         <b>Привязка</b>
                       </Box>
                     </Grid>

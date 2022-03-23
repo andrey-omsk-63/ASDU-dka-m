@@ -22,10 +22,12 @@ const BindRight = () => {
   };
 
   const styleButt = {
-    fontSize: 15,
-    maxHeight: '18px',
-    minHeight: '18px',
-    marginTop: -3,
+    fontSize: 19,
+    maxHeight: '21px',
+    minHeight: '21px',
+    // maxWidth: '14vh',
+    // minWidth: '14vh',
+    marginTop: -2,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -102,16 +104,19 @@ const BindRight = () => {
       <Stack direction="column">
         <TabContext value={value}>
           <Box>
+
             <Grid container sx={styleBox}>
               <Grid item xs={12} sx={{ height: '33vh' }}>
-                <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
-                  <b>В Crossform</b>
-                </Button>
+                
+                  <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
+                    <b>Crossform</b>
+                  </Button>
+               
 
                 <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
                   <Grid item xs={11.3}>
                     <Button sx={styleButtBing} variant="contained">
-                      <b>Открыть файл</b>
+                      <b>Откр.файл</b>
                     </Button>
                     <Button sx={styleButtBing} variant="contained">
                       <b>Сохран.файл</b>
@@ -121,16 +126,17 @@ const BindRight = () => {
                     <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
 
                     <Button sx={styleButtBing} variant="contained">
-                      <b>Записать ДК</b>
+                      <b>Запись ДК</b>
                     </Button>
                     <Button sx={styleButtBing} variant="contained">
-                      <b>Прочитать ДК</b>
+                      <b>Читать ДК</b>
                     </Button>
                     <Button sx={styleButtBing} variant="contained">
-                      <b>Сравнить ДК</b>
+                      <b>Срав-ть ДК</b>
                     </Button>
                   </Grid>
                 </Grid>
+
               </Grid>
             </Grid>
           </Box>
