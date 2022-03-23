@@ -103,14 +103,13 @@ const BindRight = () => {
         <TabContext value={value}>
           <Box>
             <Grid container sx={styleBox}>
-              <Grid item xs={12} sx={{ height: '30vh' }}>
+              <Grid item xs={12} sx={{ height: '33vh' }}>
                 <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
                   <b>В Crossform</b>
                 </Button>
 
                 <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
                   <Grid item xs={11.3}>
-
                     <Button sx={styleButtBing} variant="contained">
                       <b>Открыть файл</b>
                     </Button>
@@ -138,7 +137,7 @@ const BindRight = () => {
 
           <Box sx={{ marginTop: 0.5 }}>
             <Grid container sx={styleBox}>
-              <Grid item xs={12} sx={{ height: '30vh' }}>
+              <Grid item xs={12} sx={{ height: '33vh' }}>
                 <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('22')}>
                   <b>Время</b>
                 </Button>

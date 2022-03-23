@@ -123,12 +123,10 @@ const BindOutputs = () => {
     return (
       <Box sx={{ marginTop: -3, fontSize: 12 }}>
         <HeaderLBindOutputs />
-        <Box sx={{ border: 0, overflowX: 'auto', height: '80.5vh' }}>
-          {StrokaBindOutputs()}
-        </Box>
+        <Box sx={{ border: 0, overflowX: 'auto', height: '80.5vh' }}>{StrokaBindOutputs()}</Box>
       </Box>
-    )
-  }
+    );
+  };
 
   const OutputModal = () => {
     return (
@@ -138,15 +136,13 @@ const BindOutputs = () => {
           <Grid container sx={{ fontSize: 21 }}>
             <Box sx={{ marginTop: -3, fontSize: 18 }}>
               <HeaderLBindOutputs />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>
-                {StrokaBindOutputs()}
-              </Box>
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBindOutputs()}</Box>
             </Box>
           </Grid>
         </Box>
       </Modal>
-    )
-  }
+    );
+  };
 
   const handleOpenModal = (nom: string) => {
     setOpenSet(true);
@@ -195,8 +191,8 @@ const BindOutputs = () => {
           </Box>
         </TabContext>
       </Grid>
-    )
-  }
+    );
+  };
 
   return (
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>

@@ -121,7 +121,7 @@ const App = () => {
                       fontSize: 21,
                       marginTop: 1,
                       textAlign: 'left',
-                      marginLeft: 2,
+                      marginLeft: 4,
                       color: '#5B1080',
                     }}>
                     <b>ДКАМ</b>
