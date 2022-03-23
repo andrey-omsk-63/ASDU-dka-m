@@ -27,7 +27,7 @@ const BindRight = () => {
     minHeight: '21px',
     // maxWidth: '14vh',
     // minWidth: '14vh',
-    marginTop: -2,
+    marginTop: -3,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -56,8 +56,10 @@ const BindRight = () => {
 
   const styleSet = {
     position: 'absolute',
-    top: '12vh',
-    right: '18vh',
+    // top: '12vh',
+    // right: '18vh',
+    marginTop: '6vh',
+    marginLeft: '6vh',
     width: 512,
     bgcolor: 'background.paper',
     border: '3px solid #000',
@@ -104,14 +106,11 @@ const BindRight = () => {
       <Stack direction="column">
         <TabContext value={value}>
           <Box>
-
             <Grid container sx={styleBox}>
               <Grid item xs={12} sx={{ height: '33vh' }}>
-                
-                  <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
-                    <b>Crossform</b>
-                  </Button>
-               
+                <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
+                  <b>Crossform</b>
+                </Button>
 
                 <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
                   <Grid item xs={11.3}>
@@ -136,7 +135,6 @@ const BindRight = () => {
                     </Button>
                   </Grid>
                 </Grid>
-
               </Grid>
             </Grid>
           </Box>

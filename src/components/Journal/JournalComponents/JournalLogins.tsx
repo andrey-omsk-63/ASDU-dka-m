@@ -43,7 +43,12 @@ let formSett = '';
 let massPoints: Array<Line> = [];
 
 const JournalLogins = (props: { logName: string }) => {
-  console.log('logName:', props.logName);
+  // const windowInnerWidth = window.innerWidth;
+  // const windowInnerHeight = window.innerHeight;
+  // console.log('Width:', windowInnerWidth);
+  // console.log('Heigh:', windowInnerHeight);
+  let fSize = 10;
+  if (window.innerWidth > 770) fSize = 12.9;
 
   if (oldData !== props.logName) {
     oldData = props.logName;
@@ -117,10 +122,10 @@ const JournalLogins = (props: { logName: string }) => {
   };
 
   const styleBut01 = {
-    fontSize: 11,
+    fontSize: 12,
     marginRight: 0.5,
-    maxWidth: '5.5vh',
-    minWidth: '5.5vh',
+    // maxWidth: '4vh',
+    // minWidth: '4vh',
     maxHeight: '21px',
     minHeight: '21px',
     backgroundColor: '#F1F3F4',
@@ -146,31 +151,36 @@ const JournalLogins = (props: { logName: string }) => {
   const styleReset = {
     position: 'absolute',
     fontSize: 17,
-    marginTop: -3.7,
-    marginLeft: 36,
-    maxWidth: '22vh',
-    minWidth: '22vh',
+    // marginTop: -3.7,
+    marginTop: -8,
+    //marginLeft: 36,
+    marginLeft: 12,
+    //maxWidth: '22vh',
+    //minWidth: '22vh',
     maxHeight: '24px',
     minHeight: '24px',
-    backgroundColor: '#F1F3F4',
+    backgroundColor: 'white',
+    opacity: 1,
     color: 'black',
     textTransform: 'unset !important',
   };
 
   const styleServis = {
-    position: 'absolute',
+    position: 'relative',
     fontSize: 14,
+    marginLeft: 'auto',
+    marginRight: 7,
     marginTop: -3.3,
-    marginLeft: 65.9,
+    //marginLeft: 65.9,
     maxHeight: '21px',
     minHeight: '21px',
     width: '4%',
   };
 
   const styleServisKnop = {
-    marginTop: -0.5,
-    maxHeight: '21px',
-    minHeight: '21px',
+    marginTop: -1,
+    maxHeight: '24px',
+    minHeight: '24px',
     backgroundColor: '#F1F3F4',
     color: 'blue',
     textTransform: 'unset !important',
@@ -340,7 +350,7 @@ const JournalLogins = (props: { logName: string }) => {
   //console.log('points:', points);
 
   if (isOpen && isRead) MakeMassPoints();
-  
+
   const [openSet, setOpenSet] = React.useState(false);
   const handleOpenSet = () => setOpenSet(true);
 
@@ -379,14 +389,13 @@ const JournalLogins = (props: { logName: string }) => {
 
   return (
     <Box>
-
-      <Box sx={{ fontSize: 11, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
+      <Box sx={{ fontSize: fSize, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
         <Grid container>
           <Grid item xs={12}>
             <Box sx={{ marginRight: -1.5 }}>
               <Grid container>
                 <Grid item xs={12} sx={styleXt04}>
-                  <Box sx={{ border: 0, marginTop: 0, }}>
+                  <Box sx={{ border: 0, marginTop: 0 }}>
                     <Button sx={styleReset} variant="contained" onClick={() => setValue(4)}>
                       <b>Сброс настроек</b>
                     </Button>
@@ -396,8 +405,7 @@ const JournalLogins = (props: { logName: string }) => {
                     <Button sx={styleServisKnop} variant="contained" onClick={handleOpenSet}>
                       <b>Поиск</b>
                     </Button>
-                    <Modal
-                      open={openSet} disableEnforceFocus onClose={handleCloseSet}>
+                    <Modal open={openSet} disableEnforceFocus onClose={handleCloseSet}>
                       <Box sx={styleSet}>
                         <Box
                           component="form"
@@ -412,7 +420,6 @@ const JournalLogins = (props: { logName: string }) => {
                       </Box>
                     </Modal>
                   </Box>
-
 
                   <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
                     <HeaderLogins />

@@ -14,21 +14,26 @@ import JournalLogins from './JournalComponents/JournalLogins';
 let extData = '__.__.____';
 
 const Journal = () => {
+  let bottomStyleModal = 9;
+  if (window.innerHeight < 1000) bottomStyleModal = -30;
+
+  //console.log('h:', window.innerHeight, 'b:', bottomStyleModal);
+
   const styleJournal = {
     marginTop: -3.5,
     background: 'linear-gradient(45deg, #FFC0C0 45%, #0384CF 90%)',
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    marginLeft: -2.9, 
-    marginRight: -3, 
-    height: '85.6vh'
-  }
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+    marginLeft: -2.9,
+    marginRight: -3,
+    height: '85.6vh',
+  };
 
   const styleApp01 = {
     fontSize: 17,
     marginRight: 0.5,
-    maxWidth: '22vh',
-    minWidth: '22vh',
+    maxWidth: '20vh',
+    minWidth: '20vh',
     maxHeight: '24px',
     minHeight: '24px',
     backgroundColor: '#F1F3F4',
@@ -51,22 +56,25 @@ const Journal = () => {
   };
 
   const styleModalMenu = {
-    fontSize: 13.9,
-    maxHeight: '20px',
-    minHeight: '20px',
+    fontSize: 17,
+    maxHeight: '21px',
+    minHeight: '21px',
     backgroundColor: '#F1F3F4',
     color: 'black',
     marginRight: 1,
-    marginBottom: 0.5,
+    marginBottom: 2,
     textTransform: 'unset !important',
   };
 
   const styleModal = {
-    position: 'relative',
-    bottom: '-48vh',
-    marginLeft: '60vh',
-    transform: 'translate(-50%, -50%)',
-    width: 150,
+    // position: 'relative',
+    position: 'absolute',
+    bottom: 'bottomStyleModal',
+    //bottom: '-36vh',
+    //bottom: '9vh',
+    marginLeft: '12vh',
+    //transform: 'translate(-50%, -50%)',
+    width: 200,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     borderColor: 'primary.main',
@@ -140,11 +148,13 @@ const Journal = () => {
     return (
       <>
         <Button sx={styleApp01} variant="contained" onClick={handleOpen}>
-          <b>Выбор по дате</b>
+          <b>Выбор даты</b>
         </Button>
         <Modal open={open}>
           <Box sx={styleModal}>
-            <Stack direction="column">{SpisData()}</Stack>
+            <Stack direction="column">
+              <Box sx={{ overflowX: 'auto', height: '55vh' }}>{SpisData()}</Box>
+            </Stack>
           </Box>
         </Modal>
       </>
@@ -169,7 +179,7 @@ const Journal = () => {
   return (
     <Box sx={styleJournal}>
       <TabContext value={value}>
-        <Box sx={{ marginLeft: 0.5, marginTop: 0.5 }}>
+        <Box sx={{ marginLeft: 0, marginTop: 0.5 }}>
           <Stack direction="row">
             <ChoiceData />
             <Box sx={styleApp02}>{extData}</Box>

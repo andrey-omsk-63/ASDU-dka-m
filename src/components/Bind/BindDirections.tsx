@@ -306,7 +306,7 @@ const BindDirections = () => {
 
   const BindLeft = () => {
     return (
-      <Grid item xs={9.3}>
+      <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
             <Grid item xs={12} sx={{ fontSize: 12, height: '42.4vh' }}>

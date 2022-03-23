@@ -18,14 +18,14 @@ const BindPlans = () => {
 
   const BindLeft = () => {
     return (
-      <Grid item xs={9.3}>
+      <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
             <Grid item xs={12} sx={{ height: '24.4vh' }}>
               <Grid container></Grid>
             </Grid>
           </Grid>
-          <Grid container >
+          <Grid container>
             <Grid item xs sx={{ height: '0.3vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
@@ -33,8 +33,8 @@ const BindPlans = () => {
           </Grid>
         </Stack>
       </Grid>
-    )
-  }
+    );
+  };
 
   return (
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>

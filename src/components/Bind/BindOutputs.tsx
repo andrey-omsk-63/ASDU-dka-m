@@ -46,9 +46,9 @@ const BindOutputs = () => {
 
   const styleSet = {
     position: 'absolute',
-    top: '1vh',
-    right: '5vh',
-    width: 700,
+    marginTop: '1vh',
+    marginLeft: '1vh',
+    width: 650,
     bgcolor: 'background.paper',
     border: '3px solid #000',
     borderColor: 'primary.main',
@@ -136,7 +136,7 @@ const BindOutputs = () => {
           <Grid container sx={{ fontSize: 21 }}>
             <Box sx={{ marginTop: -3, fontSize: 18 }}>
               <HeaderLBindOutputs />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBindOutputs()}</Box>
+              <Box sx={{ overflowX: 'auto', height: '54vh' }}>{StrokaBindOutputs()}</Box>
             </Box>
           </Grid>
         </Box>
@@ -153,7 +153,7 @@ const BindOutputs = () => {
     const styleModalEnd = {
       position: 'absolute',
       top: '-1%',
-      left: '94%',
+      left: '93.5%',
       fontSize: 21,
       color: 'black',
     };
@@ -178,7 +178,7 @@ const BindOutputs = () => {
 
   const BindLeft = () => {
     return (
-      <Grid item xs={9.3} sx={styleBox}>
+      <Grid item xs={9} sx={styleBox}>
         <TabContext value={value}>
           <Box sx={{ height: '85.2vh' }}>
             <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>

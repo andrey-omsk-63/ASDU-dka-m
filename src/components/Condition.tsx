@@ -32,8 +32,11 @@ const Condition = () => {
 
   const styleSet = {
     position: 'absolute',
-    top: '12vh',
-    right: '18vh',
+    // top: '12vh',
+    // right: '18vh',
+    //bottom: 'bottomStyleModal',
+    marginTop: '6vh',
+    marginLeft: '6vh',
     width: 512,
     bgcolor: 'background.paper',
     border: '3px solid #000',
@@ -140,7 +143,7 @@ const Condition = () => {
             <b>&nbsp;Тип модема:</b>
           </Box>
           <p>
-            <b>&nbsp;Врсия ПО модема:</b>
+            <b>&nbsp;Версия ПО модема:</b>
           </p>
           <Box>
             <b>&nbsp;Оператор GSM:</b>
@@ -241,10 +244,10 @@ const Condition = () => {
             <b>&nbsp;IP адрес:</b>
           </Box>
           <p>
-            <b>&nbsp;Маска подсети:</b>
+            <b>Маска подсети:</b>
           </p>
           <Box>
-            <b>&nbsp;Основной шлюз:</b>
+            <b>&nbsp;Осн.шлюз:</b>
           </Box>
         </Grid>
         <Grid item xs>
@@ -299,7 +302,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('14')}>
                   <b>Время</b>
                 </Button>
-                <Grid container sx={{ fontSize: 12.9 }}>
+                <Grid container sx={{ fontSize: 12 }}>
                   <Col01Grid04 />
                 </Grid>
               </Grid>
@@ -312,16 +315,15 @@ const Condition = () => {
 
   const ConditionColGrid02 = () => {
     return (
-      <Grid item xs={4.25}>
+      <Grid item xs={4.15}>
         <Stack direction="column">
           <Box>
             <Grid container sx={styleBox01}>
               <Grid item xs sx={{ height: '32vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('21')}>
                   <b>GPRS</b>
-
                 </Button>
-                <Grid container sx={{ fontSize: 12 }}>
+                <Grid container sx={{ fontSize: 11 }}>
                   <Col02Grid01 />
                 </Grid>
               </Grid>
@@ -334,7 +336,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('22')}>
                   <b>LAN</b>
                 </Button>
-                <Grid container sx={{ fontSize: 12 }}>
+                <Grid container sx={{ fontSize: 10.8 }}>
                   <Col02Grid02 />
                 </Grid>
               </Grid>
@@ -355,7 +357,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('32')}>
                   <b>Настр.УСДК</b>
                 </Button>
-                <Grid container sx={{ fontSize: 12 }}>
+                <Grid container sx={{ fontSize: 11 }}>
                   <Col03Grid02 />
                 </Grid>
               </Grid>
@@ -368,7 +370,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('33')}>
                   <b>Настр.LAN</b>
                 </Button>
-                <Grid container sx={{ fontSize: 11.5 }}>
+                <Grid container sx={{ fontSize: 11 }}>
                   <Col03Grid03 />
                 </Grid>
               </Grid>
@@ -379,7 +381,8 @@ const Condition = () => {
     );
   };
 
-  const ModalEnd = () => {    const styleModalEnd = {
+  const ModalEnd = () => {
+    const styleModalEnd = {
       position: 'absolute',
       top: '-3%',
       left: '91%',
@@ -408,7 +411,7 @@ const Condition = () => {
   return (
     <Stack direction="column">
       <TabContext value={value}>
-        <Box sx={{ border: 0, marginTop: -3, marginLeft: -3, marginRight: -3 }}>
+        <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
           <Grid container>
             <Grid item xs={12}>
               <Grid container sx={{ height: '62.5vh' }}>
