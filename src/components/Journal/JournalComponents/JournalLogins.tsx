@@ -169,7 +169,7 @@ const JournalLogins = (props: { logName: string }) => {
     position: 'relative',
     fontSize: 14,
     marginLeft: 'auto',
-    marginRight: 7,
+    marginRight: 7.5,
     marginTop: -3.3,
     //marginLeft: 65.9,
     maxHeight: '21px',
@@ -178,6 +178,7 @@ const JournalLogins = (props: { logName: string }) => {
   };
 
   const styleServisKnop = {
+    fontSize: 16,
     marginTop: -1,
     maxHeight: '24px',
     minHeight: '24px',
