@@ -25,7 +25,7 @@ const App = () => {
     borderRadius: 2,
     borderColor: '#F1F5FB',
     marginTop: 0.5,
-    marginRight: 5,
+    marginRight: 3.5,
     marginLeft: 3,
     height: '6vh',
     backgroundColor: '#F1F5FB',
@@ -75,7 +75,6 @@ const App = () => {
     minHeight: '27px',
     marginTop: 4,
     backgroundColor: '#F1F5FB',
-    //color: 'DarkGreen',
     color: '#003300',
     textTransform: 'unset !important',
   };
@@ -115,7 +114,7 @@ const App = () => {
             <b>Здесь будет Красивая Шапка</b>
           </Box>
         </Grid>
-        <Grid container sx={{ marginRight: 2 }}>
+        <Grid container sx={{ marginRight: 0.5 }}>
           <TabContext value={value}>
             <Grid item xs={2.6} sx={styleAppMenu}>
               <Grid item sx={{ padding: 0.1 }}>

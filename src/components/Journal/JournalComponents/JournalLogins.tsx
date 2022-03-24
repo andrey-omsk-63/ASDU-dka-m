@@ -47,8 +47,9 @@ const JournalLogins = (props: { logName: string }) => {
   // const windowInnerHeight = window.innerHeight;
   // console.log('Width:', windowInnerWidth);
   // console.log('Heigh:', windowInnerHeight);
+  //let widthGlob = 0;
   let fSize = 10;
-  if (window.innerWidth > 770) fSize = 12.9;
+  if (window.innerWidth > 950) fSize = 13.3;
 
   if (oldData !== props.logName) {
     oldData = props.logName;
@@ -207,10 +208,13 @@ const JournalLogins = (props: { logName: string }) => {
     );
   };
 
-  const TabsLogins = (props: { valueSort: number }) => {
+  const TabsLogins = (props: { valueSort: number; Size: any; }) => {
+    console.log('Width:', window.innerWidth)
     if (flagSbros) {
       MakeMassPoints();
       flagSbros = false;
+      fSize = 10;
+      if (window.innerWidth > 950) fSize = 13.3;
     } else {
       switch (props.valueSort) {
         case 1:
@@ -238,6 +242,8 @@ const JournalLogins = (props: { logName: string }) => {
           // сброс
           MakeMassPoints();
           formSett = '';
+          fSize = 10;
+          if (window.innerWidth > 950) fSize = 13.3;
       }
     }
 
@@ -320,11 +326,34 @@ const JournalLogins = (props: { logName: string }) => {
     }
   };
 
+  const WindSearsh = () => {
+    return (
+      <Box sx={styleServis}>
+        <Button sx={styleServisKnop} variant="contained" onClick={handleOpenSet}>
+          <b>Поиск</b>
+        </Button>
+        <Modal open={openSet} disableEnforceFocus onClose={handleCloseSet}>
+          <Box sx={styleSet}>
+            <Box
+              component="form"
+              sx={{ '& > :not(style)': { m: 1, width: '40ch' } }}
+              noValidate
+              autoComplete="off">
+              <InpForm />
+            </Box>
+            <Button sx={styleInpKnop} variant="contained" onClick={setFind}>
+              <b>Найти</b>
+            </Button>
+          </Box>
+        </Modal>
+      </Box>
+    )
+  }
+
   const [points, setPoints] = React.useState<Array<LogDatum>>([]);
   const [isOpen, setIsOpen] = React.useState(false);
   const [isRead, setIsRead] = React.useState(false);
   const [value, setValue] = React.useState(2);
-
   let maskPoints: Array<Line> = [
     {
       num: 0,
@@ -347,8 +376,6 @@ const JournalLogins = (props: { logName: string }) => {
       setIsRead(true);
     });
   }, [ipAdress]);
-
-  //console.log('points:', points);
 
   if (isOpen && isRead) MakeMassPoints();
 
@@ -388,6 +415,30 @@ const JournalLogins = (props: { logName: string }) => {
     );
   };
 
+  // const useWindowSize = () => {
+  //   const [size, setSize] = React.useState([0, 0]);
+  //   React.useLayoutEffect(() => {
+  //     function updateSize() {
+  //       setSize([window.innerWidth, window.innerHeight]);
+  //     }
+  //     window.addEventListener('resize', updateSize);
+  //     updateSize();
+  //     return () => window.removeEventListener('resize', updateSize);
+  //   }, []);
+  //   return size;
+  // }
+
+  const [size, setSize] = React.useState([0, 0]);
+
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   return (
     <Box>
       <Box sx={{ fontSize: fSize, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
@@ -402,37 +453,19 @@ const JournalLogins = (props: { logName: string }) => {
                     </Button>
                   </Box>
 
-                  <Box sx={styleServis}>
-                    <Button sx={styleServisKnop} variant="contained" onClick={handleOpenSet}>
-                      <b>Поиск</b>
-                    </Button>
-                    <Modal open={openSet} disableEnforceFocus onClose={handleCloseSet}>
-                      <Box sx={styleSet}>
-                        <Box
-                          component="form"
-                          sx={{ '& > :not(style)': { m: 1, width: '40ch' } }}
-                          noValidate
-                          autoComplete="off">
-                          <InpForm />
-                        </Box>
-                        <Button sx={styleInpKnop} variant="contained" onClick={setFind}>
-                          <b>Найти</b>
-                        </Button>
-                      </Box>
-                    </Modal>
-                  </Box>
-
-                  <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
-                    <HeaderLogins />
-                  </Box>
-                  <>{isOpen && <TabsLogins valueSort={value} />}</>
-                </Grid>
+                  <WindSearsh />
+                
+                <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
+                  <HeaderLogins />
+                </Box>
+                {isOpen && (<TabsLogins valueSort={value} Size={size} />)}
               </Grid>
-            </Box>
           </Grid>
-        </Grid>
       </Box>
-    </Box>
+    </Grid>
+        </Grid >
+      </Box >
+    </Box >
   );
 };
 

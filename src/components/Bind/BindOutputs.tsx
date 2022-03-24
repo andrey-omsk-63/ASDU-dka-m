@@ -12,6 +12,9 @@ import BindRight from './BindComponents/BindRight';
 //import axios from 'axios';
 
 const BindOutputs = () => {
+  let styleSetWidth = 650;
+  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+
   const styleBox = {
     border: 1,
     borderRadius: 1,
@@ -48,7 +51,8 @@ const BindOutputs = () => {
     position: 'absolute',
     marginTop: '1vh',
     marginLeft: '1vh',
-    width: 650,
+    //width: 650,
+    width: styleSetWidth,
     bgcolor: 'background.paper',
     border: '3px solid #000',
     borderColor: 'primary.main',
@@ -128,7 +132,10 @@ const BindOutputs = () => {
     );
   };
 
-  const OutputModal = () => {
+  const OutputModal = (props: { Size: any; }) => {
+    styleSetWidth = 650;
+    if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -136,7 +143,7 @@ const BindOutputs = () => {
           <Grid container sx={{ fontSize: 21 }}>
             <Box sx={{ marginTop: -3, fontSize: 18 }}>
               <HeaderLBindOutputs />
-              <Box sx={{ overflowX: 'auto', height: '54vh' }}>{StrokaBindOutputs()}</Box>
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBindOutputs()}</Box>
             </Box>
           </Grid>
         </Box>
@@ -176,6 +183,17 @@ const BindOutputs = () => {
     setOpenSet(false);
   };
 
+  const [size, setSize] = React.useState([0, 0]);
+
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   const BindLeft = () => {
     return (
       <Grid item xs={9} sx={styleBox}>
@@ -186,7 +204,7 @@ const BindOutputs = () => {
             </Button>
             <OutputNormal />
             <TabPanel value="33">
-              <OutputModal />
+              <OutputModal Size={size} />
             </TabPanel>
           </Box>
         </TabContext>

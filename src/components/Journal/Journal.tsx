@@ -14,8 +14,8 @@ import JournalLogins from './JournalComponents/JournalLogins';
 let extData = '__.__.____';
 
 const Journal = () => {
-  let bottomStyleModal = 9;
-  if (window.innerHeight < 1000) bottomStyleModal = -30;
+  // let bottomStyleModal = 9;
+  // if (window.innerHeight < 1000) bottomStyleModal = -30;
 
   //console.log('h:', window.innerHeight, 'b:', bottomStyleModal);
 
@@ -155,7 +155,7 @@ const Journal = () => {
         <Modal open={open}>
           <Box sx={styleModal}>
             <Stack direction="column">
-              <Box sx={{ overflowX: 'auto', height: '55vh' }}>{SpisData()}</Box>
+              <Box sx={{ overflowX: 'auto', height: '82vh' }}>{SpisData()}</Box>
             </Stack>
           </Box>
         </Modal>

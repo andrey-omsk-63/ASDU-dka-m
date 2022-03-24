@@ -4,15 +4,18 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-// import TabContext from '@mui/lab/TabContext';
-// import TabPanel from '@mui/lab/TabPanel';
-// import Modal from '@mui/material/Modal';
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
+import Modal from '@mui/material/Modal';
 
 import BindRight from './BindComponents/BindRight';
 
 //import axios from 'axios';
 
 const BindDirections = () => {
+  let styleSetWidth = 650;
+  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+
   const styleBox = {
     border: 1,
     borderRadius: 1,
@@ -59,6 +62,20 @@ const BindDirections = () => {
     borderBottom: 1,
     borderColor: 'primary.main',
     padding: 0.2,
+  };
+
+  const styleSet = {
+    position: 'absolute',
+    marginTop: '1vh',
+    marginLeft: '1vh',
+    width: styleSetWidth,
+    bgcolor: 'background.paper',
+    border: '3px solid #000',
+    borderColor: 'primary.main',
+    borderRadius: 2,
+    boxShadow: 24,
+    paddingRight: 3,
+    paddingTop: 3,
   };
 
   const HeaderTopTab = () => {
@@ -237,7 +254,7 @@ const BindDirections = () => {
   const StrokaBattomTab = () => {
     let resStr = [];
 
-    for (let i = 0; i < 69; i++) {
+    for (let i = 0; i < 40; i++) {
       resStr.push(
         <Grid key={Math.random()} container item xs={12}>
           <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
@@ -276,33 +293,151 @@ const BindDirections = () => {
     return resStr;
   };
 
+  const OutputNormalTop = () => {
+    return (
+      // <Box sx={{ marginTop: 0 }}>
+      <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '41.5vh' }}>
+        <HeaderTopTab />
+        <Box sx={{ height: '37vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
+      </Box>
+      // </Box>
+    );
+  };
+
+  const OutputNormalBattom = () => {
+    return (
+      // <Box sx={{ marginTop: -3, fontSize: 12 }}>
+      //   <Box sx={{ border: 0, marginTop: -2, fontSize: 12, height: '41.5vh' }}>
+      //     <HeaderTopTab />
+      //     <Box sx={{ height: '37vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
+      //   </Box>
+      // </Box>
+
+      <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '40vh' }}>
+        <HeaderBattomTab />
+        <Box sx={{ height: '38.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
+      </Box>
+    );
+  };
+
+
+
+  const OutputModalTop = (props: { Size: any; }) => {
+    styleSetWidth = 650;
+    if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSet}>
+          <ModalEnd />
+          <Grid container sx={{ fontSize: 21 }}>
+            <Box sx={{ marginTop: -3, fontSize: 18 }}>
+              <HeaderTopTab />
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaTopTab()}</Box>
+            </Box>
+          </Grid>
+        </Box>
+      </Modal>
+    );
+  };
+
+  const OutputModalBattom = (props: { Size: any; }) => {
+    styleSetWidth = 650;
+    if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSet}>
+          <ModalEnd />
+          <Grid container sx={{ fontSize: 21 }}>
+            <Box sx={{ marginTop: -3, fontSize: 18 }}>
+              <HeaderBattomTab />
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBattomTab()}</Box>
+            </Box>
+          </Grid>
+        </Box>
+      </Modal>
+    );
+  };
+
   const TopTab = () => {
     return (
-      <Box sx={{ border: 0 }}>
-        <Button sx={styleButtBox} variant="contained">
-          <b>Назначение выходов</b>
-        </Button>
-        <Box sx={{ border: 0, marginTop: -2, fontSize: 12, height: '41.5vh' }}>
-          <HeaderTopTab />
-          <Box sx={{ height: '37vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
+      <TabContext value={value}>
+        <Box sx={{ border: 0 }}>
+          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
+            <b>Привязка выходов</b>
+          </Button>
+          <OutputNormalTop />
+          <TabPanel value="33">
+            <OutputModalTop Size={size} />
+          </TabPanel>
         </Box>
-      </Box>
+      </TabContext>
     );
   };
 
   const BattomTab = () => {
     return (
-      <Box sx={{ border: 0 }}>
-        <Button sx={styleButtBox} variant="contained">
-          <b>Привязка фаз</b>
-        </Button>
-        <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '40vh' }}>
+      <TabContext value={value}>
+        <Box sx={{ border: 0 }}>
+          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
+            <b>Привязка фаз</b>
+          </Button>
+          <OutputNormalBattom />
+          <TabPanel value="69">
+            <OutputModalBattom Size={size} />
+          </TabPanel>
+          {/* <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '40vh' }}>
           <HeaderBattomTab />
           <Box sx={{ height: '38.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
+        </Box> */}
         </Box>
-      </Box>
+      </TabContext>
     );
   };
+
+  const handleOpenModal = (nom: string) => {
+    setOpenSet(true);
+    setValue(nom);
+  };
+
+  const ModalEnd = () => {
+    const styleModalEnd = {
+      position: 'absolute',
+      top: '-1%',
+      left: '93.5%',
+      fontSize: 21,
+      color: 'black',
+    };
+
+    return (
+      <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
+        <b>&#10006;</b>
+      </Button>
+    );
+  };
+
+  const [value, setValue] = React.useState('0');
+  const [openSet, setOpenSet] = React.useState(false);
+
+  const handleCloseSet = (event: any, reason: string) => {
+    if (reason !== 'backdropClick') setOpenSet(false);
+  };
+
+  const handleCloseSetBut = () => {
+    setOpenSet(false);
+  };
+
+  const [size, setSize] = React.useState([0, 0]);
+
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
   const BindLeft = () => {
     return (
