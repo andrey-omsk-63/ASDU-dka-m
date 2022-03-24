@@ -57,7 +57,7 @@ const App = () => {
   };
 
   const styleButt01 = {
-    fontSize: 17.5,
+    fontSize: 16.5,
     maxHeight: '27px',
     minHeight: '27px',
     //maxWidth: '18vh',
@@ -70,7 +70,7 @@ const App = () => {
   };
 
   const styleButt02 = {
-    fontSize: 17.5,
+    fontSize: 16.5,
     maxHeight: '27px',
     minHeight: '27px',
     marginTop: 4,

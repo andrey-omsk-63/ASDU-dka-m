@@ -13,7 +13,7 @@ import BindRight from './BindComponents/BindRight';
 
 const BindOutputs = () => {
   let styleSetWidth = 650;
-  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
 
   const styleBox = {
     border: 1,
@@ -51,7 +51,7 @@ const BindOutputs = () => {
     position: 'absolute',
     marginTop: '1vh',
     marginLeft: '1vh',
-    //width: 650,
+    //width: 1000,
     width: styleSetWidth,
     bgcolor: 'background.paper',
     border: '3px solid #000',
@@ -132,19 +132,16 @@ const BindOutputs = () => {
     );
   };
 
-  const OutputModal = (props: { Size: any; }) => {
-    styleSetWidth = 650;
-    if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
-
+  const OutputModal = (props: { Size: any }) => {
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
           <ModalEnd />
-          <Grid container sx={{ fontSize: 21 }}>
-            <Box sx={{ marginTop: -3, fontSize: 18 }}>
+          <Grid container>
+            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 18 }}>
               <HeaderLBindOutputs />
               <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBindOutputs()}</Box>
-            </Box>
+            </Grid>
           </Grid>
         </Box>
       </Modal>
@@ -159,8 +156,12 @@ const BindOutputs = () => {
   const ModalEnd = () => {
     const styleModalEnd = {
       position: 'absolute',
-      top: '-1%',
-      left: '93.5%',
+      top: '0%',
+      left: 'auto',
+      right: '-2%',
+      maxHeight: '21px',
+      minHeight: '21px',
+      width: '6%',
       fontSize: 21,
       color: 'black',
     };

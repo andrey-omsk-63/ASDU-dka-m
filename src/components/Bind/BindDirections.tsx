@@ -14,7 +14,7 @@ import BindRight from './BindComponents/BindRight';
 
 const BindDirections = () => {
   let styleSetWidth = 650;
-  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
 
   const styleBox = {
     border: 1,
@@ -155,7 +155,7 @@ const BindDirections = () => {
       <>
         <Grid item container xs={12}>
           <Grid item xs={1.2} sx={styleXTG021}>
-            Фаза
+            <b>Фаза</b>
           </Grid>
           <Grid item xs={1.2} sx={styleXTG021}>
             <b>1</b>
@@ -306,13 +306,6 @@ const BindDirections = () => {
 
   const OutputNormalBattom = () => {
     return (
-      // <Box sx={{ marginTop: -3, fontSize: 12 }}>
-      //   <Box sx={{ border: 0, marginTop: -2, fontSize: 12, height: '41.5vh' }}>
-      //     <HeaderTopTab />
-      //     <Box sx={{ height: '37vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
-      //   </Box>
-      // </Box>
-
       <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '40vh' }}>
         <HeaderBattomTab />
         <Box sx={{ height: '38.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
@@ -320,40 +313,35 @@ const BindDirections = () => {
     );
   };
 
-
-
-  const OutputModalTop = (props: { Size: any; }) => {
+  const OutputModalTop = (props: { Size: any }) => {
     styleSetWidth = 650;
-    if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
+    if (window.innerWidth > 770) styleSetWidth = window.innerWidth;
 
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
           <ModalEnd />
-          <Grid container sx={{ fontSize: 21 }}>
-            <Box sx={{ marginTop: -3, fontSize: 18 }}>
+          <Grid container>
+            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
               <HeaderTopTab />
               <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaTopTab()}</Box>
-            </Box>
+            </Grid>
           </Grid>
         </Box>
       </Modal>
     );
   };
 
-  const OutputModalBattom = (props: { Size: any; }) => {
-    styleSetWidth = 650;
-    if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 333;
-
+  const OutputModalBattom = (props: { Size: any }) => {
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
           <ModalEnd />
-          <Grid container sx={{ fontSize: 21 }}>
-            <Box sx={{ marginTop: -3, fontSize: 18 }}>
+          <Grid container>
+            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 18 }}>
               <HeaderBattomTab />
               <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBattomTab()}</Box>
-            </Box>
+            </Grid>
           </Grid>
         </Box>
       </Modal>
@@ -387,10 +375,6 @@ const BindDirections = () => {
           <TabPanel value="69">
             <OutputModalBattom Size={size} />
           </TabPanel>
-          {/* <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '40vh' }}>
-          <HeaderBattomTab />
-          <Box sx={{ height: '38.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
-        </Box> */}
         </Box>
       </TabContext>
     );
@@ -404,9 +388,13 @@ const BindDirections = () => {
   const ModalEnd = () => {
     const styleModalEnd = {
       position: 'absolute',
-      top: '-1%',
-      left: '93.5%',
-      fontSize: 21,
+      top: '0%',
+      left: 'auto',
+      right: '-2%',
+      maxHeight: '21px',
+      minHeight: '21px',
+      width: '6%',
+      fontSize: 19,
       color: 'black',
     };
 

@@ -125,13 +125,13 @@ const BindRight = () => {
                     <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
 
                     <Button sx={styleButtBing} variant="contained">
-                      <b>Запись ДК</b>
+                      <b>Записать ДК</b>
                     </Button>
                     <Button sx={styleButtBing} variant="contained">
-                      <b>Читать ДК</b>
+                      <b>Прочитать ДК</b>
                     </Button>
                     <Button sx={styleButtBing} variant="contained">
-                      <b>Срав-ть ДК</b>
+                      <b>Сравнить ДК</b>
                     </Button>
                   </Grid>
                 </Grid>

@@ -149,15 +149,24 @@ const JournalLogins = (props: { logName: string }) => {
     p: 3,
   };
 
-  const styleReset = {
+  const styleResetMin = {
     position: 'absolute',
     fontSize: 17,
-    // marginTop: -3.7,
     marginTop: -8,
-    //marginLeft: 36,
-    marginLeft: 12,
-    //maxWidth: '22vh',
-    //minWidth: '22vh',
+    marginLeft: 14,
+    maxHeight: '24px',
+    minHeight: '24px',
+    backgroundColor: 'white',
+    opacity: 1,
+    color: 'black',
+    textTransform: 'unset !important',
+  };
+
+  const styleResetMax = {
+    position: 'absolute',
+    fontSize: 17,
+    marginTop: -3.8,
+    marginLeft: 44,
     maxHeight: '24px',
     minHeight: '24px',
     backgroundColor: 'white',
@@ -172,7 +181,6 @@ const JournalLogins = (props: { logName: string }) => {
     marginLeft: 'auto',
     marginRight: 7.5,
     marginTop: -3.3,
-    //marginLeft: 65.9,
     maxHeight: '21px',
     minHeight: '21px',
     width: '4%',
@@ -208,8 +216,7 @@ const JournalLogins = (props: { logName: string }) => {
     );
   };
 
-  const TabsLogins = (props: { valueSort: number; Size: any; }) => {
-    console.log('Width:', window.innerWidth)
+  const TabsLogins = (props: { valueSort: number; Size: any }) => {
     if (flagSbros) {
       MakeMassPoints();
       flagSbros = false;
@@ -347,8 +354,8 @@ const JournalLogins = (props: { logName: string }) => {
           </Box>
         </Modal>
       </Box>
-    )
-  }
+    );
+  };
 
   const [points, setPoints] = React.useState<Array<LogDatum>>([]);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -448,24 +455,28 @@ const JournalLogins = (props: { logName: string }) => {
               <Grid container>
                 <Grid item xs={12} sx={styleXt04}>
                   <Box sx={{ border: 0, marginTop: 0 }}>
-                    <Button sx={styleReset} variant="contained" onClick={() => setValue(4)}>
+                    <Button
+                      sx={fSize === 10 ? styleResetMin : styleResetMax}
+                      // sx={elem.st === 0 ? styleSt03 : styleSt04}
+                      variant="contained"
+                      onClick={() => setValue(4)}>
                       <b>Сброс настроек</b>
                     </Button>
                   </Box>
 
                   <WindSearsh />
-                
-                <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
-                  <HeaderLogins />
-                </Box>
-                {isOpen && (<TabsLogins valueSort={value} Size={size} />)}
+
+                  <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
+                    <HeaderLogins />
+                  </Box>
+                  {isOpen && <TabsLogins valueSort={value} Size={size} />}
+                </Grid>
               </Grid>
+            </Box>
           </Grid>
+        </Grid>
       </Box>
-    </Grid>
-        </Grid >
-      </Box >
-    </Box >
+    </Box>
   );
 };
 
