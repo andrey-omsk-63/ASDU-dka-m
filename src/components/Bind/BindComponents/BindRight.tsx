@@ -15,7 +15,13 @@ import Modal from '@mui/material/Modal';
 
 const BindRight = () => {
   let crossForm = 'Crossform';
-  if (window.innerWidth > 1000) crossForm = 'Привязка Crossform';
+  let fSize = 12.9;
+  let openKnob = 'Откр.файл';
+  let saveKnob = 'Сохр.файл';
+  if (window.innerWidth > 720) openKnob = 'Открыть файл';
+  if (window.innerWidth > 780) saveKnob = 'Сохранить файл';
+  if (window.innerWidth > 1140) crossForm = 'Привязка Crossform';
+  if (window.innerWidth > 970) fSize = 17;
 
   const styleBox = {
     border: 1,
@@ -35,7 +41,8 @@ const BindRight = () => {
   };
 
   const styleButtBing = {
-    fontSize: 12,
+    //fontSize: 12,
+    fontSize: fSize,
     maxHeight: '18px',
     minHeight: '18px',
     marginBottom: 1.5,
@@ -92,13 +99,13 @@ const BindRight = () => {
           <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
             <b>{crossForm}</b>
           </Button>
-          <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
+          <Grid container sx={{ fontSize: fSize, marginTop: 1 }}>
             <Grid item xs={11.3}>
               <Button sx={styleButtBing} variant="contained">
-                <b>Откр.файл</b>
+                <b>{openKnob}</b>
               </Button>
               <Button sx={styleButtBing} variant="contained">
-                <b>Сохран.файл</b>
+                <b>{saveKnob}</b>
               </Button>
 
               <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
@@ -117,8 +124,6 @@ const BindRight = () => {
           </Grid>
         </Grid>
       </Grid>
-
-
     );
   };
 
@@ -143,7 +148,7 @@ const BindRight = () => {
       <Stack direction="column">
         <TabContext value={value}>
           {/* <Box> */}
-            <TopTab />
+          <TopTab />
           {/* </Box> */}
           <Box sx={{ marginTop: 0.5 }}>
             <Grid container sx={styleBox}>
@@ -152,7 +157,7 @@ const BindRight = () => {
                   <b>Время</b>
                 </Button>
 
-                <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
+                <Grid container sx={{ fontSize: fSize, marginTop: 1 }}>
                   <Grid item xs={10}>
                     <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Система:</Box>
 

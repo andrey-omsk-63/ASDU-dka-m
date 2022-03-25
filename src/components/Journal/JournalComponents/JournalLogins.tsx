@@ -415,10 +415,10 @@ const JournalLogins = (props: { logName: string }) => {
     return (
       <TextField
         size="small"
-        onKeyPress={handleKey}
+        onKeyPress={handleKey} //отключение Enter
         label="Поиск"
         value={valuen}
-        onChange={handleChange} //отключение Enter
+        onChange={handleChange}
         variant="outlined"
       />
     );
@@ -467,14 +467,14 @@ const JournalLogins = (props: { logName: string }) => {
 export default JournalLogins;
 
 // const useWindowSize = () => {
-  //   const [size, setSize] = React.useState([0, 0]);
-  //   React.useLayoutEffect(() => {
-  //     function updateSize() {
-  //       setSize([window.innerWidth, window.innerHeight]);
-  //     }
-  //     window.addEventListener('resize', updateSize);
-  //     updateSize();
-  //     return () => window.removeEventListener('resize', updateSize);
-  //   }, []);
-  //   return size;
-  // }
+//   const [size, setSize] = React.useState([0, 0]);
+//   React.useLayoutEffect(() => {
+//     function updateSize() {
+//       setSize([window.innerWidth, window.innerHeight]);
+//     }
+//     window.addEventListener('resize', updateSize);
+//     updateSize();
+//     return () => window.removeEventListener('resize', updateSize);
+//   }, []);
+//   return size;
+// }

@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
 import BindRight from './BindComponents/BindRight';
 
@@ -15,6 +16,9 @@ import BindRight from './BindComponents/BindRight';
 const BindPlans = () => {
   let styleSetWidth = 650;
   if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
+  let formSett = ['План 0(РП)', 0];
+  let fSize = 11.5;
+  if (window.innerWidth > 860) fSize = 14;
 
   const styleBox = {
     border: 1,
@@ -112,7 +116,7 @@ const BindPlans = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ marginTop: -2.6, fontSize: 11.5, height: '59.9vh' }}>
+      <Box sx={{ marginTop: -2.6, fontSize: fSize, height: '59.9vh' }}>
         <HeaderBattomTab />
         <Box sx={{ height: '58.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
@@ -126,8 +130,13 @@ const BindPlans = () => {
           <ModalEnd />
           <Grid container>
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 18 }}>
-              <HeaderBattomTab />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBattomTab()}</Box>
+              <Box sx={{ marginTop: -3 }}>
+                <TopTabInput />
+              </Box>
+              <Box sx={{ marginTop: 2 }}>
+                <HeaderBattomTab />
+                <Box sx={{ overflowX: 'auto', height: '69vh' }}>{StrokaBattomTab()}</Box>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -135,19 +144,46 @@ const BindPlans = () => {
     );
   };
 
-  const TopTab = () => {
+  const InpForm = (nom: number) => {
+    let labelTextField = 'Номер плана:';
+    if (nom > 0) labelTextField = 'Время цикла, сек:';
+    const [valuen, setValuen] = React.useState(formSett[nom]);
+
+    const handleChange = (event: any) => {
+      setValuen(event.target.value);
+      formSett[nom] = event.target.value;
+    };
+
+    const handleKey = (event: any) => {
+      if (event.key === 'Enter') event.preventDefault();
+    };
+
+    //console.log('formSett:', formSett);
+
     return (
-      <TabContext value={value}>
-        <Box>
-          {/* <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
-            <b>Планы</b>
-          </Button> */}
-          <OutputNormalBattom />
-          <TabPanel value="69">
-            <OutputModalBattom Size={size} />
-          </TabPanel>
-        </Box>
-      </TabContext>
+      <TextField
+        size="small"
+        onKeyPress={handleKey} //отключение Enter
+        label={labelTextField}
+        value={valuen}
+        onChange={handleChange}
+        variant="outlined"
+      />
+    );
+  };
+
+  const TopTabInput = () => {
+    return (
+      <Box
+        component="form"
+        sx={{ '& > :not(style)': { m: 1, width: '20ch' } }}
+        noValidate
+        autoComplete="off">
+        <Stack direction="column">
+          <Box sx={{ marginTop: 4 }}>{InpForm(0)}</Box>
+          <Box sx={{ marginTop: 4 }}>{InpForm(1)}</Box>
+        </Stack>
+      </Box>
     );
   };
 
@@ -220,13 +256,7 @@ const BindPlans = () => {
         <Stack direction="column">
           <Grid container sx={styleBox}>
             <Grid item xs={12} sx={{ height: '24.4vh' }}>
-              {/* <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
-                <b>Планы</b>
-              </Button> */}
-              {/* <Grid container>
-                
-              </Grid>
-              <BattomTab /> */}
+              <TopTabInput />
             </Grid>
           </Grid>
 

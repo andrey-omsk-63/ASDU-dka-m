@@ -14,6 +14,8 @@ import BindRight from './BindComponents/BindRight';
 const BindOutputs = () => {
   let styleSetWidth = 650;
   if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
+  let fSize = 12;
+  if (window.innerWidth > 800) fSize = 14;
 
   const styleBox = {
     border: 1,
@@ -125,9 +127,9 @@ const BindOutputs = () => {
 
   const OutputNormal = () => {
     return (
-      <Box sx={{ marginTop: -3, fontSize: 12 }}>
+      <Box sx={{ marginTop: -3, fontSize: fSize }}>
         <HeaderLBindOutputs />
-        <Box sx={{ border: 0, overflowX: 'auto', height: '80.5vh' }}>{StrokaBindOutputs()}</Box>
+        <Box sx={{ border: 0, overflowX: 'auto', height: '79vh' }}>{StrokaBindOutputs()}</Box>
       </Box>
     );
   };

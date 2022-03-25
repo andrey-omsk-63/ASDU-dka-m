@@ -15,6 +15,8 @@ import BindRight from './BindComponents/BindRight';
 const BindDirections = () => {
   let styleSetWidth = 650;
   if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
+  let fSize = 12;
+  if (window.innerWidth > 900) fSize = 14;
 
   const styleBox = {
     border: 1,
@@ -296,7 +298,7 @@ const BindDirections = () => {
   const OutputNormalTop = () => {
     return (
       // <Box sx={{ marginTop: 0 }}>
-      <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '41.5vh' }}>
+      <Box sx={{ marginTop: -3, fontSize: fSize, height: '41.5vh' }}>
         <HeaderTopTab />
         <Box sx={{ height: '37vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
       </Box>
@@ -306,7 +308,7 @@ const BindDirections = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ border: 0, marginTop: -2.5, fontSize: 12, height: '40vh' }}>
+      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '40vh' }}>
         <HeaderBattomTab />
         <Box sx={{ height: '38.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
@@ -432,7 +434,7 @@ const BindDirections = () => {
       <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
-            <Grid item xs={12} sx={{ fontSize: 12, height: '42.4vh' }}>
+            <Grid item xs={12} sx={{ fontSize: fSize, height: '42.4vh' }}>
               <TopTab />
             </Grid>
           </Grid>
