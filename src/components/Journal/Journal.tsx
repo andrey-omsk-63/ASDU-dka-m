@@ -21,7 +21,7 @@ const Journal = () => {
 
   const styleJournal = {
     marginTop: -3.5,
-    background: 'linear-gradient(45deg, #FFC0C0 45%, #0384CF 90%)',
+    background: 'linear-gradient(50deg, #FFC0C0 55%, #0384CF 90%)',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
     marginLeft: -2.9,
