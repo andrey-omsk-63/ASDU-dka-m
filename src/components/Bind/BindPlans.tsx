@@ -27,7 +27,8 @@ const BindPlans = () => {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    marginTop: -3.5,
+    // marginTop: -0.7,
+    marginTop: '-52.5vh',
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -38,7 +39,7 @@ const BindPlans = () => {
     borderColor: 'primary.main',
     textAlign: 'center',
     backgroundColor: '#C0C0C0',
-    paddingTop: 1,
+    padding: 0.7,
   };
 
   const styleXTG03 = {
@@ -111,7 +112,7 @@ const BindPlans = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '59.9vh' }}>
+      <Box sx={{ marginTop: -2.6, fontSize: 11.5, height: '59.9vh' }}>
         <HeaderBattomTab />
         <Box sx={{ height: '58.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
@@ -131,6 +132,22 @@ const BindPlans = () => {
           </Grid>
         </Box>
       </Modal>
+    );
+  };
+
+  const TopTab = () => {
+    return (
+      <TabContext value={value}>
+        <Box>
+          {/* <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
+            <b>Планы</b>
+          </Button> */}
+          <OutputNormalBattom />
+          <TabPanel value="69">
+            <OutputModalBattom Size={size} />
+          </TabPanel>
+        </Box>
+      </TabContext>
     );
   };
 
@@ -203,9 +220,16 @@ const BindPlans = () => {
         <Stack direction="column">
           <Grid container sx={styleBox}>
             <Grid item xs={12} sx={{ height: '24.4vh' }}>
-              <Grid container></Grid>
+              {/* <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
+                <b>Планы</b>
+              </Button> */}
+              {/* <Grid container>
+                
+              </Grid>
+              <BattomTab /> */}
             </Grid>
           </Grid>
+
           <Grid container>
             <Grid item xs sx={{ height: '0.5vh' }}></Grid>
           </Grid>

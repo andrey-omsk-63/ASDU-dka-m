@@ -306,7 +306,7 @@ const BindDirections = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ border: 0, marginTop: -3, fontSize: 12, height: '40vh' }}>
+      <Box sx={{ border: 0, marginTop: -2.5, fontSize: 12, height: '40vh' }}>
         <HeaderBattomTab />
         <Box sx={{ height: '38.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
@@ -367,7 +367,7 @@ const BindDirections = () => {
   const BattomTab = () => {
     return (
       <TabContext value={value}>
-        <Box sx={{ border: 0 }}>
+        <Box>
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
             <b>Привязка фаз</b>
           </Button>
@@ -437,10 +437,10 @@ const BindDirections = () => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs sx={{ height: '1vh' }}></Grid>
+            <Grid item xs sx={{ height: '0.5vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '41.8vh' }}>
+            <Grid item xs sx={{ height: '42.3vh' }}>
               <BattomTab />
             </Grid>
           </Grid>

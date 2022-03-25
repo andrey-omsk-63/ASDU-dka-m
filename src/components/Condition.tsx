@@ -11,12 +11,13 @@ import Modal from '@mui/material/Modal';
 //import axios from 'axios';
 
 const Condition = () => {
+  let fSize = 10.8;
+  if (window.innerWidth > 800) fSize = 12.5;
+
   const styleButt01 = {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    //maxWidth: '22vh',
-    //minWidth: '22vh',
     marginTop: -2,
     backgroundColor: 'white',
     color: '#5B1080',
@@ -244,7 +245,7 @@ const Condition = () => {
             <b>&nbsp;IP адрес:</b>
           </Box>
           <p>
-            <b>Маска подсети:</b>
+            <b>&nbsp;Маска подсети:</b>
           </p>
           <Box>
             <b>&nbsp;Осн.шлюз:</b>
@@ -269,7 +270,7 @@ const Condition = () => {
 
   const ConditionColGrid01 = () => {
     return (
-      <Grid item xs={4} sx={{ border: 0 }}>
+      <Grid item xs={4}>
         <Stack direction="column">
           <Box>
             <Grid container sx={styleBox01}>
@@ -277,7 +278,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('11')}>
                   <b>Информация</b>
                 </Button>
-                <Grid container sx={{ fontSize: 12 }}>
+                <Grid container sx={{ fontSize: fSize }}>
                   <Col01Grid01 />
                 </Grid>
               </Grid>
@@ -285,11 +286,11 @@ const Condition = () => {
           </Box>
           <Box sx={{ marginTop: 0.5 }}>
             <Grid container sx={styleBox01}>
-              <Grid item xs sx={{ height: '24.6vh' }}>
+              <Grid item xs sx={{ height: '25.6vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('12')}>
                   <b>Состояние</b>
                 </Button>
-                <Grid container sx={{ fontSize: 12 }}>
+                <Grid container sx={{ fontSize: fSize }}>
                   <Col01Grid02 />
                 </Grid>
               </Grid>
@@ -298,11 +299,11 @@ const Condition = () => {
 
           <Box sx={{ marginTop: 0.5 }}>
             <Grid container sx={styleBox01}>
-              <Grid item xs sx={{ height: '22.5vh' }}>
+              <Grid item xs sx={{ height: '21.5vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('14')}>
                   <b>Время</b>
                 </Button>
-                <Grid container sx={{ fontSize: 12 }}>
+                <Grid container sx={{ fontSize: fSize }}>
                   <Col01Grid04 />
                 </Grid>
               </Grid>
@@ -319,11 +320,11 @@ const Condition = () => {
         <Stack direction="column">
           <Box>
             <Grid container sx={styleBox01}>
-              <Grid item xs sx={{ height: '32vh' }}>
+              <Grid item xs sx={{ height: '34vh' }}>
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('21')}>
                   <b>GPRS</b>
                 </Button>
-                <Grid container sx={{ fontSize: 11 }}>
+                <Grid container sx={{ fontSize: fSize }}>
                   <Col02Grid01 />
                 </Grid>
               </Grid>
@@ -336,7 +337,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('22')}>
                   <b>LAN</b>
                 </Button>
-                <Grid container sx={{ fontSize: 10.8 }}>
+                <Grid container sx={{ fontSize: fSize }}>
                   <Col02Grid02 />
                 </Grid>
               </Grid>
@@ -357,7 +358,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('32')}>
                   <b>Настр.УСДК</b>
                 </Button>
-                <Grid container sx={{ fontSize: 11 }}>
+                <Grid container sx={{ fontSize: fSize }}>
                   <Col03Grid02 />
                 </Grid>
               </Grid>
@@ -370,7 +371,7 @@ const Condition = () => {
                 <Button sx={styleButt01} variant="contained" onClick={() => handleOpenModal('33')}>
                   <b>Настр.LAN</b>
                 </Button>
-                <Grid container sx={{ fontSize: 11 }}>
+                <Grid container sx={{ fontSize: fSize }}>
                   <Col03Grid03 />
                 </Grid>
               </Grid>
@@ -380,6 +381,34 @@ const Condition = () => {
       </Grid>
     );
   };
+
+  const TopTab = (props: { Size: any }) => {
+    return (
+      <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Grid container sx={{ height: '62.5vh' }}>
+              <ConditionColGrid01 />
+              <Grid item xs={0.05}></Grid>
+              <ConditionColGrid02 />
+              <Grid item xs={0.05}></Grid>
+              <ConditionColGrid03 />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
+    )
+  }
+
+  const BattomTab = () => {
+    return (
+      <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>
+        <Grid container sx={styleBox01}>
+          <Grid item xs sx={{ height: '22.3vh' }}></Grid>
+        </Grid>
+      </Box>
+    )
+  }
 
   const ModalEnd = () => {
     const styleModalEnd = {
@@ -397,6 +426,20 @@ const Condition = () => {
     );
   };
 
+  const ModalWindow = (props: { nameComponent: () => JSX.Element }) => {
+    const NameComp = props.nameComponent;
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSet}>
+          <ModalEnd />
+          <Grid container sx={{ fontSize: 21 }}>
+            <NameComp />
+          </Grid>
+        </Box>
+      </Modal>
+    )
+  }
+
   const [value, setValue] = React.useState('0');
   const [openSet, setOpenSet] = React.useState(false);
 
@@ -408,101 +451,44 @@ const Condition = () => {
     setOpenSet(false);
   };
 
+  //отслеживание изменения размера экрана
+  const [size, setSize] = React.useState([0, 0]);
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   return (
     <Stack direction="column">
       <TabContext value={value}>
-        <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
-          <Grid container>
-            <Grid item xs={12}>
-              <Grid container sx={{ height: '62.5vh' }}>
-                <ConditionColGrid01 />
-                <Grid item xs={0.05}></Grid>
-                <ConditionColGrid02 />
-                <Grid item xs={0.05}></Grid>
-                <ConditionColGrid03 />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Box>
-
-        <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>
-          <Grid container sx={styleBox01}>
-            <Grid item xs sx={{ height: '22.3vh' }}></Grid>
-          </Grid>
-        </Box>
+        <TopTab Size={size} />
+        <BattomTab />
+        
 
         <TabPanel value="11">
-          <Modal open={openSet} onClose={handleCloseSet}>
-            <Box sx={styleSet}>
-              <ModalEnd />
-              <Grid container sx={{ fontSize: 21 }}>
-                <Col01Grid01 />
-              </Grid>
-            </Box>
-          </Modal>
+          <ModalWindow nameComponent={Col01Grid01} />
         </TabPanel>
         <TabPanel value="12">
-          <Modal open={openSet} onClose={handleCloseSet}>
-            <Box sx={styleSet}>
-              <ModalEnd />
-              <Grid container sx={{ fontSize: 21 }}>
-                <Col01Grid02 />
-              </Grid>
-            </Box>
-          </Modal>
+          <ModalWindow nameComponent={Col01Grid02} />
         </TabPanel>
         <TabPanel value="14">
-          <Modal open={openSet} onClose={handleCloseSet}>
-            <Box sx={styleSet}>
-              <ModalEnd />
-              <Grid container sx={{ fontSize: 21 }}>
-                <Col01Grid04 />
-              </Grid>
-            </Box>
-          </Modal>
+          <ModalWindow nameComponent={Col01Grid04} />
         </TabPanel>
         <TabPanel value="21">
-          <Modal open={openSet} onClose={handleCloseSet}>
-            <Box sx={styleSet}>
-              <ModalEnd />
-              <Grid container sx={{ fontSize: 21 }}>
-                <Col02Grid01 />
-              </Grid>
-            </Box>
-          </Modal>
+          <ModalWindow nameComponent={Col02Grid01} />
         </TabPanel>
-
         <TabPanel value="22">
-          <Modal open={openSet} onClose={handleCloseSet}>
-            <Box sx={styleSet}>
-              <ModalEnd />
-              <Grid container sx={{ fontSize: 21 }}>
-                <Col02Grid02 />
-              </Grid>
-            </Box>
-          </Modal>
+          <ModalWindow nameComponent={Col02Grid02} />
         </TabPanel>
-
         <TabPanel value="32">
-          <Modal open={openSet} onClose={handleCloseSet}>
-            <Box sx={styleSet}>
-              <ModalEnd />
-              <Grid container sx={{ fontSize: 21 }}>
-                <Col03Grid02 />
-              </Grid>
-            </Box>
-          </Modal>
+          <ModalWindow nameComponent={Col03Grid02} />
         </TabPanel>
-
         <TabPanel value="33">
-          <Modal open={openSet} onClose={handleCloseSet}>
-            <Box sx={styleSet}>
-              <ModalEnd />
-              <Grid container sx={{ fontSize: 21 }}>
-                <Col03Grid03 />
-              </Grid>
-            </Box>
-          </Modal>
+          <ModalWindow nameComponent={Col03Grid03} />
         </TabPanel>
       </TabContext>
     </Stack>
@@ -510,3 +496,4 @@ const Condition = () => {
 };
 
 export default Condition;
+

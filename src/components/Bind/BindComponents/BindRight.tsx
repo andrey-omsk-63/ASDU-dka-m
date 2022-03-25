@@ -14,6 +14,9 @@ import Modal from '@mui/material/Modal';
 //import axios from 'axios';
 
 const BindRight = () => {
+  let crossForm = 'Crossform';
+  if (window.innerWidth > 1000) crossForm = 'Привязка Crossform';
+
   const styleBox = {
     border: 1,
     borderRadius: 1,
@@ -22,11 +25,9 @@ const BindRight = () => {
   };
 
   const styleButt = {
-    fontSize: 19,
+    fontSize: 18,
     maxHeight: '21px',
     minHeight: '21px',
-    // maxWidth: '14vh',
-    // minWidth: '14vh',
     marginTop: -3,
     backgroundColor: 'white',
     color: '#5B1080',
@@ -38,7 +39,6 @@ const BindRight = () => {
     maxHeight: '18px',
     minHeight: '18px',
     marginBottom: 1.5,
-    //marginRight: 0.7,
     backgroundColor: 'white',
     color: 'black',
     textTransform: 'unset !important',
@@ -69,19 +69,56 @@ const BindRight = () => {
     p: 3,
   };
 
-  const styleModalEnd = {
-    position: 'absolute',
-    top: '-3%',
-    left: '91.5%',
-    fontSize: 24,
-    color: 'black',
-  };
-
   const ModalEnd = () => {
+    const styleModalEnd = {
+      position: 'absolute',
+      top: '-3%',
+      left: '91.5%',
+      fontSize: 24,
+      color: 'black',
+    };
+
     return (
       <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
         <b>&#10006;</b>
       </Button>
+    );
+  };
+
+  const TopTab = () => {
+    return (
+      <Grid container sx={styleBox}>
+        <Grid item xs={12} sx={{ height: '33vh' }}>
+          <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
+            <b>{crossForm}</b>
+          </Button>
+          <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
+            <Grid item xs={11.3}>
+              <Button sx={styleButtBing} variant="contained">
+                <b>Откр.файл</b>
+              </Button>
+              <Button sx={styleButtBing} variant="contained">
+                <b>Сохран.файл</b>
+              </Button>
+
+              <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
+              <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
+
+              <Button sx={styleButtBing} variant="contained">
+                <b>Записать ДК</b>
+              </Button>
+              <Button sx={styleButtBing} variant="contained">
+                <b>Прочитать ДК</b>
+              </Button>
+              <Button sx={styleButtBing} variant="contained">
+                <b>Сравнить ДК</b>
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+
+
     );
   };
 
@@ -105,40 +142,9 @@ const BindRight = () => {
     <Grid item xs>
       <Stack direction="column">
         <TabContext value={value}>
-          <Box>
-            <Grid container sx={styleBox}>
-              <Grid item xs={12} sx={{ height: '33vh' }}>
-                <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
-                  <b>Crossform</b>
-                </Button>
-
-                <Grid container sx={{ fontSize: 12.9, marginTop: 1 }}>
-                  <Grid item xs={11.3}>
-                    <Button sx={styleButtBing} variant="contained">
-                      <b>Откр.файл</b>
-                    </Button>
-                    <Button sx={styleButtBing} variant="contained">
-                      <b>Сохран.файл</b>
-                    </Button>
-
-                    <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
-                    <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
-
-                    <Button sx={styleButtBing} variant="contained">
-                      <b>Записать ДК</b>
-                    </Button>
-                    <Button sx={styleButtBing} variant="contained">
-                      <b>Прочитать ДК</b>
-                    </Button>
-                    <Button sx={styleButtBing} variant="contained">
-                      <b>Сравнить ДК</b>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Box>
-
+          {/* <Box> */}
+            <TopTab />
+          {/* </Box> */}
           <Box sx={{ marginTop: 0.5 }}>
             <Grid container sx={styleBox}>
               <Grid item xs={12} sx={{ height: '33vh' }}>

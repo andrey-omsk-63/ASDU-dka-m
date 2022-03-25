@@ -198,21 +198,23 @@ const JournalLogins = (props: { logName: string }) => {
 
   const HeaderLogins = () => {
     return (
-      <Grid item container xs={12}>
-        <Grid item xs={1.5} sx={styleXTG021}>
-          <Button sx={styleBut01} variant="contained" onClick={() => setValue(1)}>
-            <b>Тип</b>
-          </Button>
+      <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
+        <Grid item container xs={12}>
+          <Grid item xs={1.5} sx={styleXTG021}>
+            <Button sx={styleBut01} variant="contained" onClick={() => setValue(1)}>
+              <b>Тип</b>
+            </Button>
+          </Grid>
+          <Grid item xs={1} sx={styleXTG02}>
+            <Button sx={styleBut01} variant="contained" onClick={() => setValue(2)}>
+              <b>Время</b>
+            </Button>
+          </Grid>
+          <Grid item xs={9.5} sx={styleXTG021}>
+            <b>Сообщение</b>
+          </Grid>
         </Grid>
-        <Grid item xs={1} sx={styleXTG02}>
-          <Button sx={styleBut01} variant="contained" onClick={() => setValue(2)}>
-            <b>Время</b>
-          </Button>
-        </Grid>
-        <Grid item xs={9.5} sx={styleXTG021}>
-          <b>Сообщение</b>
-        </Grid>
-      </Grid>
+      </Box>
     );
   };
 
@@ -422,21 +424,8 @@ const JournalLogins = (props: { logName: string }) => {
     );
   };
 
-  // const useWindowSize = () => {
-  //   const [size, setSize] = React.useState([0, 0]);
-  //   React.useLayoutEffect(() => {
-  //     function updateSize() {
-  //       setSize([window.innerWidth, window.innerHeight]);
-  //     }
-  //     window.addEventListener('resize', updateSize);
-  //     updateSize();
-  //     return () => window.removeEventListener('resize', updateSize);
-  //   }, []);
-  //   return size;
-  // }
-
+  //отслеживание изменения размера экрана
   const [size, setSize] = React.useState([0, 0]);
-
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
@@ -457,18 +446,13 @@ const JournalLogins = (props: { logName: string }) => {
                   <Box sx={{ border: 0, marginTop: 0 }}>
                     <Button
                       sx={fSize === 10 ? styleResetMin : styleResetMax}
-                      // sx={elem.st === 0 ? styleSt03 : styleSt04}
                       variant="contained"
                       onClick={() => setValue(4)}>
                       <b>Сброс настроек</b>
                     </Button>
                   </Box>
-
                   <WindSearsh />
-
-                  <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
-                    <HeaderLogins />
-                  </Box>
+                  <HeaderLogins />
                   {isOpen && <TabsLogins valueSort={value} Size={size} />}
                 </Grid>
               </Grid>
@@ -481,3 +465,16 @@ const JournalLogins = (props: { logName: string }) => {
 };
 
 export default JournalLogins;
+
+// const useWindowSize = () => {
+  //   const [size, setSize] = React.useState([0, 0]);
+  //   React.useLayoutEffect(() => {
+  //     function updateSize() {
+  //       setSize([window.innerWidth, window.innerHeight]);
+  //     }
+  //     window.addEventListener('resize', updateSize);
+  //     updateSize();
+  //     return () => window.removeEventListener('resize', updateSize);
+  //   }, []);
+  //   return size;
+  // }
