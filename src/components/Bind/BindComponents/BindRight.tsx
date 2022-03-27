@@ -114,9 +114,15 @@ const BindRight = () => {
               <Button sx={styleButtBing} variant="contained">
                 <b>Записать ДК</b>
               </Button>
-              <Button sx={styleButtBing} variant="contained">
-                <b>Прочитать ДК</b>
-              </Button>
+
+              <Grid container>
+                <Grid item xs={12}>
+                  <Button sx={styleButtBing} variant="contained">
+                    <b>Прочитать ДК</b>
+                  </Button>
+                </Grid>
+              </Grid>
+
               <Button sx={styleButtBing} variant="contained">
                 <b>Сравнить ДК</b>
               </Button>
@@ -147,9 +153,7 @@ const BindRight = () => {
     <Grid item xs>
       <Stack direction="column">
         <TabContext value={value}>
-          {/* <Box> */}
           <TopTab />
-          {/* </Box> */}
           <Box sx={{ marginTop: 0.5 }}>
             <Grid container sx={styleBox}>
               <Grid item xs={12} sx={{ height: '33vh' }}>
@@ -165,9 +169,13 @@ const BindRight = () => {
                     <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Контроллер:</Box>
 
                     <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
-                    <Button sx={styleButtBing} variant="contained">
-                      <b>Прочитать</b>
-                    </Button>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <Button sx={styleButtBing} variant="contained">
+                          <b>Прочитать</b>
+                        </Button>
+                      </Grid>
+                    </Grid>
                     <Button sx={styleButtBing} variant="contained">
                       <b>Установить</b>
                     </Button>
