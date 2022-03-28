@@ -7,11 +7,6 @@ import Button from '@mui/material/Button';
 // import TextField from '@mui/material/TextField';
 // import Modal from '@mui/material/Modal';
 
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
-
-//import axios from 'axios';
-
 const Technology = () => {
   let fSize = 10.5;
   let izmena1 = 'Изм ';
@@ -64,7 +59,7 @@ const Technology = () => {
     borderRight: 1,
     borderBottom: 1,
     borderColor: 'primary.main',
-    padding: 0.7,
+    padding: 1,
   };
 
   const HeaderTopTablLeft = () => {
@@ -214,14 +209,103 @@ const Technology = () => {
     );
   };
 
-  const TopTopTab = () => {
+  const TopTopTablRight = () => {
+    return (
+      <Grid container>
+        <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('21')}>
+          <b>ВПУ</b>
+        </Button>
+        <Grid item xs={12}>
+          <Grid container sx={{ height: '6.5vh' }}>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '6.5vh' }}>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '6.5vh' }}>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+            <Grid item xs={3} sx={styleBox}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '6.5vh' }}>
+            <Box sx={{ p: '1.5vh' }}>
+              <b>Ответ: </b>&nbsp;&nbsp;N/A
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
+    );
+  };
+
+  const TopTopTablLeft = () => {
+    return (
+      <Grid container>
+        <Grid item xs={12} sx={{ marginTop: '1vh' }}>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={9} sx={{ border: 1 }}></Grid>
+            <Grid item xs={3}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={9} sx={{ border: 1 }}></Grid>
+            <Grid item xs={3}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={9} sx={{ border: 1 }}></Grid>
+            <Grid item xs={3}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={9} sx={{ border: 1 }}></Grid>
+            <Grid item xs={3}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={7} sx={{ border: 1 }}></Grid>
+            <Grid item xs={5}></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={11} sx={{ border: 1 }}></Grid>
+            <Grid item xs></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={11} sx={{ border: 1 }}></Grid>
+            <Grid item xs></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={11} sx={{ border: 1 }}></Grid>
+            <Grid item xs></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={11} sx={{ border: 1 }}></Grid>
+            <Grid item xs></Grid>
+          </Grid>
+          <Grid container sx={{ height: '3.9vh' }}>
+            <Grid item xs={11} sx={{ border: 1 }}></Grid>
+            <Grid item xs></Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    );
+  };
+
+  const TopTopTabl = () => {
     return (
       <Grid container sx={{ fontSize: fSize, height: '39.2vh' }}>
-        <Grid item xs={9}></Grid>
+        <Grid item xs={9}>
+          <TopTopTablLeft />
+        </Grid>
         {/* <Grid item xs={0.1} sx={{ border: 0 }}></Grid> */}
-
-        <Grid item xs sx={{ border: 1, height: '27vh' }}>
-          <Box sx={styleBox}></Box>
+        <Grid item xs>
+          <Grid container sx={{ height: '27vh' }}>
+            <Grid item xs sx={styleBox}>
+              <TopTopTablRight />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     );
@@ -229,32 +313,27 @@ const Technology = () => {
 
   const TopTabls = (props: { Size: any }) => {
     return (
-      <Stack direction="column">
-        <Grid container>
-          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
-            <b>Технология</b>
-          </Button>
+      <Grid container>
+        <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
+          <b>Технология</b>
+        </Button>
 
-          <Grid item xs={12} sx={{ border: 0, marginTop: '-2vh', height: '39.5vh' }}>
-            <TopTopTab />
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container sx={{ fontSize: fSize, height: '25vh' }}>
-              <Grid item xs={7.5} sx={styleBox}>
-                <Box>
-                  <HeaderTopTablLeft />
-                  <Box sx={{ height: '22vh', overflowX: 'auto' }}>{StrokaTopTablLeft()}</Box>
-                </Box>
-              </Grid>
-              <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
-
-              <Grid item xs sx={styleBox}>
-                <TablRight />
-              </Grid>
+        <Grid item xs={12} sx={{ border: 0, marginTop: '-2vh', height: '40.6vh' }}>
+          <TopTopTabl />
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container sx={{ fontSize: fSize, height: '25vh' }}>
+            <Grid item xs={7.5} sx={styleBox}>
+              <HeaderTopTablLeft />
+              <Box sx={{ height: '22vh', overflowX: 'auto' }}>{StrokaTopTablLeft()}</Box>
+            </Grid>
+            <Grid item xs={0.05}></Grid>
+            <Grid item xs sx={styleBox}>
+              <TablRight />
             </Grid>
           </Grid>
         </Grid>
-      </Stack>
+      </Grid>
     );
   };
 
@@ -310,7 +389,7 @@ const Technology = () => {
       <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
         {/* <Grid container sx={styleBox}> */}
         <Grid container>
-          <Grid item xs={12} sx={{ height: '65.5vh' }}>
+          <Grid item xs={12} sx={{ height: '65.9vh' }}>
             <TopTabls Size={size} />
           </Grid>
         </Grid>
