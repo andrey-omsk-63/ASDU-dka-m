@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 
 const Technology = () => {
   let fSize = 10.5;
-  let fheight = '20.5vh'
+  let fheight = '20.5vh';
   let izmena1 = 'Изм ';
   let izmena2 = ' кр';
   let izmena3 = ' зел';
@@ -25,7 +25,6 @@ const Technology = () => {
   if (window.innerWidth > 800) izmena4 = ' направления';
   if (window.innerWidth > 850) izmena5 = 'Базовая привязка';
   if (window.innerWidth > 740) izmena6 = 'Передать Стат';
-
 
   const styleBox = {
     border: 1,
@@ -63,7 +62,6 @@ const Technology = () => {
     color: 'black',
     textTransform: 'unset !important',
   };
-
 
   const styleXTG021 = {
     borderBottom: 1,
@@ -273,8 +271,11 @@ const Technology = () => {
           <Grid container sx={{ height: '3.9vh' }}>
             <Grid item xs={9} sx={{ border: 1 }}></Grid>
             <Grid item xs={0.1}></Grid>
-            <Grid item xs sx={{ border: 0, }}>
-              <Button sx={styleButtBoxTop} variant="contained" onClick={() => handleOpenModal('41')}>
+            <Grid item xs sx={{ border: 0 }}>
+              <Button
+                sx={styleButtBoxTop}
+                variant="contained"
+                onClick={() => handleOpenModal('41')}>
                 <b>{izmena5}</b>
               </Button>
             </Grid>
@@ -283,7 +284,10 @@ const Technology = () => {
             <Grid item xs={9} sx={{ border: 1 }}></Grid>
             <Grid item xs={0.1}></Grid>
             <Grid item xs sx={{ border: 0 }}>
-              <Button sx={styleButtBoxTop} variant="contained" onClick={() => handleOpenModal('42')}>
+              <Button
+                sx={styleButtBoxTop}
+                variant="contained"
+                onClick={() => handleOpenModal('42')}>
                 <b>{izmena6}</b>
               </Button>
             </Grid>
@@ -401,8 +405,8 @@ const Technology = () => {
     setOpenSet(false);
   };
 
+  //отслеживание изменения размера экрана
   const [size, setSize] = React.useState([0, 0]);
-
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);

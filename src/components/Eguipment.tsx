@@ -50,24 +50,12 @@ const Eguipment = () => {
   const HeaderTopTabls = () => {
     return (
       <Grid item container xs={12}>
-        <Grid item xs={2} sx={styleXTG021}>
-
-        </Grid>
-        <Grid item xs={2} sx={styleXTG021}>
-
-        </Grid>
-        <Grid item xs={2} sx={styleXTG021}>
-
-        </Grid>
-        <Grid item xs={2} sx={styleXTG021}>
-
-        </Grid>
-        <Grid item xs={2} sx={styleXTG021}>
-
-        </Grid>
-        <Grid item xs={2} sx={styleXTG021}>
-
-        </Grid>
+        <Grid item xs={2} sx={styleXTG021}></Grid>
+        <Grid item xs={2} sx={styleXTG021}></Grid>
+        <Grid item xs={2} sx={styleXTG021}></Grid>
+        <Grid item xs={2} sx={styleXTG021}></Grid>
+        <Grid item xs={2} sx={styleXTG021}></Grid>
+        <Grid item xs={2} sx={styleXTG021}></Grid>
       </Grid>
     );
   };
@@ -96,21 +84,20 @@ const Eguipment = () => {
         <Grid item xs={12}>
           <Grid container sx={{ border: 0, marginTop: '2vh', height: '4.5vh' }}>
             <Grid item xs={1} sx={{ border: 0 }}></Grid>
-            <Grid item xs={10}  sx={{ border: 1 }}>
+            <Grid item xs={10} sx={{ border: 1 }}>
               <Box>Неисправность:</Box>
             </Grid>
           </Grid>
           <Grid container sx={{ border: 0, marginTop: '2vh', height: '4.5vh' }}>
             <Grid item xs={1} sx={{ border: 0 }}></Grid>
-            <Grid item xs={10}  sx={{ border: 1 }}></Grid>
+            <Grid item xs={10} sx={{ border: 1 }}></Grid>
           </Grid>
-          
         </Grid>
       </Grid>
-    )
-  }
+    );
+  };
 
-  const TopTabls = (props: { Size: any }) => {
+  const TopTabls = () => {
     return (
       <Grid item xs={12} sx={{ marginTop: '-2vh', height: '65.5vh' }}>
         <Grid container sx={styleBox}>
@@ -125,10 +112,8 @@ const Eguipment = () => {
           </Grid>
         </Grid>
       </Grid>
-    )
-  }
-
-  let size = 0;
+    );
+  };
 
   return (
     <Stack direction="column">
@@ -137,7 +122,7 @@ const Eguipment = () => {
           <Button sx={styleButtBox} variant="contained">
             <b>Оборудование</b>
           </Button>
-          <TopTabls Size={size} />
+          <TopTabls />
         </Grid>
       </Box>
       <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>

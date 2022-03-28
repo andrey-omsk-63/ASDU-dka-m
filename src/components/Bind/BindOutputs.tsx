@@ -186,8 +186,8 @@ const BindOutputs = () => {
     setOpenSet(false);
   };
 
+  //отслеживание изменения размера экрана
   const [size, setSize] = React.useState([0, 0]);
-
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);

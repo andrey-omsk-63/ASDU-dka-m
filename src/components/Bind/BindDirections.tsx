@@ -334,7 +334,7 @@ const BindDirections = () => {
     );
   };
 
-  const OutputModalBattom = (props: { Size: any }) => {
+  const OutputModalBattom = () => {
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -375,7 +375,7 @@ const BindDirections = () => {
           </Button>
           <OutputNormalBattom />
           <TabPanel value="69">
-            <OutputModalBattom Size={size} />
+            <OutputModalBattom />
           </TabPanel>
         </Box>
       </TabContext>
@@ -418,8 +418,8 @@ const BindDirections = () => {
     setOpenSet(false);
   };
 
+  //отслеживание изменения размера экрана
   const [size, setSize] = React.useState([0, 0]);
-
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);

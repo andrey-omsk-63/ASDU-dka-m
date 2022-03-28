@@ -218,7 +218,8 @@ const JournalLogins = (props: { logName: string }) => {
     );
   };
 
-  const TabsLogins = (props: { valueSort: number; Size: any }) => {
+  // const TabsLogins = (props: { valueSort: number; Size: any }) => {
+  const TabsLogins = (props: { valueSort: number }) => {
     if (flagSbros) {
       MakeMassPoints();
       flagSbros = false;
@@ -453,7 +454,7 @@ const JournalLogins = (props: { logName: string }) => {
                   </Box>
                   <WindSearsh />
                   <HeaderLogins />
-                  {isOpen && <TabsLogins valueSort={value} Size={size} />}
+                  {isOpen && <TabsLogins valueSort={value} />}
                 </Grid>
               </Grid>
             </Box>

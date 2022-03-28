@@ -382,7 +382,7 @@ const Condition = () => {
     );
   };
 
-  const TopTab = (props: { Size: any }) => {
+  const TopTab = () => {
     return (
       <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
         <Grid container>
@@ -397,8 +397,8 @@ const Condition = () => {
           </Grid>
         </Grid>
       </Box>
-    )
-  }
+    );
+  };
 
   const BattomTab = () => {
     return (
@@ -407,9 +407,8 @@ const Condition = () => {
           <Grid item xs sx={{ height: '22.3vh' }}></Grid>
         </Grid>
       </Box>
-    )
-  }
-
+    );
+  };
   const ModalEnd = () => {
     const styleModalEnd = {
       position: 'absolute',
@@ -437,8 +436,8 @@ const Condition = () => {
           </Grid>
         </Box>
       </Modal>
-    )
-  }
+    );
+  };
 
   const [value, setValue] = React.useState('0');
   const [openSet, setOpenSet] = React.useState(false);
@@ -465,9 +464,8 @@ const Condition = () => {
   return (
     <Stack direction="column">
       <TabContext value={value}>
-        <TopTab Size={size} />
+        <TopTab />
         <BattomTab />
-        
 
         <TabPanel value="11">
           <ModalWindow nameComponent={Col01Grid01} />
@@ -496,4 +494,3 @@ const Condition = () => {
 };
 
 export default Condition;
-

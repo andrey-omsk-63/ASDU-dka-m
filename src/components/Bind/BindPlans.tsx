@@ -10,15 +10,14 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
 import BindRight from './BindComponents/BindRight';
-import './BindPlans.css';
 
-//import axios from 'axios';
-
-let flagInput = false;
+//let flagInput = false;
 
 const BindPlans = () => {
+  const [size, setSize] = React.useState(0);
+
   let styleSetWidth = 650;
-  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
+  if (size > 770) styleSetWidth = window.innerWidth - 50;
   let formSett = ['План 0(РП)', 0];
   let fSize = 11.5;
   if (window.innerWidth > 860) fSize = 14;
@@ -34,7 +33,6 @@ const BindPlans = () => {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    // marginTop: -0.7,
     marginTop: '-52.5vh',
     backgroundColor: 'white',
     color: '#5B1080',
@@ -156,7 +154,7 @@ const BindPlans = () => {
     const handleChange = (event: any) => {
       setValuen(event.target.value);
       formSett[nom] = event.target.value;
-      flagInput = true;
+      //flagInput = true;
     };
 
     const handleKey = (event: any) => {
@@ -247,29 +245,23 @@ const BindPlans = () => {
     setOpenSet(false);
   };
 
-  const [size, setSize] = React.useState([0, 0]);
+  //отслеживание изменения размера экрана
+  // const [size, setSize] = React.useState([0, 0]);
+  //const [size, setSize] = React.useState(0);
 
+  React.useLayoutEffect(() => {
+    // React.useEffect(() => {
+    function updateSize() {
+      //setSize([window.innerWidth, window.innerHeight]);
+      setSize(window.innerWidth);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
 
-  // React.useLayoutEffect(() => {
-  //   function updateSize() {
-  //     // if (!flagInput) {
-  //       setSize([window.innerWidth, window.innerHeight]);
-  //     // }
-  //   }
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
-
-  //   window.addEventListener('resize', updateSize);
-  //   updateSize();
-  //   console.log('size:', size)
-  //   return () => window.removeEventListener('resize', updateSize);
-
-  // }, []);
-
-  console.log('size:', size)
-
-
-
-  console.log('flagInput', flagInput)
+  //console.log('size:', size);
 
   const BindLeft = () => {
     return (
