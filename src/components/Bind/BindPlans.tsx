@@ -10,8 +10,11 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
 import BindRight from './BindComponents/BindRight';
+import './BindPlans.css';
 
 //import axios from 'axios';
+
+let flagInput = false;
 
 const BindPlans = () => {
   let styleSetWidth = 650;
@@ -123,7 +126,8 @@ const BindPlans = () => {
     );
   };
 
-  const OutputModalBattom = (props: { Size: any }) => {
+  // const OutputModalBattom = (props: { Size: any }) => {
+  const OutputModalBattom = () => {
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -152,6 +156,7 @@ const BindPlans = () => {
     const handleChange = (event: any) => {
       setValuen(event.target.value);
       formSett[nom] = event.target.value;
+      flagInput = true;
     };
 
     const handleKey = (event: any) => {
@@ -165,6 +170,8 @@ const BindPlans = () => {
         size="small"
         onKeyPress={handleKey} //отключение Enter
         label={labelTextField}
+        inputProps={{ style: { fontSize: fSize } }} // font size of input text
+        InputLabelProps={{ style: { fontSize: fSize } }} // font size of input label
         value={valuen}
         onChange={handleChange}
         variant="outlined"
@@ -176,7 +183,7 @@ const BindPlans = () => {
     return (
       <Box
         component="form"
-        sx={{ '& > :not(style)': { m: 1, width: '20ch' } }}
+        sx={{ '& > :not(style)': { m: 0.5, width: '20ch' } }}
         noValidate
         autoComplete="off">
         <Stack direction="column">
@@ -196,7 +203,8 @@ const BindPlans = () => {
           </Button>
           <OutputNormalBattom />
           <TabPanel value="69">
-            <OutputModalBattom Size={size} />
+            {/* <OutputModalBattom Size={size} /> */}
+            <OutputModalBattom />
           </TabPanel>
         </Box>
       </TabContext>
@@ -241,14 +249,27 @@ const BindPlans = () => {
 
   const [size, setSize] = React.useState([0, 0]);
 
-  React.useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
+
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     // if (!flagInput) {
+  //       setSize([window.innerWidth, window.innerHeight]);
+  //     // }
+  //   }
+
+
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   console.log('size:', size)
+  //   return () => window.removeEventListener('resize', updateSize);
+
+  // }, []);
+
+  console.log('size:', size)
+
+
+
+  console.log('flagInput', flagInput)
 
   const BindLeft = () => {
     return (

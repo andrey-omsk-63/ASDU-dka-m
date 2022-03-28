@@ -12,7 +12,7 @@ import * as React from 'react';
 //import axios from 'axios';
 
 const BindDiagram = () => {
-  return <h1>Привязка Диаграмма.</h1>;
+  return <h1>Привязка Диаграмма</h1>;
 };
 
 export default BindDiagram;

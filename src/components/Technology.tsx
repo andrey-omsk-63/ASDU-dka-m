@@ -9,16 +9,23 @@ import Button from '@mui/material/Button';
 
 const Technology = () => {
   let fSize = 10.5;
+  let fheight = '20.5vh'
   let izmena1 = 'Изм ';
   let izmena2 = ' кр';
   let izmena3 = ' зел';
   let izmena4 = ' направ';
+  let izmena5 = 'Баз привязка';
+  let izmena6 = 'Перед Стат';
 
   if (window.innerWidth > 1090) fSize = 12.9;
+  if (window.innerWidth > 920) fheight = '22vh';
   if (window.innerWidth > 830) izmena1 = 'Изменить ';
   if (window.innerWidth > 840) izmena2 = ' красный';
   if (window.innerWidth > 840) izmena3 = ' зелёный';
   if (window.innerWidth > 800) izmena4 = ' направления';
+  if (window.innerWidth > 850) izmena5 = 'Базовая привязка';
+  if (window.innerWidth > 740) izmena6 = 'Передать Стат';
+
 
   const styleBox = {
     border: 1,
@@ -46,6 +53,17 @@ const Technology = () => {
     color: 'black',
     textTransform: 'unset !important',
   };
+
+  const styleButtBoxTop = {
+    fontSize: fSize - 1,
+    maxHeight: '18px',
+    minHeight: '18px',
+    //marginBottom: 1.5,
+    backgroundColor: 'white',
+    color: 'black',
+    textTransform: 'unset !important',
+  };
+
 
   const styleXTG021 = {
     borderBottom: 1,
@@ -254,11 +272,21 @@ const Technology = () => {
           </Grid>
           <Grid container sx={{ height: '3.9vh' }}>
             <Grid item xs={9} sx={{ border: 1 }}></Grid>
-            <Grid item xs={3}></Grid>
+            <Grid item xs={0.1}></Grid>
+            <Grid item xs sx={{ border: 0, }}>
+              <Button sx={styleButtBoxTop} variant="contained" onClick={() => handleOpenModal('41')}>
+                <b>{izmena5}</b>
+              </Button>
+            </Grid>
           </Grid>
           <Grid container sx={{ height: '3.9vh' }}>
             <Grid item xs={9} sx={{ border: 1 }}></Grid>
-            <Grid item xs={3}></Grid>
+            <Grid item xs={0.1}></Grid>
+            <Grid item xs sx={{ border: 0 }}>
+              <Button sx={styleButtBoxTop} variant="contained" onClick={() => handleOpenModal('42')}>
+                <b>{izmena6}</b>
+              </Button>
+            </Grid>
           </Grid>
           <Grid container sx={{ height: '3.9vh' }}>
             <Grid item xs={9} sx={{ border: 1 }}></Grid>
@@ -325,7 +353,7 @@ const Technology = () => {
           <Grid container sx={{ fontSize: fSize, height: '25vh' }}>
             <Grid item xs={7.5} sx={styleBox}>
               <HeaderTopTablLeft />
-              <Box sx={{ height: '22vh', overflowX: 'auto' }}>{StrokaTopTablLeft()}</Box>
+              <Box sx={{ height: fheight, overflowX: 'auto' }}>{StrokaTopTablLeft()}</Box>
             </Grid>
             <Grid item xs={0.05}></Grid>
             <Grid item xs sx={styleBox}>
@@ -387,7 +415,6 @@ const Technology = () => {
   return (
     <Stack direction="column">
       <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
-        {/* <Grid container sx={styleBox}> */}
         <Grid container>
           <Grid item xs={12} sx={{ height: '65.9vh' }}>
             <TopTabls Size={size} />
