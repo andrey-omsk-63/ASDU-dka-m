@@ -15,12 +15,13 @@ import BindRight from './BindComponents/BindRight';
 
 const BindPlans = () => {
   const [size, setSize] = React.useState(0);
-
-  let styleSetWidth = 650;
-  if (size > 770) styleSetWidth = window.innerWidth - 50;
   let formSett = ['План 0(РП)', 0];
+
   let fSize = 11.5;
-  if (window.innerWidth > 860) fSize = 14;
+  let styleSetWidth = 650;
+
+  if (size > 770) styleSetWidth = size - 50;
+  if (size > 860) fSize = 14;
 
   const styleBox = {
     border: 1,
@@ -36,6 +37,17 @@ const BindPlans = () => {
     marginTop: '-52.5vh',
     backgroundColor: 'white',
     color: '#5B1080',
+    textTransform: 'unset !important',
+  };
+
+  const styleButtInp = {
+    //fontSize: 12,
+    fontSize: fSize + 1,
+    maxHeight: '21px',
+    minHeight: '21px',
+    marginBottom: 1.5,
+    backgroundColor: 'white',
+    color: 'black',
     textTransform: 'unset !important',
   };
 
@@ -178,17 +190,36 @@ const BindPlans = () => {
   };
 
   const TopTabInput = () => {
+    const styleBoxForm = {
+      '& > :not(style)': { m: '1vh', width: '20ch' }
+    }
+
     return (
-      <Box
-        component="form"
-        sx={{ '& > :not(style)': { m: 0.5, width: '20ch' } }}
-        noValidate
-        autoComplete="off">
-        <Stack direction="column">
-          <Box sx={{ marginTop: 4 }}>{InpForm(0)}</Box>
-          <Box sx={{ marginTop: 4 }}>{InpForm(1)}</Box>
-        </Stack>
-      </Box>
+      <>
+        <Grid container sx={{ marginTop: '6vh', height: '9vh' }}>
+          <Grid item xs={6}>
+            <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
+              {InpForm(0)}
+            </Box>
+
+          </Grid>
+          <Grid item xs={6} sx={{ border: 0 }}>
+            <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
+              {InpForm(1)}
+            </Box>
+          </Grid>
+        </Grid>
+        <Grid container sx={{ border: 0, height: '3vh' }}>
+          <Grid item xs={3.5}></Grid>
+          <Grid item xs sx={{ border: 0 }}>
+            <Button sx={styleButtInp} variant="contained">
+              <b>Создать план</b>
+            </Button>
+
+          </Grid>
+        </Grid>
+      </>
+
     );
   };
 
@@ -201,7 +232,6 @@ const BindPlans = () => {
           </Button>
           <OutputNormalBattom />
           <TabPanel value="69">
-            {/* <OutputModalBattom Size={size} /> */}
             <OutputModalBattom />
           </TabPanel>
         </Box>
@@ -302,3 +332,11 @@ const BindPlans = () => {
 };
 
 export default BindPlans;
+
+
+//sx={{ '& > :not(style)': { m: 0.5, width: '20ch' } }}
+
+{/* <Stack direction="row">
+  <Box sx={{ marginTop: 4 }}>{InpForm(0)}</Box>
+  <Box sx={{ marginTop: 4, marginLeft: 32 }}>{InpForm(1)}</Box>
+</Stack>  */}
