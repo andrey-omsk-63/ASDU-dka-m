@@ -54,11 +54,11 @@ const App = () => {
     fontSize: 24,
     textAlign: 'center',
     p: 0.5,
-  //   display: 'block',
-  //   width: 100,
-  //   height: 100,
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundImage: 
+    //   display: 'block',
+    //   width: 100,
+    //   height: 100,
+    //   backgroundRepeat: 'no-repeat',
+    //   backgroundImage:
   };
 
   const styleButt01 = {
@@ -116,7 +116,6 @@ const App = () => {
       <Grid container sx={{ height: '100vh' }}>
         <Grid item xs={12} sx={styleAppMulka}>
           <Box sx={styleHeader}>
-            
             <b>Здесь будет Красивая Шапка</b>
           </Box>
         </Grid>

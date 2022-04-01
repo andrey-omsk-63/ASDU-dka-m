@@ -191,8 +191,8 @@ const BindPlans = () => {
 
   const TopTabInput = () => {
     const styleBoxForm = {
-      '& > :not(style)': { m: '1vh', width: '20ch' }
-    }
+      '& > :not(style)': { m: '1vh', width: '20ch' },
+    };
 
     return (
       <>
@@ -201,7 +201,6 @@ const BindPlans = () => {
             <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
               {InpForm(0)}
             </Box>
-
           </Grid>
           <Grid item xs={6} sx={{ border: 0 }}>
             <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
@@ -215,11 +214,9 @@ const BindPlans = () => {
             <Button sx={styleButtInp} variant="contained">
               <b>Создать план</b>
             </Button>
-
           </Grid>
         </Grid>
       </>
-
     );
   };
 
@@ -333,10 +330,11 @@ const BindPlans = () => {
 
 export default BindPlans;
 
-
 //sx={{ '& > :not(style)': { m: 0.5, width: '20ch' } }}
 
-{/* <Stack direction="row">
+{
+  /* <Stack direction="row">
   <Box sx={{ marginTop: 4 }}>{InpForm(0)}</Box>
   <Box sx={{ marginTop: 4, marginLeft: 32 }}>{InpForm(1)}</Box>
-</Stack>  */}
+</Stack>  */
+}
