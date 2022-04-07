@@ -6,6 +6,11 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 
+//import Tabs from '@mui/material/Tabs';
+//import Tab from '@mui/material/Tab';
+
+//import PointsMenuLevel1 from './PointsMenuLevel1';
+
 import axios from 'axios';
 
 export interface LogMessage {
@@ -191,8 +196,6 @@ const JournalLogins = (props: { logName: string }) => {
     textTransform: 'unset !important',
   };
 
-  let resStr: any = [];
-
   const HeaderLogins = () => {
     return (
       <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
@@ -215,47 +218,16 @@ const JournalLogins = (props: { logName: string }) => {
     );
   };
 
-  const StrokaLogins = () => {
-    resStr = [];
-
-    for (let i = 0; i < massPoints.length; i++) {
-      resStr.push(
-        <Grid key={Math.random()} item container xs={12}>
-          <Grid
-            key={Math.random()}
-            item
-            xs={1.5}
-            sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
-            <b>{massPoints[i].type}</b>
-          </Grid>
-          <Grid
-            key={Math.random()}
-            item
-            xs={1}
-            sx={massPoints[i].haveError ? styleXTG033 : styleXTG03}>
-            <b>{massPoints[i].time}</b>
-          </Grid>
-          <Grid
-            key={Math.random()}
-            item
-            xs={9.5}
-            sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
-            <b>{massPoints[i].info}</b>
-          </Grid>
-        </Grid>,
-      );
-    }
-    return resStr;
-  };
-
-  const TabsLogins = (valueSort: number) => {
+  // const TabsLogins = (props: { valueSort: number; Size: any }) => {
+  const TabsLogins = (props: { valueSort: number }) => {
+    console.log('!!!:', flagSbros, props.valueSort);
     if (flagSbros) {
       MakeMassPoints();
       flagSbros = false;
       fSize = 10;
       if (window.innerWidth > 950) fSize = 13.3;
     } else {
-      switch (valueSort) {
+      switch (props.valueSort) {
         case 1:
           // сортировка по type
           massPoints.sort((a, b) => a.num - b.num);
@@ -267,6 +239,7 @@ const JournalLogins = (props: { logName: string }) => {
         case 3:
           // поиск в сообщениях
           let masrab: Array<Line> = [];
+
           for (let i = 0; i < massPoints.length; i++) {
             let str = massPoints[i].info.toUpperCase();
             if (str.indexOf(formSett.toUpperCase()) !== -1) {
@@ -284,6 +257,41 @@ const JournalLogins = (props: { logName: string }) => {
           if (window.innerWidth > 950) fSize = 13.3;
       }
     }
+
+    const StrokaLogins = () => {
+      let resStr = [];
+
+      for (let i = 0; i < massPoints.length; i++) {
+        resStr.push(
+          <Grid key={Math.random()} item container xs={12}>
+            <Grid
+              key={Math.random()}
+              item
+              xs={1.5}
+              sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
+              <b>{massPoints[i].type}</b>
+            </Grid>
+            <Grid
+              key={Math.random()}
+              item
+              xs={1}
+              sx={massPoints[i].haveError ? styleXTG033 : styleXTG03}>
+              <b>{massPoints[i].time}</b>
+            </Grid>
+            <Grid
+              key={Math.random()}
+              item
+              xs={9.5}
+              sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
+              <b>{massPoints[i].info}</b>
+            </Grid>
+          </Grid>,
+        );
+      }
+      return resStr;
+    };
+
+    return <Box sx={{ overflowX: 'auto', height: '79vh' }}>{StrokaLogins()}</Box>;
   };
 
   const MakeMassPoints = () => {
@@ -429,11 +437,6 @@ const JournalLogins = (props: { logName: string }) => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  if (isOpen) {
-    TabsLogins(value);
-    StrokaLogins();
-  }
-
   return (
     <Box>
       <Box sx={{ fontSize: fSize, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
@@ -452,11 +455,7 @@ const JournalLogins = (props: { logName: string }) => {
                   </Box>
                   <WindSearsh />
                   <HeaderLogins />
-                  <Box sx={{ overflowX: 'auto', height: '79vh' }}>
-                    <Grid container item>
-                      {resStr}
-                    </Grid>
-                  </Box>
+                  {isOpen && <TabsLogins valueSort={value} />}
                 </Grid>
               </Grid>
             </Box>
@@ -468,3 +467,16 @@ const JournalLogins = (props: { logName: string }) => {
 };
 
 export default JournalLogins;
+
+// const useWindowSize = () => {
+//   const [size, setSize] = React.useState([0, 0]);
+//   React.useLayoutEffect(() => {
+//     function updateSize() {
+//       setSize([window.innerWidth, window.innerHeight]);
+//     }
+//     window.addEventListener('resize', updateSize);
+//     updateSize();
+//     return () => window.removeEventListener('resize', updateSize);
+//   }, []);
+//   return size;
+// }
