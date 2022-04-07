@@ -117,6 +117,7 @@ const App = () => {
         <Grid item xs={12} sx={styleAppMulka}>
           <Box sx={styleHeader}>
             <b>Здесь будет Красивая Шапка</b>
+            
           </Box>
         </Grid>
         <Grid container sx={{ marginRight: 0.5 }}>

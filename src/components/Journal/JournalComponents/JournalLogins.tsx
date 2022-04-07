@@ -220,6 +220,7 @@ const JournalLogins = (props: { logName: string }) => {
 
   // const TabsLogins = (props: { valueSort: number; Size: any }) => {
   const TabsLogins = (props: { valueSort: number }) => {
+    console.log('!!!:',flagSbros, props.valueSort)
     if (flagSbros) {
       MakeMassPoints();
       flagSbros = false;
