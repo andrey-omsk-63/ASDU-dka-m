@@ -6,16 +6,11 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
-
-//import PointsMenuLevel1 from './PointsMenuLevel1';
-
 import axios from 'axios';
 
-import { styleXt04, styleXTG02, styleXTG021, styleXTG03, styleXTG033 } from './JournalLoginsStyle';
-import { styleXTG04, styleXTG044, styleInpKnop, styleBut01, styleSet } from './JournalLoginsStyle';
-import { styleResetMin, styleResetMax, styleServis, styleServisKnop } from './JournalLoginsStyle';
+import { styleXt04, styleXTG02, styleXTG021, styleXTG03, styleXTG033 } from './LoginsStyle';
+import { styleXTG04, styleXTG044, styleInpKnop, styleBut01, styleSet } from './LoginsStyle';
+import { styleReset, styleServis, styleServisKnop } from './LoginsStyle';
 
 export interface LogMessage {
   logData: LogDatum[];
@@ -46,42 +41,33 @@ let formSett = '';
 
 let massPoints: Array<Line> = [];
 
-const JournalLogins = (props: { logName: string }) => {
-  // const windowInnerWidth = window.innerWidth;
-  // const windowInnerHeight = window.innerHeight;
-  // console.log('Width:', windowInnerWidth);
-  // console.log('Heigh:', windowInnerHeight);
-  //let widthGlob = 0;
-  let fSize = 10;
-  if (window.innerWidth > 950) fSize = 13.3;
+const Logins = (props: { logName: string }) => {
+  //console.log('logName:', props.logName);
 
   if (oldData !== props.logName) {
     oldData = props.logName;
     flagSbros = true;
   }
 
-
   let resStr: any = [];
 
   const HeaderLogins = () => {
     return (
-      <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
-        <Grid item container xs={12}>
-          <Grid item xs={1.5} sx={styleXTG021}>
-            <Button sx={styleBut01} variant="contained" onClick={() => setValue(1)}>
-              <b>Тип</b>
-            </Button>
-          </Grid>
-          <Grid item xs={1} sx={styleXTG02}>
-            <Button sx={styleBut01} variant="contained" onClick={() => setValue(2)}>
-              <b>Время</b>
-            </Button>
-          </Grid>
-          <Grid item xs={9.5} sx={styleXTG021}>
-            <b>Сообщение</b>
-          </Grid>
+      <Grid item container xs={12}>
+        <Grid item xs={1.5} sx={styleXTG021}>
+          <Button sx={styleBut01} variant="contained" onClick={() => setValue(1)}>
+            <b>Тип</b>
+          </Button>
         </Grid>
-      </Box>
+        <Grid item xs={1} sx={styleXTG02}>
+          <Button sx={styleBut01} variant="contained" onClick={() => setValue(2)}>
+            <b>Время</b>
+          </Button>
+        </Grid>
+        <Grid item xs={9.5} sx={styleXTG021}>
+          <b>Сообщение</b>
+        </Grid>
+      </Grid>
     );
   };
 
@@ -119,13 +105,8 @@ const JournalLogins = (props: { logName: string }) => {
   };
 
   const TabsLogins = (valueSort: number) => {
-    console.log('valueSort:', valueSort, 'TabsLogins:', flagSbros)
-    // if (flagSbros) {
-    //   MakeMassPoints();
-    //   flagSbros = false;
-    //   fSize = 10;
-    //   if (window.innerWidth > 950) fSize = 13.3;
-    // } else {
+    console.log('valueSort:', valueSort, 'flagSbros:', flagSbros)
+    
     switch (valueSort) {
       case 1:
         // сортировка по type
@@ -137,25 +118,25 @@ const JournalLogins = (props: { logName: string }) => {
         break;
       case 3:
         // поиск в сообщениях
-        let masrab: Array<Line> = [];
-        for (let i = 0; i < massPoints.length; i++) {
-          let str = massPoints[i].info.toUpperCase();
-          if (str.indexOf(formSett.toUpperCase()) !== -1) {
-            masrab.push(massPoints[i]);
+        if (formSett !== '') {
+          let masrab: Array<Line> = [];
+          for (let i = 0; i < massPoints.length; i++) {
+            let str = massPoints[i].info.toUpperCase();
+            if (str.indexOf(formSett.toUpperCase()) !== -1) {
+              masrab.push(massPoints[i]);
+            }
           }
+          massPoints = [];
+          massPoints = masrab;
         }
-        massPoints = [];
-        massPoints = masrab;
         break;
       case 4:
         // сброс
         MakeMassPoints();
+        setValue(2)
         formSett = '';
-        fSize = 10;
-        if (window.innerWidth > 950) fSize = 13.3;
         break;
     }
-    // }
   };
 
   const MakeMassPoints = () => {
@@ -197,7 +178,7 @@ const JournalLogins = (props: { logName: string }) => {
       maskPoints[0].info = points[i].message.slice(29);
 
       massPoints.push(maskPoints[0]);
-      setIsRead(false); // !!!!!!!!!!!!!!!!!!
+      setIsRead(false);
       //flagMake = false;
     }
   };
@@ -230,6 +211,7 @@ const JournalLogins = (props: { logName: string }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isRead, setIsRead] = React.useState(false);
   const [value, setValue] = React.useState(2);
+
   let maskPoints: Array<Line> = [
     {
       num: 0,
@@ -241,8 +223,8 @@ const JournalLogins = (props: { logName: string }) => {
     },
   ];
 
-  const ipAdress: string = 'http://localhost:3000/otlmess.json';
-  //const ipAdress: string = window.location.href + '/info?fileName=' + props.logName;
+  //const ipAdress: string = 'http://localhost:3000/otlmess.json';
+  const ipAdress: string = window.location.href + '/info?fileName=' + props.logName;
 
   React.useEffect(() => {
     axios.get(ipAdress).then(({ data }) => {
@@ -252,8 +234,9 @@ const JournalLogins = (props: { logName: string }) => {
     });
     setIsOpen(true);
     setValue(2)
-  }, [ipAdress, props.logName]);
+  }, [ipAdress]);
 
+  console.log('isOpen:', isOpen, 'isRead:', isRead, 'value:', value)
   if (isOpen && isRead) MakeMassPoints();
 
   const [openSet, setOpenSet] = React.useState(false);
@@ -283,25 +266,16 @@ const JournalLogins = (props: { logName: string }) => {
     return (
       <TextField
         size="small"
-        onKeyPress={handleKey} //отключение Enter
+        onKeyPress={handleKey}
         label="Поиск"
+        inputProps={{ style: { fontSize: 14 } }} // font size of input text
+        InputLabelProps={{ style: { fontSize: 14 } }} // font size of input label
         value={valuen}
-        onChange={handleChange}
+        onChange={handleChange} //отключение Enter
         variant="outlined"
       />
     );
   };
-
-  //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState([0, 0]);
-  React.useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
 
   if (isOpen) {
     TabsLogins(value);
@@ -310,23 +284,20 @@ const JournalLogins = (props: { logName: string }) => {
 
   return (
     <Box>
-      <Box sx={{ fontSize: fSize, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
+      <Button sx={styleReset} variant="contained" onClick={() => setValue(4)}>
+        <b>Сброс настроек</b>
+      </Button>
+      <WindSearsh />
+      <Box sx={{ fontSize: 12, marginTop: -2.4, marginLeft: -2.5, marginRight: -2.5 }}>
         <Grid container>
           <Grid item xs={12}>
             <Box sx={{ marginRight: -1.5 }}>
               <Grid container>
                 <Grid item xs={12} sx={styleXt04}>
-                  <Box sx={{ border: 0, marginTop: 0 }}>
-                    <Button
-                      sx={fSize === 10 ? styleResetMin : styleResetMax}
-                      variant="contained"
-                      onClick={() => setValue(4)}>
-                      <b>Сброс настроек</b>
-                    </Button>
+                  <Box sx={{ borderRadius: 1, backgroundColor: '#C0C0C0' }}>
+                    <HeaderLogins />
                   </Box>
-                  <WindSearsh />
-                  <HeaderLogins />
-                  <Box sx={{ overflowX: 'auto', height: '79vh' }}>
+                  <Box sx={{ overflowX: 'auto', height: '92vh' }}>
                     <Grid container item>
                       {resStr}
                     </Grid>
@@ -341,4 +312,4 @@ const JournalLogins = (props: { logName: string }) => {
   );
 };
 
-export default JournalLogins;
+export default Logins;
