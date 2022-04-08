@@ -6,11 +6,12 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 
-import axios from 'axios';
+//import Tabs from '@mui/material/Tabs';
+//import Tab from '@mui/material/Tab';
 
-import { styleXt04, styleXTG02, styleXTG021, styleXTG03, styleXTG033 } from './JournalLoginsStyle';
-import { styleXTG04, styleXTG044, styleInpKnop, styleBut01, styleSet } from './JournalLoginsStyle';
-import { styleResetMin, styleResetMax, styleServis, styleServisKnop } from './JournalLoginsStyle';
+//import PointsMenuLevel1 from './PointsMenuLevel1';
+
+import axios from 'axios';
 
 export interface LogMessage {
   logData: LogDatum[];
@@ -55,10 +56,145 @@ const JournalLogins = (props: { logName: string }) => {
     flagSbros = true;
   }
 
+  const styleXt04 = {
+    border: 1,
+    borderRadius: 2,
+    borderColor: 'primary.main',
+    backgroundColor: '#F1F5FB',
+    opacity: 0.8,
+  };
 
-  let resStr: any = [];
+  const styleXTG02 = {
+    borderBottom: 1,
+    borderColor: 'primary.main',
+    textAlign: 'center',
+    backgroundColor: '#C0C0C0',
+  };
 
-  let resStr: any = [];
+  const styleXTG021 = {
+    borderRadius: 1,
+    borderBottom: 1,
+    borderColor: 'primary.main',
+    textAlign: 'center',
+    backgroundColor: '#C0C0C0',
+  };
+
+  const styleXTG03 = {
+    borderRight: 1,
+    borderBottom: 1,
+    borderColor: 'primary.main',
+    padding: 0.3,
+    textAlign: 'center',
+    color: 'black',
+  };
+
+  const styleXTG033 = {
+    borderRight: 1,
+    borderBottom: 1,
+    borderColor: 'primary.main',
+    padding: 0.3,
+    textAlign: 'center',
+    color: 'red',
+  };
+
+  const styleXTG04 = {
+    borderRight: 1,
+    borderBottom: 1,
+    borderColor: 'primary.main',
+    padding: 0.3,
+    color: 'black',
+  };
+
+  const styleXTG044 = {
+    borderRight: 1,
+    borderBottom: 1,
+    borderColor: 'primary.main',
+    padding: 0.3,
+    color: 'red',
+  };
+
+  const styleInpKnop = {
+    color: 'black',
+    marginTop: 1,
+    maxHeight: '21px',
+    minHeight: '21px',
+    backgroundColor: '#F1F3F4',
+    textTransform: 'unset !important',
+  };
+
+  const styleBut01 = {
+    fontSize: 12,
+    marginRight: 0.5,
+    // maxWidth: '4vh',
+    // minWidth: '4vh',
+    maxHeight: '21px',
+    minHeight: '21px',
+    backgroundColor: '#F1F3F4',
+    color: 'black',
+    textTransform: 'unset !important',
+  };
+
+  const styleSet = {
+    position: 'absolute',
+    top: '14%',
+    right: '-9%',
+    transform: 'translate(-50%, -50%)',
+    width: 360,
+    bgcolor: 'background.paper',
+    borderColor: 'primary.main',
+    border: '3px solid #000',
+    borderRadius: 2,
+    boxShadow: 24,
+    textAlign: 'center',
+    p: 3,
+  };
+
+  const styleResetMin = {
+    position: 'absolute',
+    fontSize: 17,
+    marginTop: -8,
+    marginLeft: 14,
+    maxHeight: '24px',
+    minHeight: '24px',
+    backgroundColor: 'white',
+    opacity: 1,
+    color: 'black',
+    textTransform: 'unset !important',
+  };
+
+  const styleResetMax = {
+    position: 'absolute',
+    fontSize: 17,
+    marginTop: -3.8,
+    marginLeft: 44,
+    maxHeight: '24px',
+    minHeight: '24px',
+    backgroundColor: 'white',
+    opacity: 1,
+    color: 'black',
+    textTransform: 'unset !important',
+  };
+
+  const styleServis = {
+    position: 'relative',
+    fontSize: 14,
+    marginLeft: 'auto',
+    marginRight: 7.5,
+    marginTop: -3.3,
+    maxHeight: '21px',
+    minHeight: '21px',
+    width: '4%',
+  };
+
+  const styleServisKnop = {
+    fontSize: 16,
+    marginTop: -1,
+    maxHeight: '24px',
+    minHeight: '24px',
+    backgroundColor: '#F1F3F4',
+    color: 'blue',
+    textTransform: 'unset !important',
+  };
 
   const HeaderLogins = () => {
     return (
@@ -82,90 +218,16 @@ const JournalLogins = (props: { logName: string }) => {
     );
   };
 
-  const StrokaLogins = () => {
-    resStr = [];
-
-    for (let i = 0; i < massPoints.length; i++) {
-      resStr.push(
-        <Grid key={Math.random()} item container xs={12}>
-          <Grid
-            key={Math.random()}
-            item
-            xs={1.5}
-            sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
-            <b>{massPoints[i].type}</b>
-          </Grid>
-          <Grid
-            key={Math.random()}
-            item
-            xs={1}
-            sx={massPoints[i].haveError ? styleXTG033 : styleXTG03}>
-            <b>{massPoints[i].time}</b>
-          </Grid>
-          <Grid
-            key={Math.random()}
-            item
-            xs={9.5}
-            sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
-            <b>{massPoints[i].info}</b>
-          </Grid>
-        </Grid>,
-      );
-<<<<<<< HEAD
-    }
-    return resStr;
-  };
-
-  const TabsLogins = (valueSort: number) => {
-    console.log('valueSort:', valueSort, 'TabsLogins:', flagSbros)
-    // if (flagSbros) {
-    //   MakeMassPoints();
-    //   flagSbros = false;
-    //   fSize = 10;
-    //   if (window.innerWidth > 950) fSize = 13.3;
-    // } else {
-    switch (valueSort) {
-      case 1:
-        // сортировка по type
-        massPoints.sort((a, b) => a.num - b.num);
-        break;
-      case 2:
-        // сортировка по time
-        massPoints.sort((a, b) => a.pnum - b.pnum);
-        break;
-      case 3:
-        // поиск в сообщениях
-        let masrab: Array<Line> = [];
-        for (let i = 0; i < massPoints.length; i++) {
-          let str = massPoints[i].info.toUpperCase();
-          if (str.indexOf(formSett.toUpperCase()) !== -1) {
-            masrab.push(massPoints[i]);
-          }
-        }
-        massPoints = [];
-        massPoints = masrab;
-        break;
-      case 4:
-        MakeMassPoints();
-        formSett = '';
-        fSize = 10;
-        if (window.innerWidth > 950) fSize = 13.3;
-        break;
-    }
-    // }
-=======
-    }
-    return resStr;
-  };
-
-  const TabsLogins = (valueSort: number) => {
+  // const TabsLogins = (props: { valueSort: number; Size: any }) => {
+  const TabsLogins = (props: { valueSort: number }) => {
+    console.log('!!!:', flagSbros, props.valueSort);
     if (flagSbros) {
       MakeMassPoints();
       flagSbros = false;
       fSize = 10;
       if (window.innerWidth > 950) fSize = 13.3;
     } else {
-      switch (valueSort) {
+      switch (props.valueSort) {
         case 1:
           // сортировка по type
           massPoints.sort((a, b) => a.num - b.num);
@@ -177,6 +239,7 @@ const JournalLogins = (props: { logName: string }) => {
         case 3:
           // поиск в сообщениях
           let masrab: Array<Line> = [];
+
           for (let i = 0; i < massPoints.length; i++) {
             let str = massPoints[i].info.toUpperCase();
             if (str.indexOf(formSett.toUpperCase()) !== -1) {
@@ -194,11 +257,44 @@ const JournalLogins = (props: { logName: string }) => {
           if (window.innerWidth > 950) fSize = 13.3;
       }
     }
->>>>>>> 441430774dcdbc457771ebf2e6a8893bcaa1d082
+
+    const StrokaLogins = () => {
+      let resStr = [];
+
+      for (let i = 0; i < massPoints.length; i++) {
+        resStr.push(
+          <Grid key={Math.random()} item container xs={12}>
+            <Grid
+              key={Math.random()}
+              item
+              xs={1.5}
+              sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
+              <b>{massPoints[i].type}</b>
+            </Grid>
+            <Grid
+              key={Math.random()}
+              item
+              xs={1}
+              sx={massPoints[i].haveError ? styleXTG033 : styleXTG03}>
+              <b>{massPoints[i].time}</b>
+            </Grid>
+            <Grid
+              key={Math.random()}
+              item
+              xs={9.5}
+              sx={massPoints[i].haveError ? styleXTG044 : styleXTG04}>
+              <b>{massPoints[i].info}</b>
+            </Grid>
+          </Grid>,
+        );
+      }
+      return resStr;
+    };
+
+    return <Box sx={{ overflowX: 'auto', height: '79vh' }}>{StrokaLogins()}</Box>;
   };
 
   const MakeMassPoints = () => {
-    console.log('MakeMassPoint:', isRead,)
     massPoints = [];
     for (let i = 0; i < points.length; i++) {
       maskPoints = [
@@ -236,7 +332,7 @@ const JournalLogins = (props: { logName: string }) => {
       maskPoints[0].info = points[i].message.slice(29);
 
       massPoints.push(maskPoints[0]);
-      setIsRead(false); // !!!!!!!!!!!!!!!!!!
+      //setIsRead(false);  !!!!!!!!!!!!!!!!!!
       //flagMake = false;
     }
   };
@@ -285,13 +381,12 @@ const JournalLogins = (props: { logName: string }) => {
 
   React.useEffect(() => {
     axios.get(ipAdress).then(({ data }) => {
-      console.log('data:', data);
+      //console.log('data:', data);
       setPoints(data.logData);
+      setIsOpen(true);
       setIsRead(true);
     });
-    setIsOpen(true);
-    setValue(2)
-  }, [ipAdress, props.logName]);
+  }, [ipAdress]);
 
   if (isOpen && isRead) MakeMassPoints();
 
@@ -342,11 +437,6 @@ const JournalLogins = (props: { logName: string }) => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
-  if (isOpen) {
-    TabsLogins(value);
-    StrokaLogins();
-  }
-
   return (
     <Box>
       <Box sx={{ fontSize: fSize, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
@@ -365,11 +455,7 @@ const JournalLogins = (props: { logName: string }) => {
                   </Box>
                   <WindSearsh />
                   <HeaderLogins />
-                  <Box sx={{ overflowX: 'auto', height: '79vh' }}>
-                    <Grid container item>
-                      {resStr}
-                    </Grid>
-                  </Box>
+                  {isOpen && <TabsLogins valueSort={value} />}
                 </Grid>
               </Grid>
             </Box>
@@ -381,3 +467,16 @@ const JournalLogins = (props: { logName: string }) => {
 };
 
 export default JournalLogins;
+
+// const useWindowSize = () => {
+//   const [size, setSize] = React.useState([0, 0]);
+//   React.useLayoutEffect(() => {
+//     function updateSize() {
+//       setSize([window.innerWidth, window.innerHeight]);
+//     }
+//     window.addEventListener('resize', updateSize);
+//     updateSize();
+//     return () => window.removeEventListener('resize', updateSize);
+//   }, []);
+//   return size;
+// }
