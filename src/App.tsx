@@ -10,6 +10,8 @@ import TabPanel from '@mui/lab/TabPanel';
 
 //import axios from 'axios';
 
+import IconAsdu from './IconAsdu';
+
 import Condition from './components/Condition';
 import Technology from './components/Technology';
 import Eguipment from './components/Eguipment';
@@ -28,8 +30,9 @@ const App = () => {
     marginRight: 3.5,
     marginLeft: 3,
     height: '6vh',
-    backgroundColor: '#F1F5FB',
-    opacity: 0.7,
+    //backgroundColor: '#F1F5FB',
+    backgroundColor: '#FE929A',
+    opacity: 0.88,
   };
 
   const styleAppMenu = {
@@ -39,7 +42,7 @@ const App = () => {
     marginLeft: 0.5,
     height: '86vh',
     backgroundColor: '#F1F5FB',
-    opacity: 0.95,
+    opacity: 0.88,
   };
 
   const styleAppPodv = {
@@ -51,26 +54,18 @@ const App = () => {
   };
 
   const styleHeader = {
-    fontSize: 24,
-    textAlign: 'center',
-    p: 0.5,
-    //   display: 'block',
-    //   width: 100,
-    //   height: 100,
-    //   backgroundRepeat: 'no-repeat',
-    //   backgroundImage:
+    //fontSize: 24,
+    //textAlign: 'center',
+    p: 0.1,
   };
 
   const styleButt01 = {
     fontSize: 16.5,
     maxHeight: '27px',
     minHeight: '27px',
-    //maxWidth: '18vh',
-    //minWidth: '18vh',
     marginTop: 4,
     backgroundColor: '#F1F5FB',
     color: 'black',
-
     textTransform: 'unset !important',
   };
 
@@ -82,6 +77,14 @@ const App = () => {
     backgroundColor: '#F1F5FB',
     color: '#003300',
     textTransform: 'unset !important',
+  };
+
+  const styleTitle = {
+    fontSize: 24,
+    marginTop: 1,
+    textAlign: 'left',
+    marginLeft: 4,
+    color: '#5B1080',
   };
 
   const ButtonKnobLevel1 = (soob: string, val: string) => {
@@ -109,6 +112,29 @@ const App = () => {
     );
   };
 
+  const HeaderGlob = () => {
+    return (
+      <>
+        <svg width="100%" height="12vh">
+          <rect width="100%" height="50%" fill="#FE929A" />
+          <circle cx="100%" cy="69%" r="150" fill="blue" stroke="black" />
+          <polygon points="120,0 240,225 0,225" fill="green" />
+          <text
+            x="60"
+            y="33"
+            fontFamily="Verdana"
+            fontSize="36"
+            fill="white"
+            //stroke="black"
+            strokeWidth="2">
+            ЗАО «Автоматика-Д»
+            {/* ЗАО «АВТОМАТИКА-Д» */}
+          </text>
+        </svg>
+      </>
+    );
+  };
+
   const [value, setValue] = React.useState('1');
 
   return (
@@ -116,8 +142,16 @@ const App = () => {
       <Grid container sx={{ height: '100vh' }}>
         <Grid item xs={12} sx={styleAppMulka}>
           <Box sx={styleHeader}>
-            <b>Здесь будет Красивая Шапка</b>
-            
+            <Grid container sx={{ height: '1.5vh' }}>
+              <Grid item xs={2.2} sx={{ border: 0 }}>
+                <IconAsdu />
+              </Grid>
+              <Grid item xs>
+                <HeaderGlob />
+              </Grid>
+            </Grid>
+            {/* <b>Здесь будет Красивая Шапка</b> */}
+            {/* <HeaderGlob /> */}
           </Box>
         </Grid>
         <Grid container sx={{ marginRight: 0.5 }}>
@@ -125,14 +159,7 @@ const App = () => {
             <Grid item xs={2.6} sx={styleAppMenu}>
               <Grid item sx={{ padding: 0.1 }}>
                 <Stack direction="column">
-                  <Box
-                    sx={{
-                      fontSize: 24,
-                      marginTop: 1,
-                      textAlign: 'left',
-                      marginLeft: 4,
-                      color: '#5B1080',
-                    }}>
+                  <Box sx={styleTitle}>
                     <b>ДКАМ</b>
                   </Box>
                   {ButtonKnobLevel1('Состояние', '1')}

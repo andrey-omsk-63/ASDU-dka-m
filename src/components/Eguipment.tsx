@@ -83,14 +83,37 @@ const Eguipment = () => {
       <Grid container>
         <Grid item xs={12}>
           <Grid container sx={{ border: 0, marginTop: '2vh', height: '4.5vh' }}>
-            <Grid item xs={1} sx={{ border: 0 }}></Grid>
-            <Grid item xs={10} sx={{ border: 1 }}>
-              <Box>Неисправность:</Box>
+            <Grid item xs={1} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.4} sx={{ border: 0 }}>
+              <Box>Неиспр.:</Box>
             </Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs sx={{ border: 1 }}></Grid>
           </Grid>
           <Grid container sx={{ border: 0, marginTop: '2vh', height: '4.5vh' }}>
-            <Grid item xs={1} sx={{ border: 0 }}></Grid>
-            <Grid item xs={10} sx={{ border: 1 }}></Grid>
+            <Grid item xs={1} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.4} sx={{ border: 0 }}>
+              <Box>Входы:</Box>
+            </Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
+            <Grid item xs={1.075} sx={{ border: 1 }}></Grid>
+            {/* <Grid item xs sx={{ border: 0 }}></Grid> */}
           </Grid>
         </Grid>
       </Grid>

@@ -42,8 +42,6 @@ let formSett = '';
 let massPoints: Array<Line> = [];
 
 const Logins = (props: { logName: string }) => {
-  //console.log('logName:', props.logName);
-
   if (oldData !== props.logName) {
     oldData = props.logName;
     flagSbros = true;
@@ -105,8 +103,8 @@ const Logins = (props: { logName: string }) => {
   };
 
   const TabsLogins = (valueSort: number) => {
-    console.log('valueSort:', valueSort, 'flagSbros:', flagSbros)
-    
+    console.log('valueSort:', valueSort, 'flagSbros:', flagSbros);
+
     switch (valueSort) {
       case 1:
         // сортировка по type
@@ -133,14 +131,14 @@ const Logins = (props: { logName: string }) => {
       case 4:
         // сброс
         MakeMassPoints();
-        setValue(2)
+        setValue(2);
         formSett = '';
         break;
     }
   };
 
   const MakeMassPoints = () => {
-    console.log('MakeMassPoint:', isRead,)
+    console.log('MakeMassPoint:', isRead);
     massPoints = [];
     for (let i = 0; i < points.length; i++) {
       maskPoints = [
@@ -233,10 +231,10 @@ const Logins = (props: { logName: string }) => {
       setIsRead(true);
     });
     setIsOpen(true);
-    setValue(2)
+    setValue(2);
   }, [ipAdress]);
 
-  console.log('isOpen:', isOpen, 'isRead:', isRead, 'value:', value)
+  console.log('isOpen:', isOpen, 'isRead:', isRead, 'value:', value);
   if (isOpen && isRead) MakeMassPoints();
 
   const [openSet, setOpenSet] = React.useState(false);

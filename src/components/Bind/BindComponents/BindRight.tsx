@@ -92,6 +92,65 @@ const BindRight = () => {
     );
   };
 
+  const ModalTop = () => {
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSet}>
+          <ModalEnd />
+          <Grid container sx={{ fontSize: 21, marginTop: 1 }}>
+            <Grid item xs={8}>
+              <Button sx={styleButtBingModal} variant="contained">
+                <b>Открыть файл</b>
+              </Button>
+              <Button sx={styleButtBingModal} variant="contained">
+                <b>Сохранить файл</b>
+              </Button>
+
+              <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
+              <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
+
+              <Button sx={styleButtBingModal} variant="contained">
+                <b>Записать ДК</b>
+              </Button>
+              <Button sx={styleButtBingModal} variant="contained">
+                <b>Прочитать ДК</b>
+              </Button>
+              <Button sx={styleButtBingModal} variant="contained">
+                <b>Сравнить ДК</b>
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+      </Modal>
+    );
+  };
+
+  const ModalBattom = () => {
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSet}>
+          <ModalEnd />
+          <Grid container sx={{ fontSize: 21 }}>
+            <Grid item xs={7}>
+              <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Система:</Box>
+
+              <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
+              <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Контроллер:</Box>
+
+              <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
+              <Button sx={styleButtBingModal} variant="contained">
+                <b>Прочитать</b>
+              </Button>
+              <Button sx={styleButtBingModal} variant="contained">
+                <b>Установить</b>
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+      </Modal>
+    );
+  };
+
   const TopTab = () => {
     return (
       <Grid container sx={styleBox}>
@@ -101,9 +160,14 @@ const BindRight = () => {
           </Button>
           <Grid container sx={{ fontSize: fSize, marginTop: 1 }}>
             <Grid item xs={11.3}>
-              <Button sx={styleButtBing} variant="contained">
-                <b>{openKnob}</b>
-              </Button>
+              <Grid container>
+                <Grid item xs={12}>
+                  <Button sx={styleButtBing} variant="contained">
+                    <b>{openKnob}</b>
+                  </Button>
+                </Grid>
+              </Grid>
+
               <Button sx={styleButtBing} variant="contained">
                 <b>{saveKnob}</b>
               </Button>
@@ -133,6 +197,41 @@ const BindRight = () => {
     );
   };
 
+  const BattomTab = () => {
+    return (
+      <Box sx={{ marginTop: 0.5 }}>
+        <Grid container sx={styleBox}>
+          <Grid item xs={12} sx={{ height: '33vh' }}>
+            <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('22')}>
+              <b>Время</b>
+            </Button>
+
+            <Grid container sx={{ fontSize: fSize, marginTop: 1 }}>
+              <Grid item xs={10}>
+                <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Система:</Box>
+
+                <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
+                <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Контроллер:</Box>
+
+                <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Button sx={styleButtBing} variant="contained">
+                      <b>Прочитать</b>
+                    </Button>
+                  </Grid>
+                </Grid>
+                <Button sx={styleButtBing} variant="contained">
+                  <b>Установить</b>
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  };
+
   const [value, setValue] = React.useState('0');
   const [openSet, setOpenSet] = React.useState(false);
 
@@ -154,89 +253,12 @@ const BindRight = () => {
       <Stack direction="column">
         <TabContext value={value}>
           <TopTab />
-          <Box sx={{ marginTop: 0.5 }}>
-            <Grid container sx={styleBox}>
-              <Grid item xs={12} sx={{ height: '33vh' }}>
-                <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('22')}>
-                  <b>Время</b>
-                </Button>
-
-                <Grid container sx={{ fontSize: fSize, marginTop: 1 }}>
-                  <Grid item xs={10}>
-                    <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Система:</Box>
-
-                    <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
-                    <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Контроллер:</Box>
-
-                    <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Button sx={styleButtBing} variant="contained">
-                          <b>Прочитать</b>
-                        </Button>
-                      </Grid>
-                    </Grid>
-                    <Button sx={styleButtBing} variant="contained">
-                      <b>Установить</b>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Box>
+          <BattomTab />
           <TabPanel value="21">
-            <Modal open={openSet} onClose={handleCloseSet}>
-              <Box sx={styleSet}>
-                <ModalEnd />
-                <Grid container sx={{ fontSize: 21, marginTop: 1 }}>
-                  <Grid item xs={8}>
-                    <Button sx={styleButtBingModal} variant="contained">
-                      <b>Открыть файл</b>
-                    </Button>
-                    <Button sx={styleButtBingModal} variant="contained">
-                      <b>Сохранить файл</b>
-                    </Button>
-
-                    <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
-                    <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
-
-                    <Button sx={styleButtBingModal} variant="contained">
-                      <b>Записать ДК</b>
-                    </Button>
-                    <Button sx={styleButtBingModal} variant="contained">
-                      <b>Прочитать ДК</b>
-                    </Button>
-                    <Button sx={styleButtBingModal} variant="contained">
-                      <b>Сравнить ДК</b>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Modal>
+            <ModalTop />
           </TabPanel>
-
           <TabPanel value="22">
-            <Modal open={openSet} onClose={handleCloseSet}>
-              <Box sx={styleSet}>
-                <ModalEnd />
-                <Grid container sx={{ fontSize: 21 }}>
-                  <Grid item xs={7}>
-                    <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Система:</Box>
-
-                    <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
-                    <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Контроллер:</Box>
-
-                    <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
-                    <Button sx={styleButtBingModal} variant="contained">
-                      <b>Прочитать</b>
-                    </Button>
-                    <Button sx={styleButtBingModal} variant="contained">
-                      <b>Установить</b>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Modal>
+            <ModalBattom />
           </TabPanel>
         </TabContext>
       </Stack>

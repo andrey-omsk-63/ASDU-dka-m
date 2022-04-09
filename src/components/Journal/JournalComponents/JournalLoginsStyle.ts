@@ -88,7 +88,7 @@ export const styleSet = {
   borderRadius: 2,
   boxShadow: 24,
   textAlign: 'center',
-  p: 3,
+  p: 1.5,
 };
 
 export const styleResetMin = {
@@ -129,7 +129,7 @@ export const styleServis = {
 };
 
 export const styleServisKnop = {
-  fontSize: 16,
+  fontSize: 14,
   marginTop: -1,
   maxHeight: '24px',
   minHeight: '24px',

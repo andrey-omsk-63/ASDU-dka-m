@@ -11,8 +11,9 @@ import Modal from '@mui/material/Modal';
 //import axios from 'axios';
 
 const Condition = () => {
+  const [size, setSize] = React.useState(0);
   let fSize = 10.8;
-  if (window.innerWidth > 800) fSize = 12.5;
+  if (size > 800) fSize = 12.5;
 
   const styleButt01 = {
     fontSize: 19,
@@ -451,15 +452,24 @@ const Condition = () => {
   };
 
   //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState([0, 0]);
+  // const [size, setSize] = React.useState([0, 0]);
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     setSize([window.innerWidth, window.innerHeight]);
+  //   }
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   return () => window.removeEventListener('resize', updateSize);
+  // }, []);
   React.useLayoutEffect(() => {
     function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
+      setSize(window.innerWidth);
     }
     window.addEventListener('resize', updateSize);
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
+
 
   return (
     <Stack direction="column">

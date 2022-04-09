@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 // import Modal from '@mui/material/Modal';
 
 const Technology = () => {
+  const [size, setSize] = React.useState(0);
   let fSize = 10.5;
   let fheight = '20.5vh';
   let izmena1 = 'Изм ';
@@ -17,14 +18,14 @@ const Technology = () => {
   let izmena5 = 'Баз привязка';
   let izmena6 = 'Перед Стат';
 
-  if (window.innerWidth > 1090) fSize = 12.9;
-  if (window.innerWidth > 920) fheight = '22vh';
-  if (window.innerWidth > 830) izmena1 = 'Изменить ';
-  if (window.innerWidth > 840) izmena2 = ' красный';
-  if (window.innerWidth > 840) izmena3 = ' зелёный';
-  if (window.innerWidth > 800) izmena4 = ' направления';
-  if (window.innerWidth > 850) izmena5 = 'Базовая привязка';
-  if (window.innerWidth > 740) izmena6 = 'Передать Стат';
+  if (size > 1090) fSize = 12.9;
+  if (size > 920) fheight = '22vh';
+  if (size > 830) izmena1 = 'Изменить ';
+  if (size > 840) izmena2 = ' красный';
+  if (size > 840) izmena3 = ' зелёный';
+  if (size > 800) izmena4 = ' направления';
+  if (size > 850) izmena5 = 'Базовая привязка';
+  if (size > 740) izmena6 = 'Передать Стат';
 
   const styleBox = {
     border: 1,
@@ -343,7 +344,7 @@ const Technology = () => {
     );
   };
 
-  const TopTabls = (props: { Size: any }) => {
+  const TopTabls = () => {
     return (
       <Grid container>
         <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
@@ -374,42 +375,41 @@ const Technology = () => {
     setValue(nom);
   };
 
-  const ModalEnd = () => {
-    const styleModalEnd = {
-      position: 'absolute',
-      top: '0%',
-      left: 'auto',
-      right: '-2%',
-      maxHeight: '21px',
-      minHeight: '21px',
-      width: '6%',
-      fontSize: 19,
-      color: 'black',
-    };
+  // const ModalEnd = () => {
+  //   const styleModalEnd = {
+  //     position: 'absolute',
+  //     top: '0%',
+  //     left: 'auto',
+  //     right: '-2%',
+  //     maxHeight: '21px',
+  //     minHeight: '21px',
+  //     width: '6%',
+  //     fontSize: 19,
+  //     color: 'black',
+  //   };
 
-    return (
-      <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
-        <b>&#10006;</b>
-      </Button>
-    );
-  };
+  //   return (
+  //     <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
+  //       <b>&#10006;</b>
+  //     </Button>
+  //   );
+  // };
 
   const [value, setValue] = React.useState('0');
   const [openSet, setOpenSet] = React.useState(false);
 
-  const handleCloseSet = (event: any, reason: string) => {
-    if (reason !== 'backdropClick') setOpenSet(false);
-  };
+  // const handleCloseSet = (event: any, reason: string) => {
+  //   if (reason !== 'backdropClick') setOpenSet(false);
+  // };
 
-  const handleCloseSetBut = () => {
-    setOpenSet(false);
-  };
+  // const handleCloseSetBut = () => {
+  //   setOpenSet(false);
+  // };
 
   //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState([0, 0]);
   React.useLayoutEffect(() => {
     function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
+      setSize(window.innerWidth);
     }
     window.addEventListener('resize', updateSize);
     updateSize();
@@ -421,7 +421,7 @@ const Technology = () => {
       <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
         <Grid container>
           <Grid item xs={12} sx={{ height: '65.9vh' }}>
-            <TopTabls Size={size} />
+            <TopTabls />
           </Grid>
         </Grid>
       </Box>

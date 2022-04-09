@@ -34,7 +34,7 @@ export interface Line {
   haveError: boolean;
 }
 
-let flagSbros = true;
+//let flagSbros = true;
 
 let oldData = '-1';
 let formSett = '';
@@ -42,21 +42,14 @@ let formSett = '';
 let massPoints: Array<Line> = [];
 
 const JournalLogins = (props: { logName: string }) => {
-  // const windowInnerWidth = window.innerWidth;
-  // const windowInnerHeight = window.innerHeight;
-  // console.log('Width:', windowInnerWidth);
-  // console.log('Heigh:', windowInnerHeight);
-  //let widthGlob = 0;
+  const [size, setSize] = React.useState(0);
   let fSize = 10;
-  if (window.innerWidth > 950) fSize = 13.3;
+  if (size > 950) fSize = 13.3;
 
   if (oldData !== props.logName) {
     oldData = props.logName;
-    flagSbros = true;
+    //flagSbros = true;
   }
-
-
-  let resStr: any = [];
 
   let resStr: any = [];
 
@@ -111,19 +104,11 @@ const JournalLogins = (props: { logName: string }) => {
           </Grid>
         </Grid>,
       );
-<<<<<<< HEAD
     }
     return resStr;
   };
 
   const TabsLogins = (valueSort: number) => {
-    console.log('valueSort:', valueSort, 'TabsLogins:', flagSbros)
-    // if (flagSbros) {
-    //   MakeMassPoints();
-    //   flagSbros = false;
-    //   fSize = 10;
-    //   if (window.innerWidth > 950) fSize = 13.3;
-    // } else {
     switch (valueSort) {
       case 1:
         // сортировка по type
@@ -146,59 +131,18 @@ const JournalLogins = (props: { logName: string }) => {
         massPoints = masrab;
         break;
       case 4:
+        // сброс
         MakeMassPoints();
+        setValue(2);
         formSett = '';
         fSize = 10;
         if (window.innerWidth > 950) fSize = 13.3;
         break;
     }
-    // }
-=======
-    }
-    return resStr;
-  };
-
-  const TabsLogins = (valueSort: number) => {
-    if (flagSbros) {
-      MakeMassPoints();
-      flagSbros = false;
-      fSize = 10;
-      if (window.innerWidth > 950) fSize = 13.3;
-    } else {
-      switch (valueSort) {
-        case 1:
-          // сортировка по type
-          massPoints.sort((a, b) => a.num - b.num);
-          break;
-        case 2:
-          // сортировка по time
-          massPoints.sort((a, b) => a.pnum - b.pnum);
-          break;
-        case 3:
-          // поиск в сообщениях
-          let masrab: Array<Line> = [];
-          for (let i = 0; i < massPoints.length; i++) {
-            let str = massPoints[i].info.toUpperCase();
-            if (str.indexOf(formSett.toUpperCase()) !== -1) {
-              masrab.push(massPoints[i]);
-            }
-          }
-          massPoints = [];
-          massPoints = masrab;
-          break;
-        default:
-          // сброс
-          MakeMassPoints();
-          formSett = '';
-          fSize = 10;
-          if (window.innerWidth > 950) fSize = 13.3;
-      }
-    }
->>>>>>> 441430774dcdbc457771ebf2e6a8893bcaa1d082
   };
 
   const MakeMassPoints = () => {
-    console.log('MakeMassPoint:', isRead,)
+    //console.log('MakeMassPoint:', isRead);
     massPoints = [];
     for (let i = 0; i < points.length; i++) {
       maskPoints = [
@@ -236,8 +180,7 @@ const JournalLogins = (props: { logName: string }) => {
       maskPoints[0].info = points[i].message.slice(29);
 
       massPoints.push(maskPoints[0]);
-      setIsRead(false); // !!!!!!!!!!!!!!!!!!
-      //flagMake = false;
+      setIsRead(false);
     }
   };
 
@@ -290,10 +233,8 @@ const JournalLogins = (props: { logName: string }) => {
       setIsRead(true);
     });
     setIsOpen(true);
-    setValue(2)
+    setValue(2);
   }, [ipAdress, props.logName]);
-
-  if (isOpen && isRead) MakeMassPoints();
 
   const [openSet, setOpenSet] = React.useState(false);
   const handleOpenSet = () => setOpenSet(true);
@@ -324,6 +265,8 @@ const JournalLogins = (props: { logName: string }) => {
         size="small"
         onKeyPress={handleKey} //отключение Enter
         label="Поиск"
+        inputProps={{ style: { fontSize: 14 } }} // font size of input text
+        InputLabelProps={{ style: { fontSize: 14 } }} // font size of input label
         value={valuen}
         onChange={handleChange}
         variant="outlined"
@@ -332,17 +275,28 @@ const JournalLogins = (props: { logName: string }) => {
   };
 
   //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState([0, 0]);
+  // const [size, setSize] = React.useState([0, 0]);
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     setSize([window.innerWidth, window.innerHeight]);
+  //   }
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   return () => window.removeEventListener('resize', updateSize);
+  // }, []);
   React.useLayoutEffect(() => {
     function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
+      setSize(window.innerWidth);
     }
     window.addEventListener('resize', updateSize);
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
+  //if (isOpen && isRead) MakeMassPoints();
+
   if (isOpen) {
+    if (isRead) MakeMassPoints();
     TabsLogins(value);
     StrokaLogins();
   }
@@ -355,7 +309,7 @@ const JournalLogins = (props: { logName: string }) => {
             <Box sx={{ marginRight: -1.5 }}>
               <Grid container>
                 <Grid item xs={12} sx={styleXt04}>
-                  <Box sx={{ border: 0, marginTop: 0 }}>
+                  <Box>
                     <Button
                       sx={fSize === 10 ? styleResetMin : styleResetMax}
                       variant="contained"
