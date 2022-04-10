@@ -123,7 +123,7 @@ const App = () => {
             x="60"
             y="33"
             fontFamily="Verdana"
-            fontSize="36"
+            fontSize="38"
             fill="white"
             //stroke="black"
             strokeWidth="2">
@@ -135,12 +135,30 @@ const App = () => {
     );
   };
 
+  const AppHeader = () => {
+    return (
+      <Grid item xs={12} sx={styleAppMulka}>
+        <Box sx={styleHeader}>
+          <Grid container sx={{ height: '1.5vh' }}>
+            <Grid item xs={2.2} sx={{ border: 0 }}>
+              <IconAsdu />
+            </Grid>
+            <Grid item xs>
+              <HeaderGlob />
+            </Grid>
+          </Grid>
+        </Box>
+      </Grid>
+    );
+  };
+
   const [value, setValue] = React.useState('1');
 
   return (
     <>
       <Grid container sx={{ height: '100vh' }}>
-        <Grid item xs={12} sx={styleAppMulka}>
+        <AppHeader />
+        {/* <Grid item xs={12} sx={styleAppMulka}>
           <Box sx={styleHeader}>
             <Grid container sx={{ height: '1.5vh' }}>
               <Grid item xs={2.2} sx={{ border: 0 }}>
@@ -150,10 +168,8 @@ const App = () => {
                 <HeaderGlob />
               </Grid>
             </Grid>
-            {/* <b>Здесь будет Красивая Шапка</b> */}
-            {/* <HeaderGlob /> */}
-          </Box>
-        </Grid>
+           </Box>
+        </Grid> */}
         <Grid container sx={{ marginRight: 0.5 }}>
           <TabContext value={value}>
             <Grid item xs={2.6} sx={styleAppMenu}>

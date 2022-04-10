@@ -45,7 +45,7 @@ const Condition = () => {
     borderColor: 'primary.main',
     borderRadius: 2,
     boxShadow: 24,
-    p: 3,
+    p: 2,
   };
 
   const Col01Grid01 = () => {
@@ -469,7 +469,6 @@ const Condition = () => {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-
 
   return (
     <Stack direction="column">
