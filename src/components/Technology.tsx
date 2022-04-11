@@ -351,7 +351,7 @@ const Technology = () => {
           <b>Технология</b>
         </Button>
 
-        <Grid item xs={12} sx={{ border: 0, marginTop: '-2vh', height: '40.6vh' }}>
+        <Grid item xs={12} sx={{ border: 0, marginTop: '0vh', height: '41.5vh' }}>
           <TopTopTabl />
         </Grid>
         <Grid item xs={12}>
@@ -420,14 +420,15 @@ const Technology = () => {
     <Stack direction="column">
       <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
         <Grid container>
-          <Grid item xs={12} sx={{ height: '65.9vh' }}>
+          {/* <Grid item xs={12} sx={{ height: '65.9vh' }}> */}
+          <Grid item xs={12} sx={{ height: '67.9vh' }}>
             <TopTabls />
           </Grid>
         </Grid>
       </Box>
-      <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>
+      <Box sx={{ marginTop: 1.5, marginLeft: -3, marginRight: -3 }}>
         <Grid container sx={styleBox}>
-          <Grid item xs sx={{ height: '19vh' }}></Grid>
+          <Grid item xs sx={{ height: '21.5vh' }}></Grid>
         </Grid>
       </Box>
     </Stack>

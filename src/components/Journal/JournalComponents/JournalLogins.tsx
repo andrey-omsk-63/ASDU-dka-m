@@ -302,34 +302,32 @@ const JournalLogins = (props: { logName: string }) => {
   }
 
   return (
-    <Box>
-      <Box sx={{ fontSize: fSize, marginTop: -2.4, marginLeft: -3.5, marginRight: -1.5 }}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Box sx={{ marginRight: -1.5 }}>
-              <Grid container>
-                <Grid item xs={12} sx={styleXt04}>
-                  <Box>
-                    <Button
-                      sx={fSize === 10 ? styleResetMin : styleResetMax}
-                      variant="contained"
-                      onClick={() => setValue(4)}>
-                      <b>Сброс настроек</b>
-                    </Button>
-                  </Box>
-                  <WindSearsh />
-                  <HeaderLogins />
-                  <Box sx={{ overflowX: 'auto', height: '79vh' }}>
-                    <Grid container item>
-                      {resStr}
-                    </Grid>
-                  </Box>
-                </Grid>
+    <Box sx={{ fontSize: fSize, marginTop: -2.4, marginLeft: -3.0, marginRight: -1.5 }}>
+      <Grid container>
+        <Grid item xs={12}>
+          <Box sx={{ marginRight: -1.5 }}>
+            <Grid container>
+              <Grid item xs={12} sx={styleXt04}>
+                <Box>
+                  <Button
+                    sx={fSize === 10 ? styleResetMin : styleResetMax}
+                    variant="contained"
+                    onClick={() => setValue(4)}>
+                    <b>Сброс настроек</b>
+                  </Button>
+                </Box>
+                <WindSearsh />
+                <HeaderLogins />
+                <Box sx={{ overflowX: 'auto', height: '85.5vh' }}>
+                  <Grid container item>
+                    {resStr}
+                  </Grid>
+                </Box>
               </Grid>
-            </Box>
-          </Grid>
+            </Grid>
+          </Box>
         </Grid>
-      </Box>
+      </Grid>
     </Box>
   );
 };

@@ -4,8 +4,8 @@ function IconAsdu() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="121.333"
-      height="5.6vh"
+      width="96"
+      height="5.2vh"
       version="1"
       viewBox="0 0 91 54">
       <path

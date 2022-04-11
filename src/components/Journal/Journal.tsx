@@ -26,12 +26,14 @@ const Journal = () => {
     backgroundAttachment: 'fixed',
     marginLeft: -2.9,
     marginRight: -3,
-    height: '85.6vh',
+    //height: '85.6vh',
+    height: '91.5vh',
   };
 
   const styleApp01 = {
     fontSize: 17,
     marginRight: 0.5,
+    marginLeft: 0.1,
     maxWidth: '20vh',
     minWidth: '20vh',
     maxHeight: '24px',

@@ -82,11 +82,11 @@ const Eguipment = () => {
     return (
       <Grid container>
         <Grid item xs={12}>
-          <Grid container sx={{ border: 0, marginTop: '2vh', height: '4.5vh' }}>
+          <Grid container sx={{ border: 0, marginTop: '3vh', height: '4.5vh' }}>
             <Grid item xs={1} sx={{ border: 1 }}></Grid>
             <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
             <Grid item xs={1.4} sx={{ border: 0 }}>
-              <Box>Неиспр.:</Box>
+              <Box>Неиспр:</Box>
             </Grid>
             <Grid item xs={0.1} sx={{ border: 0 }}></Grid>
             <Grid item xs sx={{ border: 1 }}></Grid>
@@ -122,15 +122,15 @@ const Eguipment = () => {
 
   const TopTabls = () => {
     return (
-      <Grid item xs={12} sx={{ marginTop: '-2vh', height: '65.5vh' }}>
+      <Grid item xs={12} sx={{ marginTop: '-2vh', height: '71.5vh' }}>
         <Grid container sx={styleBox}>
-          <Grid item xs={12} sx={{ height: '45.5vh' }}>
+          <Grid item xs={12} sx={{ height: '46.5vh' }}>
             <HeaderTopTabls />
-            <Box sx={{ height: '40.5vh', overflowX: 'auto' }}>{StrokaTopTabls()}</Box>
+            <Box sx={{ height: '42vh', overflowX: 'auto' }}>{StrokaTopTabls()}</Box>
           </Grid>
         </Grid>
         <Grid container sx={{ border: 0 }}>
-          <Grid item xs={12} sx={{ height: '19.7vh' }}>
+          <Grid item xs={12} sx={{ height: '24.7vh' }}>
             <BattomTopTabls />
           </Grid>
         </Grid>

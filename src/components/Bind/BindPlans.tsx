@@ -34,7 +34,7 @@ const BindPlans = () => {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    marginTop: '-52.5vh',
+    marginTop: '-53.5vh',
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -63,7 +63,7 @@ const BindPlans = () => {
     borderRight: 1,
     borderBottom: 1,
     borderColor: 'primary.main',
-    padding: 0.7,
+    padding: 0.9,
   };
 
   const styleSet = {
@@ -173,8 +173,6 @@ const BindPlans = () => {
       if (event.key === 'Enter') event.preventDefault();
     };
 
-    //console.log('formSett:', formSett);
-
     return (
       <TextField
         size="small"
@@ -273,22 +271,14 @@ const BindPlans = () => {
   };
 
   //отслеживание изменения размера экрана
-  // const [size, setSize] = React.useState([0, 0]);
-  //const [size, setSize] = React.useState(0);
-
   React.useLayoutEffect(() => {
-    // React.useEffect(() => {
     function updateSize() {
-      //setSize([window.innerWidth, window.innerHeight]);
       setSize(window.innerWidth);
     }
     window.addEventListener('resize', updateSize);
     updateSize();
-
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-
-  //console.log('size:', size);
 
   const BindLeft = () => {
     return (
@@ -304,7 +294,7 @@ const BindPlans = () => {
             <Grid item xs sx={{ height: '0.5vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '60vh' }}>
+            <Grid item xs sx={{ height: '66.2vh' }}>
               <BattomTab />
             </Grid>
           </Grid>
@@ -317,7 +307,7 @@ const BindPlans = () => {
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
       <Grid container>
         <Grid item xs={12}>
-          <Grid container sx={{ height: '85.7vh' }}>
+          <Grid container >
             <BindLeft />
             <Grid item xs={0.05}></Grid>
             <BindRight />

@@ -29,7 +29,7 @@ const BindDirections = () => {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    marginTop: -3.5,
+    marginTop: -3.0,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -298,9 +298,9 @@ const BindDirections = () => {
   const OutputNormalTop = () => {
     return (
       // <Box sx={{ marginTop: 0 }}>
-      <Box sx={{ marginTop: -3, fontSize: fSize, height: '41.5vh' }}>
+      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '43.5vh' }}>
         <HeaderTopTab />
-        <Box sx={{ height: '37vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
+        <Box sx={{ height: '39vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
       </Box>
       // </Box>
     );
@@ -308,9 +308,9 @@ const BindDirections = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '40vh' }}>
+      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '42vh' }}>
         <HeaderBattomTab />
-        <Box sx={{ height: '38.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
+        <Box sx={{ height: '40.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
     );
   };
@@ -434,7 +434,7 @@ const BindDirections = () => {
       <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
-            <Grid item xs={12} sx={{ fontSize: fSize, height: '42.4vh' }}>
+            <Grid item xs={12} sx={{ fontSize: fSize, height: '45.4vh' }}>
               <TopTab />
             </Grid>
           </Grid>
@@ -442,7 +442,7 @@ const BindDirections = () => {
             <Grid item xs sx={{ height: '0.5vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '42.3vh' }}>
+            <Grid item xs sx={{ height: '45.3vh' }}>
               <BattomTab />
             </Grid>
           </Grid>

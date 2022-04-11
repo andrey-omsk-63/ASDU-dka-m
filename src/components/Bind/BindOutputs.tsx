@@ -12,12 +12,14 @@ import BindRight from './BindComponents/BindRight';
 //import axios from 'axios';
 
 const BindOutputs = () => {
+  const [size, setSize] = React.useState(0);
   let styleSetWidth = 650;
-  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
+  if (size > 770) styleSetWidth = size - 50;
   let fSize = 12;
-  if (window.innerWidth > 800) fSize = 14;
+  if (size > 800) fSize = 14;
 
   const styleBox = {
+    height: '92vh',
     border: 1,
     borderRadius: 1,
     backgroundColor: 'white',
@@ -127,9 +129,9 @@ const BindOutputs = () => {
 
   const OutputNormal = () => {
     return (
-      <Box sx={{ marginTop: -3, fontSize: fSize }}>
+      <Box sx={{ height: '85vh', marginTop: -3, fontSize: fSize }}>
         <HeaderLBindOutputs />
-        <Box sx={{ border: 0, overflowX: 'auto', height: '79vh' }}>{StrokaBindOutputs()}</Box>
+        <Box sx={{ overflowX: 'auto', height: '85vh' }}>{StrokaBindOutputs()}</Box>
       </Box>
     );
   };
@@ -187,10 +189,18 @@ const BindOutputs = () => {
   };
 
   //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState([0, 0]);
+  // const [size, setSize] = React.useState([0, 0]);
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     setSize([window.innerWidth, window.innerHeight]);
+  //   }
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   return () => window.removeEventListener('resize', updateSize);
+  // }, []);
   React.useLayoutEffect(() => {
     function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
+      setSize(window.innerWidth);
     }
     window.addEventListener('resize', updateSize);
     updateSize();
@@ -201,7 +211,7 @@ const BindOutputs = () => {
     return (
       <Grid item xs={9} sx={styleBox}>
         <TabContext value={value}>
-          <Box sx={{ height: '85.2vh' }}>
+          <Box>
             <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
               <b>Назначение выходов</b>
             </Button>
@@ -219,7 +229,7 @@ const BindOutputs = () => {
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
       <Grid container>
         <Grid item xs={12}>
-          <Grid container sx={{ height: '85.7vh' }}>
+          <Grid container>
             <BindLeft />
             <Grid item xs={0.05}></Grid>
             <BindRight />

@@ -94,8 +94,9 @@ export const styleSet = {
 export const styleResetMin = {
   position: 'absolute',
   fontSize: 17,
-  marginTop: -8,
-  marginLeft: 14,
+  // marginTop: -8,
+  marginTop: '88vh',
+  marginLeft: '16vh',
   maxHeight: '24px',
   minHeight: '24px',
   backgroundColor: 'white',

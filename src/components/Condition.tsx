@@ -405,7 +405,7 @@ const Condition = () => {
     return (
       <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>
         <Grid container sx={styleBox01}>
-          <Grid item xs sx={{ height: '22.3vh' }}></Grid>
+          <Grid item xs sx={{ height: '28.3vh' }}></Grid>
         </Grid>
       </Box>
     );

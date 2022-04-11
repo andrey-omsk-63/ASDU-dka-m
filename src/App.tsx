@@ -22,41 +22,25 @@ import BindDiagram from './components/Bind/BindDiagram';
 import Journal from './components/Journal/Journal';
 
 const App = () => {
-  const styleAppMulka = {
-    border: 1,
-    borderRadius: 2,
-    borderColor: '#F1F5FB',
-    marginTop: 0.5,
-    marginRight: 3.5,
-    marginLeft: 3,
-    height: '6vh',
-    //backgroundColor: '#F1F5FB',
-    backgroundColor: '#FE929A',
-    opacity: 0.88,
-  };
-
   const styleAppMenu = {
     border: 1,
     borderRadius: 1,
     borderColor: '#F1F5FB',
     marginLeft: 0.5,
-    height: '86vh',
+    marginTop: 0.7,
+    //height: '86vh',
+    height: '92vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
+    padding: 0.1
   };
 
   const styleAppPodv = {
     border: 0,
-    marginRight: 5,
-    marginLeft: 3,
+    marginRight: 0.5,
+    marginLeft: 0.5,
     height: '6vh',
-    p: 1,
-  };
-
-  const styleHeader = {
-    //fontSize: 24,
-    //textAlign: 'center',
-    p: 0.1,
+    //p: 1,
   };
 
   const styleButt01 = {
@@ -112,90 +96,36 @@ const App = () => {
     );
   };
 
-  const HeaderGlob = () => {
-    return (
-      <>
-        <svg width="100%" height="12vh">
-          <rect width="100%" height="50%" fill="#FE929A" />
-          <circle cx="100%" cy="69%" r="150" fill="blue" stroke="black" />
-          <polygon points="120,0 240,225 0,225" fill="green" />
-          <text
-            x="60"
-            y="33"
-            fontFamily="Verdana"
-            fontSize="38"
-            fill="white"
-            //stroke="black"
-            strokeWidth="2">
-            ЗАО «Автоматика-Д»
-            {/* ЗАО «АВТОМАТИКА-Д» */}
-          </text>
-        </svg>
-      </>
-    );
-  };
-
-  const AppHeader = () => {
-    return (
-      <Grid item xs={12} sx={styleAppMulka}>
-        <Box sx={styleHeader}>
-          <Grid container sx={{ height: '1.5vh' }}>
-            <Grid item xs={2.2} sx={{ border: 0 }}>
-              <IconAsdu />
-            </Grid>
-            <Grid item xs>
-              <HeaderGlob />
-            </Grid>
-          </Grid>
-        </Box>
-      </Grid>
-    );
-  };
-
   const [value, setValue] = React.useState('1');
 
   return (
     <>
       <Grid container sx={{ height: '100vh' }}>
-        <AppHeader />
-        {/* <Grid item xs={12} sx={styleAppMulka}>
-          <Box sx={styleHeader}>
-            <Grid container sx={{ height: '1.5vh' }}>
-              <Grid item xs={2.2} sx={{ border: 0 }}>
-                <IconAsdu />
-              </Grid>
-              <Grid item xs>
-                <HeaderGlob />
-              </Grid>
-            </Grid>
-           </Box>
-        </Grid> */}
+        {/* <AppHeader /> */}
         <Grid container sx={{ marginRight: 0.5 }}>
           <TabContext value={value}>
             <Grid item xs={2.6} sx={styleAppMenu}>
-              <Grid item sx={{ padding: 0.1 }}>
-                <Stack direction="column">
-                  <Box sx={styleTitle}>
-                    <b>ДКАМ</b>
-                  </Box>
-                  {ButtonKnobLevel1('Состояние', '1')}
-                  {ButtonKnobLevel1('Технология', '2')}
-                  {ButtonKnobLevel1('Оборудование', '3')}
-                  <Grid container>
-                    <Grid item xs>
-                      <Box sx={{ fontSize: 19, marginTop: 3, marginLeft: 2 }}>
-                        <b>Привязка</b>
-                      </Box>
-                    </Grid>
+              <Stack direction="column">
+                <Box sx={styleTitle}>
+                  <b>ДКАМ</b>
+                </Box>
+                {ButtonKnobLevel1('Состояние', '1')}
+                {ButtonKnobLevel1('Технология', '2')}
+                {ButtonKnobLevel1('Оборудование', '3')}
+                <Grid container>
+                  <Grid item xs>
+                    <Box sx={{ fontSize: 19, marginTop: 3, marginLeft: 2 }}>
+                      <b>Привязка</b>
+                    </Box>
                   </Grid>
-                  {ButtonKnobLevel2('Выходы', '41')}
-                  {ButtonKnobLevel2('Направления', '42')}
-                  {ButtonKnobLevel2('Планы', '43')}
-                  {ButtonKnobLevel2('Диаграмма', '44')}
+                </Grid>
+                {ButtonKnobLevel2('Выходы', '41')}
+                {ButtonKnobLevel2('Направления', '42')}
+                {ButtonKnobLevel2('Планы', '43')}
+                {ButtonKnobLevel2('Диаграмма', '44')}
 
-                  {ButtonKnobLevel1('Журнал', '5')}
-                </Stack>
-              </Grid>
+                {ButtonKnobLevel1('Журнал', '5')}
+              </Stack>
             </Grid>
 
             <Grid item xs sx={styleAppMenu}>
@@ -228,9 +158,16 @@ const App = () => {
           </TabContext>
         </Grid>
         <Grid item xs={12} sx={styleAppPodv}>
-          <Box sx={{ textAlign: 'center', fontSize: 14 }}>
-            <b>Место для различнoй занимательнoй информации</b>
-          </Box>
+          <Grid container >
+            <Grid item xs={1.7} sx={{ border: 0 }}>
+              <IconAsdu />
+            </Grid>
+            <Grid item xs>
+              <Box sx={{ p: 1, textAlign: 'center', fontSize: 14 }}>
+                <b>Место для различнoй занимательнoй информации</b>
+              </Box>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </>
@@ -238,3 +175,39 @@ const App = () => {
 };
 
 export default App;
+
+ // const HeaderGlob = () => {
+  //   return (
+  //     <>
+  //       <svg width="100%" height="12vh">
+  //         <rect width="100%" height="50%" fill="#FE929A" />
+  //         <circle cx="100%" cy="69%" r="150" fill="blue" stroke="black" />
+  //         <polygon points="120,0 240,225 0,225" fill="green" />
+  //         <text
+  //           x="60"
+  //           y="33"
+  //           fontFamily="Verdana"
+  //           fontSize="38"
+  //           fill="white"
+  //           //stroke="black"
+  //           strokeWidth="2">
+  //           ООО «Автоматика-Д»
+  //           {/* ЗАО «АВТОМАТИКА-Д» */}
+  //         </text>
+  //       </svg>
+  //     </>
+  //   );
+  // };
+//
+  // const styleAppMulka = {
+  //   border: 1,
+  //   borderRadius: 2,
+  //   borderColor: '#F1F5FB',
+  //   marginTop: 0.5,
+  //   marginRight: 3.5,
+  //   marginLeft: 3,
+  //   height: '6vh',
+  //   //backgroundColor: '#F1F5FB',
+  //   backgroundColor: '#FE929A',
+  //   opacity: 0.88,
+  // };
