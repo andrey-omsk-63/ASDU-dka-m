@@ -10,6 +10,8 @@ import Modal from '@mui/material/Modal';
 
 import BindRight from './BindComponents/BindRight';
 
+import { dateRpu } from './../../App';
+
 //import axios from 'axios';
 
 const BindDirections = () => {
@@ -17,6 +19,8 @@ const BindDirections = () => {
   if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
   let fSize = 12;
   if (window.innerWidth > 900) fSize = 14;
+
+  console.log('BindDirections:',dateRpu)
 
   const styleBox = {
     border: 1,
