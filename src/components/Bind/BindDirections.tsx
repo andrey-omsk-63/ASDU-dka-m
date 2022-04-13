@@ -20,7 +20,7 @@ const BindDirections = () => {
   let fSize = 12;
   if (window.innerWidth > 900) fSize = 14;
 
-  console.log('BindDirections:',dateRpu)
+  console.log('BindDirections:', dateRpu.tirtonap);
 
   const styleBox = {
     border: 1,
