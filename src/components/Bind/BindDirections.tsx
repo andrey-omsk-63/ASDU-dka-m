@@ -9,66 +9,23 @@ import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
 
 import BindRight from './BindComponents/BindRight';
+import { styleBox, styleButtBox, styleXTG01, styleXTG011 } from './BindComponents/BindDirectionsStyle';
+import { styleXTG02, styleXTG021, } from './BindComponents/BindDirectionsStyle';
+import { styleXTG03, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
+import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 
 import { dateRpu } from './../../App';
 
 //import axios from 'axios';
 
 const BindDirections = () => {
+  const [size, setSize] = React.useState(0);
   let styleSetWidth = 650;
-  if (window.innerWidth > 770) styleSetWidth = window.innerWidth - 50;
-  let fSize = 12;
-  if (window.innerWidth > 900) fSize = 14;
+  if (size > 770) styleSetWidth = size - 50;
+  let fSize = 10.5;
+  if (size > 900) fSize = 12.5;
 
   console.log('BindDirections:', dateRpu.tirtonap);
-
-  const styleBox = {
-    border: 1,
-    borderRadius: 1,
-    backgroundColor: 'white',
-    borderColor: 'primary.main',
-  };
-
-  const styleButtBox = {
-    fontSize: 19,
-    maxHeight: '21px',
-    minHeight: '21px',
-    marginTop: -3.0,
-    backgroundColor: 'white',
-    color: '#5B1080',
-    textTransform: 'unset !important',
-  };
-
-  const styleXTG01 = {
-    borderRight: 1,
-    borderColor: 'primary.main',
-    textAlign: 'center',
-    backgroundColor: '#C0C0C0',
-    paddingTop: 1,
-  };
-
-  const styleXTG02 = {
-    borderBottom: 1,
-    borderColor: 'primary.main',
-    textAlign: 'center',
-    backgroundColor: '#C0C0C0',
-    //paddingTop: 1,
-  };
-
-  const styleXTG021 = {
-    borderBottom: 1,
-    borderColor: 'primary.main',
-    textAlign: 'center',
-    backgroundColor: '#C0C0C0',
-    paddingTop: 1,
-  };
-
-  const styleXTG03 = {
-    borderRight: 1,
-    borderBottom: 1,
-    borderColor: 'primary.main',
-    padding: 0.2,
-  };
 
   const styleSet = {
     position: 'absolute',
@@ -95,7 +52,7 @@ const BindDirections = () => {
           <Grid item xs={3.75} sx={styleXTG01}>
             <b>Базовый промтакт</b>
           </Grid>
-          <Grid item xs={3.75} sx={styleXTG01}>
+          <Grid item xs={3.75} sx={styleXTG011}>
             <b>Универс.промтакт</b>
           </Grid>
         </Grid>
@@ -198,58 +155,75 @@ const BindDirections = () => {
   const StrokaTopTab = () => {
     let resStr = [];
 
-    for (let i = 0; i < 69; i++) {
+    for (let i = 0; i < dateRpu.tirtonap.length; i++) {
+      let masReds = [0, 0, 0];
+      let napr = '';
+
+      for (let j = 0; j < dateRpu.tirtonap[i].reds.length; j++) {
+        if (j < 3) masReds[j] = dateRpu.tirtonap[i].reds[j];
+      }
+      switch (dateRpu.tirtonap[i].type) {
+        case 1:
+          napr = ' Трансп'
+          break;
+        case 2:
+          napr = ' Пешех'
+          break;
+        case 3:
+          napr = ' Повор'
+      }
+
       resStr.push(
         <Grid key={Math.random()} container item xs={12}>
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            {i + 1}
+            {dateRpu.tirtonap[i].num}{napr}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
+            {dateRpu.tirtonap[i].green}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
+            {dateRpu.tirtonap[i].yellow}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+            {masReds[0]}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+            {masReds[1]}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
-          </Grid>
-          {/* ========================== */}
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+            {masReds[2]}
           </Grid>
           {/* ========================== */}
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
+            {dateRpu.prombase[i].gd}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
+            {dateRpu.prombase[i].yel}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+            {dateRpu.prombase[i].red}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
+            {dateRpu.prombase[i].ry}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            0
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
+            {dateRpu.prombase[i].gd}
+          </Grid>
+          {/* ========================== */}
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
+            {dateRpu.prom[i].gd}
+          </Grid>
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
+            {dateRpu.prom[i].yel}
+          </Grid>
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+            {dateRpu.prom[i].red}
+          </Grid>
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
+            {dateRpu.prom[i].ry}
+          </Grid>
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
+            {dateRpu.prom[i].gd}
           </Grid>
         </Grid>,
       );
@@ -301,12 +275,10 @@ const BindDirections = () => {
 
   const OutputNormalTop = () => {
     return (
-      // <Box sx={{ marginTop: 0 }}>
-      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '43.5vh' }}>
+      <Box sx={{ marginTop: -1.9, fontSize: fSize, height: '43.5vh' }}>
         <HeaderTopTab />
         <Box sx={{ height: '39vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
       </Box>
-      // </Box>
     );
   };
 
@@ -423,10 +395,18 @@ const BindDirections = () => {
   };
 
   //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState([0, 0]);
+  // const [size, setSize] = React.useState([0, 0]);
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     setSize([window.innerWidth, window.innerHeight]);
+  //   }
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   return () => window.removeEventListener('resize', updateSize);
+  // }, []);
   React.useLayoutEffect(() => {
     function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
+      setSize(window.innerWidth);
     }
     window.addEventListener('resize', updateSize);
     updateSize();
@@ -443,10 +423,10 @@ const BindDirections = () => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs sx={{ height: '0.5vh' }}></Grid>
+            <Grid item xs sx={{ height: '0.8vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '45.3vh' }}>
+            <Grid item xs sx={{ height: '44.8vh' }}>
               <BattomTab />
             </Grid>
           </Grid>
