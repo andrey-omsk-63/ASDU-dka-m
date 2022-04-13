@@ -7,10 +7,11 @@ import Stack from '@mui/material/Stack';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
 import BindRight from './BindComponents/BindRight';
-import { styleBox, styleButtBox, styleXTG01, styleXTG011 } from './BindComponents/BindDirectionsStyle';
-import { styleXTG02, styleXTG021, } from './BindComponents/BindDirectionsStyle';
+import { styleBox, styleButtBox, styleXTG01 } from './BindComponents/BindDirectionsStyle';
+import { styleXTG011, styleXTG02, styleXTG021 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG03, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 
@@ -23,7 +24,7 @@ const BindDirections = () => {
   let styleSetWidth = 650;
   if (size > 770) styleSetWidth = size - 50;
   let fSize = 10.5;
-  if (size > 900) fSize = 12.5;
+  if (size > 900) fSize = 14;
 
   console.log('BindDirections:', dateRpu.tirtonap);
 
@@ -164,22 +165,39 @@ const BindDirections = () => {
       }
       switch (dateRpu.tirtonap[i].type) {
         case 1:
-          napr = ' Трансп'
+          napr = ' Тран';
           break;
         case 2:
-          napr = ' Пешех'
+          napr = ' Пеш';
           break;
         case 3:
-          napr = ' Повор'
+          napr = ' Пов';
       }
 
       resStr.push(
         <Grid key={Math.random()} container item xs={12}>
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            {dateRpu.tirtonap[i].num}{napr}
+            {dateRpu.tirtonap[i].num}
+            {napr}
           </Grid>
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-            {dateRpu.tirtonap[i].green}
+            {/* {dateRpu.tirtonap[i].green} */}
+            <Box
+              component="form"
+              sx={{
+                '& > :not(style)': { width: '5ch' },
+              }}
+              noValidate
+              autoComplete="off">
+              <TextField
+                size="small"
+                id="filled-basic"
+                inputProps={{ style: { fontSize: 14 } }}
+                InputLabelProps={{ style: { fontSize: 14 } }}
+                label={dateRpu.tirtonap[i].green}
+                variant="filled"
+              />
+            </Box>
           </Grid>
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
             {dateRpu.tirtonap[i].yellow}
@@ -275,7 +293,7 @@ const BindDirections = () => {
 
   const OutputNormalTop = () => {
     return (
-      <Box sx={{ marginTop: -1.9, fontSize: fSize, height: '43.5vh' }}>
+      <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '43.5vh' }}>
         <HeaderTopTab />
         <Box sx={{ height: '39vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
       </Box>
