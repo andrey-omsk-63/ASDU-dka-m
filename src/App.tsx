@@ -24,7 +24,7 @@ import { DateRPU } from './interfaceRPU.d';
 import IconAsdu from './IconAsdu';
 //import { dateRpu,  } from './AppStorege';
 
-export let dateRpu: DateRPU = ({} as DateRPU);
+export let dateRpuGl: DateRPU = {} as DateRPU;
 let flagOpenRpu = true;
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
     height: '92vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
-    padding: 0.1
+    padding: 0.1,
   };
 
   const styleAppPodv = {
@@ -112,14 +112,13 @@ const App = () => {
     });
   }, []);
 
-  console.log('points:', pointsRpu)
+  console.log('points:', pointsRpu);
 
   if (isOpenRpu && flagOpenRpu) {
-    dateRpu = pointsRpu;
+    dateRpuGl = pointsRpu;
     flagOpenRpu = false;
-    console.log('dateRpu:', dateRpu)
+    console.log('dateRpuGl:', dateRpuGl);
   }
-
 
   const [value, setValue] = React.useState('1');
 
@@ -181,7 +180,7 @@ const App = () => {
         </TabContext>
       </Grid>
       <Grid item xs={12} sx={styleAppPodv}>
-        <Grid container >
+        <Grid container>
           <Grid item xs={1.7} sx={{ border: 0 }}>
             <IconAsdu />
           </Grid>
@@ -197,4 +196,3 @@ const App = () => {
 };
 
 export default App;
-

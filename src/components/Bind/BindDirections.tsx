@@ -12,25 +12,26 @@ import TextField from '@mui/material/TextField';
 import BindRight from './BindComponents/BindRight';
 import { styleBox, styleButtBox, styleXTG01 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG011, styleXTG02, styleXTG021 } from './BindComponents/BindDirectionsStyle';
-import { styleXTG03, } from './BindComponents/BindDirectionsStyle';
+import { styleXTG03 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG030, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 
-import { dateRpu } from './../../App';
+import { DateRPU } from './../../interfaceRPU.d';
+import { dateRpuGl } from './../../App';
 
-//import axios from 'axios';
+let dateRpu: DateRPU = {} as DateRPU;
 
 const BindDirections = () => {
+  dateRpu = dateRpuGl;
   const [size, setSize] = React.useState(0);
   let styleSetWidth = 650;
   if (size > 770) styleSetWidth = size - 50;
   let fSize = 10.5;
   if (size > 900) fSize = 14;
+  let fSizeInp = fSize;
 
   let kolFaz = dateRpu.timetophases.length;
   let xss = 11 / kolFaz;
-
-  console.log('BindDirections:', kolFaz);
 
   const styleSet = {
     position: 'absolute',
@@ -47,18 +48,21 @@ const BindDirections = () => {
   };
 
   const HeaderTopTab = () => {
-    const ElemHeader = (elem: string) => {
+    const ElemHeader = (xss: number, elem: string) => {
       return (
-        <Grid item xs={0.75} sx={styleXTG02}>
+        <Grid item xs={xss} sx={styleXTG02}>
           <b>{elem}</b>
         </Grid>
-      )
-    }
+      );
+    };
 
     return (
       <>
         <Grid item container xs={12}>
           <Grid item xs={0.75} sx={styleXTG01}></Grid>
+          {/* {ElemHeader(3.75, 'Выходы')}
+          {ElemHeader(3.75, 'Базовый промтакт')}
+          {ElemHeader(3.75, 'Универс.промтакт')} */}
           <Grid item xs={3.75} sx={styleXTG01}>
             <b>Выходы</b>
           </Grid>
@@ -71,49 +75,24 @@ const BindDirections = () => {
         </Grid>
 
         <Grid item container xs={12}>
-          {ElemHeader('Напр')}
-          {ElemHeader('Зел.')}
-          {ElemHeader('Жел.')}
-          {ElemHeader('Кр1.')}
-          {ElemHeader('Кр2.')}
-          {ElemHeader('Кр3.')}
+          {ElemHeader(0.75, 'Напр')}
+          {ElemHeader(0.75, 'Зел.')}
+          {ElemHeader(0.75, 'Жел.')}
+          {ElemHeader(0.75, 'Кр1.')}
+          {ElemHeader(0.75, 'Кр2.')}
+          {ElemHeader(0.75, 'Кр3.')}
           {/* ========================== */}
-          {ElemHeader('Тзм.')}
-          {ElemHeader('Тж.')}
-          {ElemHeader('Ткр.')}
-          {ElemHeader('Ткж.')}
-          {ElemHeader('Тзел.')}
-          {/* <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Тзм.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Тж.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Ткр.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Ткж.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Тзел.</b>
-          </Grid> */}
+          {ElemHeader(0.75, 'Тзм.')}
+          {ElemHeader(0.75, 'Тж.')}
+          {ElemHeader(0.75, 'Ткр.')}
+          {ElemHeader(0.75, 'Ткж.')}
+          {ElemHeader(0.75, 'Тзел.')}
           {/* ========================== */}
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Тзм.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Тж.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Ткр.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Ткж.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Тзел.</b>
-          </Grid>
+          {ElemHeader(0.75, 'Тзм.')}
+          {ElemHeader(0.75, 'Тж.')}
+          {ElemHeader(0.75, 'Ткр.')}
+          {ElemHeader(0.75, 'Ткж.')}
+          {ElemHeader(0.75, 'Тзел.')}
         </Grid>
       </>
     );
@@ -138,6 +117,7 @@ const BindDirections = () => {
 
   const StrokaTopTab = () => {
     let resStr = [];
+    let widthBlok = size / 210;
 
     for (let i = 0; i < dateRpu.tirtonap.length; i++) {
       let masReds = [0, 0, 0];
@@ -157,33 +137,46 @@ const BindDirections = () => {
           napr = ' Пов';
       }
 
+      const InputTopTab = (props: { kuda: number }) => {
+        const [valuen, setValuen] = React.useState(dateRpu.tirtonap[i].green);
+
+        const handleChange = (event: any) => {
+          setValuen(event.target.value);
+          dateRpu.tirtonap[i].green = event.target.value;
+        };
+
+        const handleKey = (event: any) => {
+          if (event.key === 'Enter') event.preventDefault();
+        };
+
+        return (
+          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
+            <Box
+              component="form"
+              sx={{ '& > :not(style)': { marginTop: 2, width: widthBlok.toString() + 'ch' } }}>
+              <TextField
+                size="small"
+                id="standard-select-currency"
+                onKeyPress={handleKey} //отключение Enter
+                inputProps={{ style: { fontSize: fSizeInp } }}
+                value={valuen}
+                onChange={handleChange}
+                variant="standard"
+              />
+            </Box>
+          </Grid>
+        );
+      };
+
       resStr.push(
         <Grid key={Math.random()} container item xs={12}>
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
             {dateRpu.tirtonap[i].num}
             {napr}
           </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-            {/* {dateRpu.tirtonap[i].green} */}
-            <Box
-              component="form"
-              // sx={{
-              //   '& > :not(style)': { width: '6ch' },
-              // }}
-              sx={{ width: '6ch' }}
-              noValidate
-              autoComplete="off">
-              <TextField
-                size="small"
-                //id="filled-basic"
-                inputProps={{ style: { fontSize: fSize } }}
-                InputLabelProps={{ style: { fontSize: fSize } }}
-                //label={dateRpu.tirtonap[i].green}
-                value={dateRpu.tirtonap[i].green}
-              // variant="filled"
-              />
-            </Box>
-          </Grid>
+
+          <InputTopTab kuda={dateRpu.tirtonap[i].green} />
+
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
             {dateRpu.tirtonap[i].yellow}
           </Grid>
@@ -237,13 +230,13 @@ const BindDirections = () => {
   const StrokaBattomTabMaxMin = (titl: string) => {
     let resStr: any = [];
     resStr.push(
-      <Grid item key={Math.random()} xs={1} sx={styleXTG03}>
+      <Grid item key={Math.random()} xs={1} sx={styleXTG030}>
         {titl}
       </Grid>,
     );
     for (let i = 0; i < kolFaz; i++) {
-      let j = dateRpu.timetophases[i].tmax
-      if (titl !== 'Тмах') j = dateRpu.timetophases[i].tmin
+      let j = dateRpu.timetophases[i].tmax;
+      if (titl !== 'Тмах') j = dateRpu.timetophases[i].tmin;
       resStr.push(
         <Grid item key={Math.random()} xs={xss} sx={styleXTG030}>
           {j}
@@ -263,11 +256,7 @@ const BindDirections = () => {
         </Grid>,
       );
       for (let j = 0; j < kolFaz; j++) {
-        resStr.push(
-          <Grid item key={Math.random()} xs={xss} sx={styleXTG034}>
-
-          </Grid>,
-        );
+        resStr.push(<Grid item key={Math.random()} xs={xss} sx={styleXTG034}></Grid>);
       }
     }
     return resStr;
@@ -300,8 +289,9 @@ const BindDirections = () => {
   };
 
   const OutputModalTop = () => {
-    styleSetWidth = 650;
-    if (window.innerWidth > 770) styleSetWidth = window.innerWidth;
+    // styleSetWidth = 650;
+    // if (window.innerWidth > 770) styleSetWidth = window.innerWidth;
+    fSizeInp = 16;
 
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
@@ -411,15 +401,6 @@ const BindDirections = () => {
   };
 
   //отслеживание изменения размера экрана
-  // const [size, setSize] = React.useState([0, 0]);
-  // React.useLayoutEffect(() => {
-  //   function updateSize() {
-  //     setSize([window.innerWidth, window.innerHeight]);
-  //   }
-  //   window.addEventListener('resize', updateSize);
-  //   updateSize();
-  //   return () => window.removeEventListener('resize', updateSize);
-  // }, []);
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize(window.innerWidth);
