@@ -144,40 +144,33 @@
          "default": 0
       }
    ],
-   "timetophases": [
+   "tmintophases": [
       {
          "nphase": 1,
-         "tmax": 255,
          "tmin": 10
       },
       {
          "nphase": 2,
-         "tmax": 255,
          "tmin": 10
       },
       {
          "nphase": 3,
-         "tmax": 255,
          "tmin": 10
       },
       {
          "nphase": 4,
-         "tmax": 255,
          "tmin": 10
       },
       {
          "nphase": 5,
-         "tmax": 255,
          "tmin": 10
       },
       {
          "nphase": 6,
-         "tmax": 255,
          "tmin": 10
       },
       {
          "nphase": 7,
-         "tmax": 255,
          "tmin": 10
       }
    ],
@@ -429,6 +422,16 @@
       {
          "nph": 2,
          "naps": []
+      }
+   ],
+   "tmaxtophases": [
+      {
+         "nphase": 1,
+         "tmin": 255
+      },
+      {
+         "nphase": 2,
+         "tmin": 255
       }
    ],
    "greenout": [

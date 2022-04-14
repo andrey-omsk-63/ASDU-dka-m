@@ -51,6 +51,12 @@ export const styleXTG03 = {
   borderColor: 'primary.main',
   padding: 0.2,
 };
+
+export const styleXTG030 = {
+  borderBottom: 1,
+  borderColor: 'primary.main',
+  paddingLeft: 2,
+};
 // зелёный
 export const styleXTG032 = {
   borderRight: 1,

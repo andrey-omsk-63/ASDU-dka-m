@@ -6,7 +6,7 @@ export interface DateRPU {
     naptoph:      GB[];
     tirtonap:     Tirtonap[];
     counts:       Count[];
-    tmintophases: Tophase[];
+    timetophases: Timetophase[];
     rpus:         Rpus[];
     prombase:     Prom[];
     prom:         Prom[];
@@ -16,7 +16,6 @@ export interface DateRPU {
     konf:         Greenout[];
     tvps:         Tvp[];
     gbs:          GB[];
-    tmaxtophases: Tophase[];
     greenout:     Greenout[];
     powerout:     Greenout[];
     redout:       Greenout[];
@@ -75,6 +74,12 @@ export interface Pahse {
     time:  number;
 }
 
+export interface Timetophase {
+    nphase: number;
+    tmax:   number;
+    tmin:   number;
+}
+
 export interface Tirtonap {
     num:      number;
     type:     number;
@@ -82,11 +87,6 @@ export interface Tirtonap {
     yellow:   number;
     counter?: number;
     reds:     number[];
-}
-
-export interface Tophase {
-    nphase: number;
-    tmin:   number;
 }
 
 export interface Tvp {

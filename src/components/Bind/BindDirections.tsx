@@ -12,7 +12,8 @@ import TextField from '@mui/material/TextField';
 import BindRight from './BindComponents/BindRight';
 import { styleBox, styleButtBox, styleXTG01 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG011, styleXTG02, styleXTG021 } from './BindComponents/BindDirectionsStyle';
-import { styleXTG03, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
+import { styleXTG03, } from './BindComponents/BindDirectionsStyle';
+import { styleXTG030, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 
 import { dateRpu } from './../../App';
@@ -26,7 +27,10 @@ const BindDirections = () => {
   let fSize = 10.5;
   if (size > 900) fSize = 14;
 
-  console.log('BindDirections:', dateRpu.tirtonap);
+  let kolFaz = dateRpu.timetophases.length;
+  let xss = 11 / kolFaz;
+
+  console.log('BindDirections:', kolFaz);
 
   const styleSet = {
     position: 'absolute',
@@ -43,6 +47,14 @@ const BindDirections = () => {
   };
 
   const HeaderTopTab = () => {
+    const ElemHeader = (elem: string) => {
+      return (
+        <Grid item xs={0.75} sx={styleXTG02}>
+          <b>{elem}</b>
+        </Grid>
+      )
+    }
+
     return (
       <>
         <Grid item container xs={12}>
@@ -59,26 +71,19 @@ const BindDirections = () => {
         </Grid>
 
         <Grid item container xs={12}>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Напр</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Зел.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Жел.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Кр1.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Кр2.</b>
-          </Grid>
-          <Grid item xs={0.75} sx={styleXTG02}>
-            <b>Кр3.</b>
-          </Grid>
+          {ElemHeader('Напр')}
+          {ElemHeader('Зел.')}
+          {ElemHeader('Жел.')}
+          {ElemHeader('Кр1.')}
+          {ElemHeader('Кр2.')}
+          {ElemHeader('Кр3.')}
           {/* ========================== */}
-          <Grid item xs={0.75} sx={styleXTG02}>
+          {ElemHeader('Тзм.')}
+          {ElemHeader('Тж.')}
+          {ElemHeader('Ткр.')}
+          {ElemHeader('Ткж.')}
+          {ElemHeader('Тзел.')}
+          {/* <Grid item xs={0.75} sx={styleXTG02}>
             <b>Тзм.</b>
           </Grid>
           <Grid item xs={0.75} sx={styleXTG02}>
@@ -92,7 +97,7 @@ const BindDirections = () => {
           </Grid>
           <Grid item xs={0.75} sx={styleXTG02}>
             <b>Тзел.</b>
-          </Grid>
+          </Grid> */}
           {/* ========================== */}
           <Grid item xs={0.75} sx={styleXTG02}>
             <b>Тзм.</b>
@@ -115,42 +120,20 @@ const BindDirections = () => {
   };
 
   const HeaderBattomTab = () => {
-    return (
-      <>
-        <Grid item container xs={12}>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>Фаза</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>1</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>2</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>3</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>4</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>5</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>6</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>7</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>8</b>
-          </Grid>
-          <Grid item xs={1.2} sx={styleXTG021}>
-            <b>9</b>
-          </Grid>
-        </Grid>
-      </>
+    let resStrHeaderBattomTab = [];
+    resStrHeaderBattomTab.push(
+      <Grid item key={Math.random()} xs={1} sx={styleXTG021}>
+        <b>Фаза</b>
+      </Grid>,
     );
+    for (let i = 0; i < kolFaz; i++) {
+      resStrHeaderBattomTab.push(
+        <Grid item key={Math.random()} xs={xss} sx={styleXTG021}>
+          <b>{i + 1}</b>
+        </Grid>,
+      );
+    }
+    return resStrHeaderBattomTab;
   };
 
   const StrokaTopTab = () => {
@@ -184,18 +167,20 @@ const BindDirections = () => {
             {/* {dateRpu.tirtonap[i].green} */}
             <Box
               component="form"
-              sx={{
-                '& > :not(style)': { width: '5ch' },
-              }}
+              // sx={{
+              //   '& > :not(style)': { width: '6ch' },
+              // }}
+              sx={{ width: '6ch' }}
               noValidate
               autoComplete="off">
               <TextField
                 size="small"
-                id="filled-basic"
-                inputProps={{ style: { fontSize: 14 } }}
-                InputLabelProps={{ style: { fontSize: 14 } }}
-                label={dateRpu.tirtonap[i].green}
-                variant="filled"
+                //id="filled-basic"
+                inputProps={{ style: { fontSize: fSize } }}
+                InputLabelProps={{ style: { fontSize: fSize } }}
+                //label={dateRpu.tirtonap[i].green}
+                value={dateRpu.tirtonap[i].green}
+              // variant="filled"
               />
             </Box>
           </Grid>
@@ -249,44 +234,41 @@ const BindDirections = () => {
     return resStr;
   };
 
+  const StrokaBattomTabMaxMin = (titl: string) => {
+    let resStr: any = [];
+    resStr.push(
+      <Grid item key={Math.random()} xs={1} sx={styleXTG03}>
+        {titl}
+      </Grid>,
+    );
+    for (let i = 0; i < kolFaz; i++) {
+      let j = dateRpu.timetophases[i].tmax
+      if (titl !== 'Тмах') j = dateRpu.timetophases[i].tmin
+      resStr.push(
+        <Grid item key={Math.random()} xs={xss} sx={styleXTG030}>
+          {j}
+        </Grid>,
+      );
+    }
+    return resStr;
+  };
+
   const StrokaBattomTab = () => {
-    let resStr = [];
+    let resStr: any = [];
 
     for (let i = 0; i < 40; i++) {
       resStr.push(
-        <Grid key={Math.random()} container item xs={12}>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            {i + 1}
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
-          <Grid key={Math.random()} xs={1.2} item sx={styleXTG03}>
-            0
-          </Grid>
+        <Grid item key={Math.random()} xs={1} sx={styleXTG03}>
+          {i + 1}
         </Grid>,
       );
+      for (let j = 0; j < kolFaz; j++) {
+        resStr.push(
+          <Grid item key={Math.random()} xs={xss} sx={styleXTG034}>
+
+          </Grid>,
+        );
+      }
     }
     return resStr;
   };
@@ -302,14 +284,22 @@ const BindDirections = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '42vh' }}>
-        <HeaderBattomTab />
-        <Box sx={{ height: '40.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
+      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '47.5vh' }}>
+        <Grid item container xs={12}>
+          {HeaderBattomTab()}
+          {StrokaBattomTabMaxMin('Тмах')}
+          {StrokaBattomTabMaxMin('Тмин')}
+        </Grid>
+        <Box sx={{ height: '34vh', overflowX: 'auto' }}>
+          <Grid item container xs={12}>
+            {StrokaBattomTab()}
+          </Grid>
+        </Box>
       </Box>
     );
   };
 
-  const OutputModalTop = (props: { Size: any }) => {
+  const OutputModalTop = () => {
     styleSetWidth = 650;
     if (window.innerWidth > 770) styleSetWidth = window.innerWidth;
 
@@ -335,8 +325,16 @@ const BindDirections = () => {
           <ModalEnd />
           <Grid container>
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 18 }}>
-              <HeaderBattomTab />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaBattomTab()}</Box>
+              <Grid item container xs={12}>
+                {HeaderBattomTab()}
+                {StrokaBattomTabMaxMin('Тмах')}
+                {StrokaBattomTabMaxMin('Тмин')}
+              </Grid>
+              <Box sx={{ overflowX: 'auto', height: '82vh' }}>
+                <Grid item container xs={12}>
+                  {StrokaBattomTab()}
+                </Grid>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -353,7 +351,7 @@ const BindDirections = () => {
           </Button>
           <OutputNormalTop />
           <TabPanel value="33">
-            <OutputModalTop Size={size} />
+            <OutputModalTop />
           </TabPanel>
         </Box>
       </TabContext>
