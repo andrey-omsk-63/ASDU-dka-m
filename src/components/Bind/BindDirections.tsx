@@ -8,6 +8,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+//import Input from '@mui/material/Input';
 
 import BindRight from './BindComponents/BindRight';
 import { styleBox, styleButtBox, styleXTG01 } from './BindComponents/BindDirectionsStyle';
@@ -19,7 +20,7 @@ import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDire
 import { DateRPU } from './../../interfaceRPU.d';
 import { dateRpuGl } from './../../App';
 
-let dateRpu: DateRPU = {} as DateRPU;
+let dateRpu: DateRPU;
 
 const BindDirections = () => {
   dateRpu = dateRpuGl;
@@ -28,7 +29,7 @@ const BindDirections = () => {
   if (size > 770) styleSetWidth = size - 50;
   let fSize = 10.5;
   if (size > 900) fSize = 14;
-  let fSizeInp = fSize;
+  let fSizeInp = 10.5;
 
   let kolFaz = dateRpu.timetophases.length;
   let xss = 11 / kolFaz;
@@ -153,12 +154,16 @@ const BindDirections = () => {
           <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
             <Box
               component="form"
-              sx={{ '& > :not(style)': { marginTop: 2, width: widthBlok.toString() + 'ch' } }}>
+              sx={{ '& > :not(style)': { marginTop: 2, width: widthBlok.toString() + 'ch' } }}
+              noValidate
+              autoComplete="off">
               <TextField
                 size="small"
                 id="standard-select-currency"
                 onKeyPress={handleKey} //отключение Enter
                 inputProps={{ style: { fontSize: fSizeInp } }}
+                //disabled
+                //defaultValue={valuen}
                 value={valuen}
                 onChange={handleChange}
                 variant="standard"
@@ -263,6 +268,8 @@ const BindDirections = () => {
   };
 
   const OutputNormalTop = () => {
+    fSizeInp = fSize;
+
     return (
       <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '43.5vh' }}>
         <HeaderTopTab />
