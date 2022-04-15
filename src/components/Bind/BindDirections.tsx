@@ -30,9 +30,13 @@ const BindDirections = () => {
   let fSize = 10.5;
   if (size > 900) fSize = 14;
   let fSizeInp = 10.5;
+  let widthBlok = size / 210;
 
   let kolFaz = dateRpu.timetophases.length;
   let xss = 11 / kolFaz;
+
+  let masReds = [0, 0, 0];
+  let napr = '';
 
   const styleSet = {
     position: 'absolute',
@@ -116,13 +120,70 @@ const BindDirections = () => {
     return resStrHeaderBattomTab;
   };
 
-  const StrokaTopTab = () => {
+  const StrokaTopTab = (i: number) => {
+    return (
+      <Grid key={Math.random()} container item xs={12}>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
+          {dateRpu.tirtonap[i].num}
+          {napr}
+        </Grid>
+
+        {InputTopTab(dateRpu.tirtonap[i].green)}
+
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
+          {dateRpu.tirtonap[i].yellow}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+          {masReds[0]}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+          {masReds[1]}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+          {masReds[2]}
+        </Grid>
+        {/* ========================== */}
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
+          {dateRpu.prombase[i].gd}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
+          {dateRpu.prombase[i].yel}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+          {dateRpu.prombase[i].red}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
+          {dateRpu.prombase[i].ry}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
+          {dateRpu.prombase[i].gd}
+        </Grid>
+        {/* ========================== */}
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
+          {dateRpu.prom[i].gd}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
+          {dateRpu.prom[i].yel}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
+          {dateRpu.prom[i].red}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
+          {dateRpu.prom[i].ry}
+        </Grid>
+        <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
+          {dateRpu.prom[i].gd}
+        </Grid>
+      </Grid>
+    )
+  };
+
+  const MassTopTab = () => {
     let resStr = [];
-    let widthBlok = size / 210;
 
     for (let i = 0; i < dateRpu.tirtonap.length; i++) {
-      let masReds = [0, 0, 0];
-      let napr = '';
+      masReds = [0, 0, 0];
+      napr = '';
 
       for (let j = 0; j < dateRpu.tirtonap[i].reds.length; j++) {
         if (j < 3) masReds[j] = dateRpu.tirtonap[i].reds[j];
@@ -137,99 +198,50 @@ const BindDirections = () => {
         case 3:
           napr = ' Пов';
       }
-
-      const InputTopTab = (props: { kuda: number }) => {
-        const [valuen, setValuen] = React.useState(dateRpu.tirtonap[i].green);
-
-        const handleChange = (event: any) => {
-          setValuen(event.target.value);
-          dateRpu.tirtonap[i].green = event.target.value;
-        };
-
-        const handleKey = (event: any) => {
-          if (event.key === 'Enter') event.preventDefault();
-        };
-
-        return (
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-            <Box
-              component="form"
-              sx={{ '& > :not(style)': { marginTop: 2, width: widthBlok.toString() + 'ch' } }}
-              noValidate
-              autoComplete="off">
-              <TextField
-                size="small"
-                id="standard-select-currency"
-                onKeyPress={handleKey} //отключение Enter
-                inputProps={{ style: { fontSize: fSizeInp } }}
-                //disabled
-                //defaultValue={valuen}
-                value={valuen}
-                onChange={handleChange}
-                variant="standard"
-              />
-            </Box>
-          </Grid>
-        );
-      };
-
-      resStr.push(
-        <Grid key={Math.random()} container item xs={12}>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
-            {dateRpu.tirtonap[i].num}
-            {napr}
-          </Grid>
-
-          <InputTopTab kuda={dateRpu.tirtonap[i].green} />
-
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
-            {dateRpu.tirtonap[i].yellow}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-            {masReds[0]}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-            {masReds[1]}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-            {masReds[2]}
-          </Grid>
-          {/* ========================== */}
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
-            {dateRpu.prombase[i].gd}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
-            {dateRpu.prombase[i].yel}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-            {dateRpu.prombase[i].red}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
-            {dateRpu.prombase[i].ry}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-            {dateRpu.prombase[i].gd}
-          </Grid>
-          {/* ========================== */}
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
-            {dateRpu.prom[i].gd}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
-            {dateRpu.prom[i].yel}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-            {dateRpu.prom[i].red}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
-            {dateRpu.prom[i].ry}
-          </Grid>
-          <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-            {dateRpu.prom[i].gd}
-          </Grid>
-        </Grid>,
-      );
+      resStr.push(StrokaTopTab(i))
+      //StrokaTopTab(i)
     }
     return resStr;
+  }
+
+  const InputTopTab = (kuda: number) => {
+    const [valuen, setValuen] = React.useState(kuda);
+
+    const handleChange = (event: any) => {
+      setValuen(event.target.value);
+      dateRpu.tirtonap[1].green = event.target.value;
+      //this.state.form.focus()
+    };
+
+    const handleKey = (event: any) => {
+      if (event.key === 'Enter') event.preventDefault();
+    };
+
+    
+
+    return (
+      <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
+        <Box
+          component="form"
+          sx={{ '& > :not(style)': { marginTop: 2, width: widthBlok.toString() + 'ch' } }}
+          noValidate
+          autoComplete="off">
+          <TextField
+            size="small"
+            id="standard-select-currency"
+            onKeyPress={handleKey} //отключение Enter
+            inputProps={{ style: { fontSize: fSizeInp } }}
+            value={valuen}
+            //autoFocus
+            //inputRef={input => input && input.focus()}
+            //inputRef={el => { this.setState({form: el}) }}
+            
+            onChange={handleChange}
+            variant="standard"
+          />
+        </Box>
+      </Grid>
+    );
   };
 
   const StrokaBattomTabMaxMin = (titl: string) => {
@@ -273,7 +285,7 @@ const BindDirections = () => {
     return (
       <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '43.5vh' }}>
         <HeaderTopTab />
-        <Box sx={{ height: '39vh', overflowX: 'auto' }}>{StrokaTopTab()}</Box>
+        <Box sx={{ height: '39vh', overflowX: 'auto' }}>{MassTopTab()}</Box>
       </Box>
     );
   };
@@ -296,8 +308,6 @@ const BindDirections = () => {
   };
 
   const OutputModalTop = () => {
-    // styleSetWidth = 650;
-    // if (window.innerWidth > 770) styleSetWidth = window.innerWidth;
     fSizeInp = 16;
 
     return (
@@ -307,7 +317,7 @@ const BindDirections = () => {
           <Grid container>
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
               <HeaderTopTab />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{StrokaTopTab()}</Box>
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{MassTopTab()}</Box>
             </Grid>
           </Grid>
         </Box>

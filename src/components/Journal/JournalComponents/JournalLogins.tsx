@@ -143,6 +143,7 @@ const JournalLogins = (props: { logName: string }) => {
 
   const MakeMassPoints = () => {
     //console.log('MakeMassPoint:', isRead);
+    let oldTime = '';
     massPoints = [];
     for (let i = 0; i < points.length; i++) {
       maskPoints = [
@@ -171,14 +172,19 @@ const JournalLogins = (props: { logName: string }) => {
           maskPoints[0].haveError = true;
           maskPoints[0].num = 2;
           break;
-        default:
-          maskPoints[0].type = points[i].message.slice(0, 6);
-          maskPoints[0].haveError = true;
-          maskPoints[0].num = 3;
-      }
-      maskPoints[0].time = points[i].message.slice(20, 28);
-      maskPoints[0].info = points[i].message.slice(29);
-
+          default:
+            maskPoints[0].type = 'Разное';
+            maskPoints[0].haveError = true;
+            maskPoints[0].num = 3;
+        }
+        if (maskPoints[0].num !== 3) {
+          maskPoints[0].time = points[i].message.slice(20, 28);
+          oldTime = maskPoints[0].time;
+          maskPoints[0].info = points[i].message.slice(29);
+        } else {
+          maskPoints[0].time = oldTime;
+          maskPoints[0].info = points[i].message;
+        }
       massPoints.push(maskPoints[0]);
       setIsRead(false);
     }
