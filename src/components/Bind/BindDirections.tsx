@@ -8,12 +8,15 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-//import Input from '@mui/material/Input';
+
+// import FormControl, { useFormControl } from '@mui/material/FormControl';
+// import OutlinedInput from '@mui/material/OutlinedInput';
+// import FormHelperText from '@mui/material/FormHelperText';
 
 import BindRight from './BindComponents/BindRight';
 import { styleBox, styleButtBox, styleXTG01 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG011, styleXTG02, styleXTG021 } from './BindComponents/BindDirectionsStyle';
-import { styleXTG03 } from './BindComponents/BindDirectionsStyle';
+import { styleXTG03, styleXTG0341 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG030, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 
@@ -38,6 +41,12 @@ const BindDirections = () => {
   let masReds = [0, 0, 0];
   let napr = '';
 
+  // const searchInput: any = React.useRef(null);
+  // React.useEffect(() => {
+  //   // current property is refered to input element
+  //   searchInput.current.focus();
+  // }, []);
+
   const styleSet = {
     position: 'absolute',
     marginTop: '1vh',
@@ -50,6 +59,13 @@ const BindDirections = () => {
     boxShadow: 24,
     paddingRight: 3,
     paddingTop: 3,
+  };
+
+  const styleBoxForm = {
+    '& > :not(style)': {
+      marginTop: 2,
+      width: widthBlok.toString() + 'ch',
+    },
   };
 
   const HeaderTopTab = () => {
@@ -122,60 +138,30 @@ const BindDirections = () => {
 
   const StrokaTopTab = (i: number) => {
     return (
-      <Grid key={Math.random()} container item xs={12}>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG03}>
+      <Grid container key={i}>
+        <Grid xs={0.75} item sx={styleXTG03}>
           {dateRpu.tirtonap[i].num}
           {napr}
         </Grid>
-
-        {InputTopTab(dateRpu.tirtonap[i].green)}
-
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
-          {dateRpu.tirtonap[i].yellow}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-          {masReds[0]}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-          {masReds[1]}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-          {masReds[2]}
-        </Grid>
+        {InputTopTab(dateRpu.tirtonap[i].green, styleXTG032, i, 1)}
+        {InputTopTab(dateRpu.tirtonap[i].yellow, styleXTG033, i, 2)}
+        {InputTopTab(masReds[0], styleXTG034, i, 3)}
+        {InputTopTab(masReds[1], styleXTG034, i, 4)}
+        {InputTopTab(masReds[2], styleXTG034, i, 5)}
         {/* ========================== */}
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
-          {dateRpu.prombase[i].gd}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
-          {dateRpu.prombase[i].yel}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-          {dateRpu.prombase[i].red}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
-          {dateRpu.prombase[i].ry}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-          {dateRpu.prombase[i].gd}
-        </Grid>
+        {InputTopTab(dateRpu.prombase[i].gd, styleXTG035, i, 6)}
+        {InputTopTab(dateRpu.prombase[i].yel, styleXTG033, i, 7)}
+        {InputTopTab(dateRpu.prombase[i].red, styleXTG034, i, 8)}
+        {InputTopTab(dateRpu.prombase[i].ry, styleXTG036, i, 9)}
+        {InputTopTab(dateRpu.prombase[i].gd, styleXTG032, i, 10)}
         {/* ========================== */}
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG035}>
-          {dateRpu.prom[i].gd}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG033}>
-          {dateRpu.prom[i].yel}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG034}>
-          {dateRpu.prom[i].red}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG036}>
-          {dateRpu.prom[i].ry}
-        </Grid>
-        <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-          {dateRpu.prom[i].gd}
-        </Grid>
+        {InputTopTab(dateRpu.prom[i].gd, styleXTG035, i, 11)}
+        {InputTopTab(dateRpu.prom[i].yel, styleXTG033, i, 12)}
+        {InputTopTab(dateRpu.prom[i].red, styleXTG034, i, 14)}
+        {InputTopTab(dateRpu.prom[i].ry, styleXTG036, i, 15)}
+        {InputTopTab(dateRpu.prom[i].gd, styleXTG032, i, 16)}
       </Grid>
-    )
+    );
   };
 
   const MassTopTab = () => {
@@ -198,44 +184,69 @@ const BindDirections = () => {
         case 3:
           napr = ' Пов';
       }
-      resStr.push(StrokaTopTab(i))
-      //StrokaTopTab(i)
+      resStr.push(StrokaTopTab(i));
     }
     return resStr;
-  }
+  };
 
-  const InputTopTab = (kuda: number) => {
+  const InputTopTab = (kuda: number, styleXX: any, i: number, numCol: number) => {
     const [valuen, setValuen] = React.useState(kuda);
 
     const handleChange = (event: any) => {
       setValuen(event.target.value);
-      dateRpu.tirtonap[1].green = event.target.value;
-      //this.state.form.focus()
+      switch (numCol) {
+        case 1:
+          dateRpu.tirtonap[i].green = event.target.value;
+          break;
+        case 2:
+          dateRpu.tirtonap[i].yellow = event.target.value;
+          break;
+        case 6:
+          dateRpu.prombase[i].gd = event.target.value;
+          break;
+        case 7:
+          dateRpu.prombase[i].yel = event.target.value;
+          break;
+        case 8:
+          dateRpu.prombase[i].red = event.target.value;
+          break;
+        case 9:
+          dateRpu.prombase[i].ry = event.target.value;
+          break;
+        case 10:
+          dateRpu.prombase[i].gd = event.target.value;
+          break;
+        case 11:
+          dateRpu.prom[i].gd = event.target.value;
+          break;
+        case 12:
+          dateRpu.prom[i].yel = event.target.value;
+          break;
+        case 14:
+          dateRpu.prom[i].red = event.target.value;
+          break;
+        case 15:
+          dateRpu.prom[i].ry = event.target.value;
+          break;
+        case 16:
+          dateRpu.prom[i].gd = event.target.value;
+          break;
+      }
     };
 
     const handleKey = (event: any) => {
       if (event.key === 'Enter') event.preventDefault();
     };
 
-    
-
     return (
-      <Grid key={Math.random()} xs={0.75} item sx={styleXTG032}>
-        <Box
-          component="form"
-          sx={{ '& > :not(style)': { marginTop: 2, width: widthBlok.toString() + 'ch' } }}
-          noValidate
-          autoComplete="off">
+      <Grid xs={0.75} item sx={styleXX}>
+        <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
           <TextField
             size="small"
-            id="standard-select-currency"
             onKeyPress={handleKey} //отключение Enter
-            inputProps={{ style: { fontSize: fSizeInp } }}
+            inputProps={{ style: { fontSize: fSizeInp } }} // font size of input text
             value={valuen}
-            //autoFocus
-            //inputRef={input => input && input.focus()}
-            //inputRef={el => { this.setState({form: el}) }}
-            
+            //ref={searchInput}
             onChange={handleChange}
             variant="standard"
           />
@@ -273,7 +284,7 @@ const BindDirections = () => {
         </Grid>,
       );
       for (let j = 0; j < kolFaz; j++) {
-        resStr.push(<Grid item key={Math.random()} xs={xss} sx={styleXTG034}></Grid>);
+        resStr.push(<Grid item key={Math.random()} xs={xss} sx={styleXTG0341}></Grid>);
       }
     }
     return resStr;

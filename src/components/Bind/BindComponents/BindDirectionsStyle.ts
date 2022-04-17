@@ -60,47 +60,56 @@ export const styleXTG030 = {
 // зелёный
 export const styleXTG032 = {
   borderRight: 1,
-  borderBottom: 1,
+  //borderBottom: 1,
   borderColor: 'primary.main',
   backgroundColor: '#59CB68',
   textAlign: 'center',
-  //padding: 0.1,
+  paddingLeft: 0.1,
 };
 
 // жёлтый
 export const styleXTG033 = {
   borderRight: 1,
-  borderBottom: 1,
+  //borderBottom: 1,
   borderColor: 'primary.main',
   backgroundColor: '#F9EA7D',
   textAlign: 'center',
-  padding: 1,
+  paddingLeft: 0.1,
 };
 // красный
 export const styleXTG034 = {
-  borderRight: 1.5,
+  borderRight: 1,
+  //borderBottom: 1,
+  borderColor: 'primary.main',
+  backgroundColor: '#FE929A',
+  textAlign: 'center',
+  paddingLeft: 0.1,
+};
+
+export const styleXTG0341 = {
+  borderRight: 1,
   borderBottom: 1,
   borderColor: 'primary.main',
   backgroundColor: '#FE929A',
   textAlign: 'center',
-  padding: 1,
+  paddingLeft: 0.1,
 };
 
 export const styleXTG035 = {
   borderRight: 1,
-  borderBottom: 1,
+  //borderBottom: 1,
   borderColor: 'primary.main',
   backgroundImage:
     'linear-gradient(90deg, #59CB68,#59CB68,#59CB68, white, white, #59CB68,#59CB68,#59CB68)',
   textAlign: 'center',
-  padding: 1,
+  paddingLeft: 0.1,
 };
 
 export const styleXTG036 = {
   borderRight: 1,
-  borderBottom: 1,
+  //borderBottom: 1,
   borderColor: 'primary.main',
   backgroundImage: 'linear-gradient( #FE929A,#FE929A,#FE929A, #F9EA7D, #F9EA7D, #F9EA7D)',
   textAlign: 'center',
-  padding: 1,
+  paddingLeft: 0.1,
 };

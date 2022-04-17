@@ -112,8 +112,6 @@ const App = () => {
     });
   }, []);
 
-  console.log('points:', pointsRpu);
-
   if (isOpenRpu && flagOpenRpu) {
     dateRpuGl = pointsRpu;
     flagOpenRpu = false;
