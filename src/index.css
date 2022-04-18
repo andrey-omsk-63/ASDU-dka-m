@@ -1,13 +1,13 @@
 body {
   margin: 0;
   /* height: 670px; */
-  height: 80%;
+  height: 100%;
   width: 100%;
   /* background-color: #024492; */
   /* background: linear-gradient(45deg, #57741D, #024492); */
   background: linear-gradient(45deg, #b7c182, #0083d0);
 
-  /* background: url(./imagJournal.jpg);
+  /* background: url(./imagJournal.jpg); */
 
   background-repeat: no-repeat;
   background-position: center center;
@@ -15,7 +15,7 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; */
+  background-size: cover;
 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;

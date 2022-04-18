@@ -35,7 +35,7 @@ const BindDirections = () => {
   let fSize = 10.5;
   if (size > 900) fSize = 14;
   let fSizeInp = 10.5;
-  let widthBlok = size / 210;
+  let widthBlok = size / 220;
 
   let kolFaz = dateRpu.timetophases.length;
   let xss = 11 / kolFaz;
@@ -147,9 +147,12 @@ const BindDirections = () => {
         </Grid>
         {InputTopTab(dateRpu.tirtonap[i].green, styleXTG032, i, 1)}
         {InputTopTab(dateRpu.tirtonap[i].yellow, styleXTG033, i, 2)}
-        {InputTopTab(masReds[0], styleXTG034, i, 3)}
+        {/* {InputTopTab(masReds[0], styleXTG034, i, 3)}
         {InputTopTab(masReds[1], styleXTG034, i, 4)}
-        {InputTopTab(masReds[2], styleXTG034, i, 5)}
+        {InputTopTab(masReds[2], styleXTG034, i, 5)} */}
+        {InputTopTab(dateRpu.tirtonap[i].reds[0], styleXTG034, i, 3)}
+        {InputTopTab(dateRpu.tirtonap[i].reds[1], styleXTG034, i, 4)}
+        {InputTopTab(dateRpu.tirtonap[i].reds[2], styleXTG034, i, 5)}
         {/* ========================== */}
         {InputTopTab(dateRpu.prombase[i].gd, styleXTG035, i, 6)}
         {InputTopTab(dateRpu.prombase[i].yel, styleXTG033, i, 7)}
@@ -170,25 +173,74 @@ const BindDirections = () => {
     let resStr = [];
 
     for (let i = 0; i < dateRpu.tirtonap.length; i++) {
-      masReds = [0, 0, 0];
-      napr = '';
+      // masReds = [0, 0, 0];
+      // napr = '';
 
-      for (let j = 0; j < dateRpu.tirtonap[i].reds.length; j++) {
-        if (j < 3) masReds[j] = dateRpu.tirtonap[i].reds[j];
-      }
-      switch (dateRpu.tirtonap[i].type) {
-        case 1:
-          napr = ' Тран';
-          break;
-        case 2:
-          napr = ' Пеш';
-          break;
-        case 3:
-          napr = ' Пов';
-      }
+      // for (let j = 0; j < dateRpu.tirtonap[i].reds.length; j++) {
+      //   if (j < 3) masReds[j] = dateRpu.tirtonap[i].reds[j];
+      // }
+      // switch (dateRpu.tirtonap[i].type) {
+      //   case 1:
+      //     napr = ' Тран';
+      //     break;
+      //   case 2:
+      //     napr = ' Пеш';
+      //     break;
+      //   case 3:
+      //     napr = ' Пов';
+      // }
       resStr.push(StrokaTopTab(i));
     }
     return resStr;
+  };
+
+  const RecordInDateRpu = (i: number, numCol: number, chego: number) => {
+    switch (numCol) {
+      case 1:
+        dateRpu.tirtonap[i].green = chego;
+        break;
+      case 2:
+        dateRpu.tirtonap[i].yellow = chego;
+        break;
+      case 3:
+        dateRpu.tirtonap[i].reds[0] = chego;
+        break;
+      case 4:
+        dateRpu.tirtonap[i].reds[1] = chego;
+        break;
+      case 5:
+        dateRpu.tirtonap[i].reds[2] = chego;
+        break;
+      case 6:
+        dateRpu.prombase[i].gd = chego;
+        break;
+      case 7:
+        dateRpu.prombase[i].yel = chego;
+        break;
+      case 8:
+        dateRpu.prombase[i].red = chego;
+        break;
+      case 9:
+        dateRpu.prombase[i].ry = chego;
+        break;
+      case 10:
+        dateRpu.prombase[i].gd = chego;
+        break;
+      case 11:
+        dateRpu.prom[i].gd = chego;
+        break;
+      case 12:
+        dateRpu.prom[i].yel = chego;
+        break;
+      case 14:
+        dateRpu.prom[i].red = chego;
+        break;
+      case 15:
+        dateRpu.prom[i].ry = chego;
+        break;
+      case 16:
+        dateRpu.prom[i].gd = chego;
+    }
   };
 
   const InputTopTab = (kuda: number, styleXX: any, i: number, numCol: number) => {
@@ -196,44 +248,45 @@ const BindDirections = () => {
 
     const handleChange = (event: any) => {
       setValuen(event.target.value);
-      switch (numCol) {
-        case 1:
-          dateRpu.tirtonap[i].green = event.target.value;
-          break;
-        case 2:
-          dateRpu.tirtonap[i].yellow = event.target.value;
-          break;
-        case 6:
-          dateRpu.prombase[i].gd = event.target.value;
-          break;
-        case 7:
-          dateRpu.prombase[i].yel = event.target.value;
-          break;
-        case 8:
-          dateRpu.prombase[i].red = event.target.value;
-          break;
-        case 9:
-          dateRpu.prombase[i].ry = event.target.value;
-          break;
-        case 10:
-          dateRpu.prombase[i].gd = event.target.value;
-          break;
-        case 11:
-          dateRpu.prom[i].gd = event.target.value;
-          break;
-        case 12:
-          dateRpu.prom[i].yel = event.target.value;
-          break;
-        case 14:
-          dateRpu.prom[i].red = event.target.value;
-          break;
-        case 15:
-          dateRpu.prom[i].ry = event.target.value;
-          break;
-        case 16:
-          dateRpu.prom[i].gd = event.target.value;
-          break;
-      }
+      RecordInDateRpu(i, numCol, event.target.value);
+      // switch (numCol) {
+      //   case 1:
+      //     dateRpu.tirtonap[i].green = event.target.value;
+      //     break;
+      //   case 2:
+      //     dateRpu.tirtonap[i].yellow = event.target.value;
+      //     break;
+      //   case 6:
+      //     dateRpu.prombase[i].gd = event.target.value;
+      //     break;
+      //   case 7:
+      //     dateRpu.prombase[i].yel = event.target.value;
+      //     break;
+      //   case 8:
+      //     dateRpu.prombase[i].red = event.target.value;
+      //     break;
+      //   case 9:
+      //     dateRpu.prombase[i].ry = event.target.value;
+      //     break;
+      //   case 10:
+      //     dateRpu.prombase[i].gd = event.target.value;
+      //     break;
+      //   case 11:
+      //     dateRpu.prom[i].gd = event.target.value;
+      //     break;
+      //   case 12:
+      //     dateRpu.prom[i].yel = event.target.value;
+      //     break;
+      //   case 14:
+      //     dateRpu.prom[i].red = event.target.value;
+      //     break;
+      //   case 15:
+      //     dateRpu.prom[i].ry = event.target.value;
+      //     break;
+      //   case 16:
+      //     dateRpu.prom[i].gd = event.target.value;
+      //     break;
+      // }
     };
 
     const handleKey = (event: any) => {
@@ -310,7 +363,7 @@ const BindDirections = () => {
           {StrokaBattomTabMaxMin('Тмах')}
           {StrokaBattomTabMaxMin('Тмин')}
         </Grid>
-        <Box sx={{ height: '34vh', overflowX: 'auto' }}>
+        <Box sx={{ height: '31.2vh', overflowX: 'auto' }}>
           <Grid item container xs={12}>
             {StrokaBattomTab()}
           </Grid>
@@ -376,8 +429,6 @@ const BindDirections = () => {
     );
   };
 
-
-
   const BattomTab = () => {
     return (
       <TabContext value={valueTC}>
@@ -419,28 +470,20 @@ const BindDirections = () => {
     );
   };
 
-
-  //prompt('10')
   const [valueTC, setValueTC] = React.useState('0');
-  //prompt('11')
   const [openSet, setOpenSet] = React.useState(false);
 
-
-
   const handleCloseSet = (event: any, reason: string) => {
-    prompt('handleCloseSet')
+    prompt('handleCloseSet');
     if (reason !== 'backdropClick') setOpenSet(false);
   };
-
-  //prompt('12')
 
   const handleCloseSetBut = () => {
     setOpenSet(false);
   };
 
-  //prompt('2')
   //отслеживание изменения размера экрана
-  
+
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize(window.innerWidth);
@@ -464,7 +507,7 @@ const BindDirections = () => {
             <Grid item xs sx={{ height: '0.8vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '44.8vh' }}>
+            <Grid item xs sx={{ height: '40.8vh' }}>
               <BattomTab />
             </Grid>
           </Grid>

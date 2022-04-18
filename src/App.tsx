@@ -34,7 +34,8 @@ const App = () => {
     borderColor: '#F1F5FB',
     marginLeft: 0.5,
     marginTop: 0.7,
-    height: '92vh',
+    //height: '92vh',
+    height: '88vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
     padding: 0.1,
@@ -44,7 +45,7 @@ const App = () => {
     border: 0,
     marginRight: 0.5,
     marginLeft: 0.5,
-    height: '4vh',
+    height: '5vh',
     //p: 1,
   };
 
@@ -122,8 +123,8 @@ const App = () => {
   const [value, setValue] = React.useState('1');
 
   return (
-    <Grid container sx={{ height: '98vh' }}>
-      <Grid container sx={{border: 1, marginRight: 0.5 }}>
+    <Grid container sx={{ border: 2, height: '96vh' }}>
+      <Grid container sx={{ border: 1, marginRight: 0.5 }}>
         <TabContext value={value}>
           <Grid item xs={2.6} sx={styleAppMenu}>
             <Stack direction="column">
@@ -180,7 +181,7 @@ const App = () => {
       </Grid>
       <Grid item xs={12} sx={styleAppPodv}>
         <Grid container>
-          <Grid item xs={1.7} sx={{ border: 1 }}>
+          <Grid item xs={1.7} sx={{ border: 0 }}>
             <IconAsdu />
           </Grid>
           <Grid item xs>

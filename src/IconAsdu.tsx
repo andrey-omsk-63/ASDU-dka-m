@@ -2,12 +2,7 @@ import React from 'react';
 
 function IconAsdu() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="96"
-      height="5.0vh"
-      version="1"
-      viewBox="0 0 91 54">
+    <svg xmlns="http://www.w3.org/2000/svg" width="96" height="5vh" version="1" viewBox="0 0 91 54">
       <path
         d="M425 513C81 440-106 190 91 68 266-41 640 15 819 176c154 139 110 292-98 341-73 17-208 15-296-4zm270-14c208-38 257-178 108-308C676 79 413 8 240 40 29 78-30 199 100 329c131 131 396 207 595 170z"
         transform="matrix(.1 0 0 -.1 0 54)"></path>

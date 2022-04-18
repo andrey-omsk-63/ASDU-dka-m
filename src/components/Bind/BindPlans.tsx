@@ -129,14 +129,13 @@ const BindPlans = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ marginTop: -2.6, fontSize: fSize, height: '59.9vh' }}>
+      <Box sx={{ marginTop: -2.6, fontSize: fSize }}>
         <HeaderBattomTab />
-        <Box sx={{ height: '58.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
+        <Box sx={{ height: '55vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
     );
   };
 
-  // const OutputModalBattom = (props: { Size: any }) => {
   const OutputModalBattom = () => {
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
@@ -294,7 +293,7 @@ const BindPlans = () => {
             <Grid item xs sx={{ height: '0.5vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '66.2vh' }}>
+            <Grid item xs sx={{ height: '62.2vh' }}>
               <BattomTab />
             </Grid>
           </Grid>
@@ -307,7 +306,7 @@ const BindPlans = () => {
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
       <Grid container>
         <Grid item xs={12}>
-          <Grid container >
+          <Grid container>
             <BindLeft />
             <Grid item xs={0.05}></Grid>
             <BindRight />
