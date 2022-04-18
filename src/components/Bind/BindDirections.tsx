@@ -29,7 +29,9 @@ const BindDirections = () => {
   dateRpu = dateRpuGl;
   const [size, setSize] = React.useState(0);
   let styleSetWidth = 650;
+
   if (size > 770) styleSetWidth = size - 50;
+
   let fSize = 10.5;
   if (size > 900) fSize = 14;
   let fSizeInp = 10.5;
@@ -292,7 +294,6 @@ const BindDirections = () => {
 
   const OutputNormalTop = () => {
     fSizeInp = fSize;
-
     return (
       <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '43.5vh' }}>
         <HeaderTopTab />
@@ -320,7 +321,6 @@ const BindDirections = () => {
 
   const OutputModalTop = () => {
     fSizeInp = 16;
-
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -362,7 +362,7 @@ const BindDirections = () => {
 
   const TopTab = () => {
     return (
-      <TabContext value={value}>
+      <TabContext value={valueTC}>
         <Box sx={{ border: 0 }}>
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
             <b>Привязка выходов</b>
@@ -376,9 +376,11 @@ const BindDirections = () => {
     );
   };
 
+
+
   const BattomTab = () => {
     return (
-      <TabContext value={value}>
+      <TabContext value={valueTC}>
         <Box>
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
             <b>Привязка фаз</b>
@@ -394,7 +396,7 @@ const BindDirections = () => {
 
   const handleOpenModal = (nom: string) => {
     setOpenSet(true);
-    setValue(nom);
+    setValueTC(nom);
   };
 
   const ModalEnd = () => {
@@ -417,18 +419,28 @@ const BindDirections = () => {
     );
   };
 
-  const [value, setValue] = React.useState('0');
+
+  //prompt('10')
+  const [valueTC, setValueTC] = React.useState('0');
+  //prompt('11')
   const [openSet, setOpenSet] = React.useState(false);
 
+
+
   const handleCloseSet = (event: any, reason: string) => {
+    prompt('handleCloseSet')
     if (reason !== 'backdropClick') setOpenSet(false);
   };
+
+  //prompt('12')
 
   const handleCloseSetBut = () => {
     setOpenSet(false);
   };
 
+  //prompt('2')
   //отслеживание изменения размера экрана
+  
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize(window.innerWidth);
@@ -437,6 +449,7 @@ const BindDirections = () => {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
+  //prompt('3')
 
   const BindLeft = () => {
     return (

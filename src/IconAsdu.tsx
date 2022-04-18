@@ -5,7 +5,7 @@ function IconAsdu() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="96"
-      height="5.2vh"
+      height="5.0vh"
       version="1"
       viewBox="0 0 91 54">
       <path

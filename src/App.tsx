@@ -44,7 +44,7 @@ const App = () => {
     border: 0,
     marginRight: 0.5,
     marginLeft: 0.5,
-    height: '6vh',
+    height: '4vh',
     //p: 1,
   };
 
@@ -104,6 +104,7 @@ const App = () => {
   const [pointsRpu, setPointsRpu] = React.useState<DateRPU>({} as DateRPU);
   const [isOpenRpu, setIsOpenRpu] = React.useState(false);
   const ipAdress: string = 'http://localhost:3000/otladkaRpu.json';
+  //const ipAdress: string = 'http://192.168.115.114:3000/otladkaRpu.json';
 
   React.useEffect(() => {
     axios.get(ipAdress).then(({ data }) => {
@@ -121,8 +122,8 @@ const App = () => {
   const [value, setValue] = React.useState('1');
 
   return (
-    <Grid container sx={{ height: '100vh' }}>
-      <Grid container sx={{ marginRight: 0.5 }}>
+    <Grid container sx={{ height: '98vh' }}>
+      <Grid container sx={{border: 1, marginRight: 0.5 }}>
         <TabContext value={value}>
           <Grid item xs={2.6} sx={styleAppMenu}>
             <Stack direction="column">
@@ -179,7 +180,7 @@ const App = () => {
       </Grid>
       <Grid item xs={12} sx={styleAppPodv}>
         <Grid container>
-          <Grid item xs={1.7} sx={{ border: 0 }}>
+          <Grid item xs={1.7} sx={{ border: 1 }}>
             <IconAsdu />
           </Grid>
           <Grid item xs>
