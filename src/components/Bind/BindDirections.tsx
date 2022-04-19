@@ -381,6 +381,11 @@ const BindDirections = () => {
     console.log('open1:', open);
     fSizeInp = 16;
 
+    const styleBackdrop = {
+      color: '#fff',
+      zIndex: (theme: any) => theme.zIndex.drawer + 1,
+    };
+
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -389,10 +394,7 @@ const BindDirections = () => {
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
               <HeaderTopTab />
               <Box sx={{ overflowX: 'auto', height: '88vh' }}>
-                <Backdrop
-                  sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}
-                  open={open}
-                  onClick={handleClose}>
+                <Backdrop sx={styleBackdrop} open={open} onClick={handleClose}>
                   <CircularProgress color="inherit" />
                 </Backdrop>
                 {MassTopTab('Modal')}
@@ -400,7 +402,6 @@ const BindDirections = () => {
               </Box>
             </Grid>
           </Grid>
-          {/* {handleClose()} */}
         </Box>
       </Modal>
     );
