@@ -19,7 +19,7 @@ const BindOutputs = () => {
   if (size > 800) fSize = 14;
 
   const styleBox = {
-    height: '87.7vh',
+    height: '84.7vh',
     border: 1,
     borderRadius: 1,
     backgroundColor: 'white',
@@ -131,7 +131,7 @@ const BindOutputs = () => {
     return (
       <Box sx={{ height: '85vh', marginTop: -3, fontSize: fSize }}>
         <HeaderLBindOutputs />
-        <Box sx={{ overflowX: 'auto', height: '81vh' }}>{StrokaBindOutputs()}</Box>
+        <Box sx={{ overflowX: 'auto', height: '78vh' }}>{StrokaBindOutputs()}</Box>
       </Box>
     );
   };

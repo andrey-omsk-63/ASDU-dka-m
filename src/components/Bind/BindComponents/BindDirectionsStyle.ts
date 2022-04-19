@@ -55,7 +55,7 @@ export const styleXTG03 = {
 export const styleXTG030 = {
   borderBottom: 1,
   borderColor: 'primary.main',
-  paddingLeft: 2,
+  paddingLeft: 0.2,
 };
 // зелёный
 export const styleXTG032 = {
@@ -67,6 +67,14 @@ export const styleXTG032 = {
   paddingLeft: 0.1,
 };
 
+export const styleXTG032Norm = {
+  borderRight: 1,
+  borderBottom: 1,
+  borderColor: 'primary.main',
+  backgroundColor: '#59CB68',
+  textAlign: 'center',
+  padding: 1,
+};
 // жёлтый
 export const styleXTG033 = {
   borderRight: 1,
@@ -76,6 +84,15 @@ export const styleXTG033 = {
   textAlign: 'center',
   paddingLeft: 0.1,
 };
+
+export const styleXTG033Norm = {
+  borderRight: 1,
+  borderBottom: 1,
+  borderColor: 'primary.main',
+  backgroundColor: '#F9EA7D',
+  textAlign: 'center',
+  padding: 1,
+};
 // красный
 export const styleXTG034 = {
   borderRight: 1,
@@ -84,6 +101,15 @@ export const styleXTG034 = {
   backgroundColor: '#FE929A',
   textAlign: 'center',
   paddingLeft: 0.1,
+};
+
+export const styleXTG034Norm = {
+  borderRight: 1,
+  borderBottom: 1,
+  borderColor: 'primary.main',
+  backgroundColor: '#FE929A',
+  textAlign: 'center',
+  padding: 1,
 };
 
 export const styleXTG0341 = {
@@ -105,6 +131,16 @@ export const styleXTG035 = {
   paddingLeft: 0.1,
 };
 
+export const styleXTG035Norm = {
+  borderRight: 1,
+  borderBottom: 1,
+  borderColor: 'primary.main',
+  backgroundImage:
+    'linear-gradient(90deg, #59CB68,#59CB68,#59CB68, white, white, #59CB68,#59CB68,#59CB68)',
+  textAlign: 'center',
+  padding: 1,
+};
+
 export const styleXTG036 = {
   borderRight: 1,
   //borderBottom: 1,
@@ -112,4 +148,13 @@ export const styleXTG036 = {
   backgroundImage: 'linear-gradient( #FE929A,#FE929A,#FE929A, #F9EA7D, #F9EA7D, #F9EA7D)',
   textAlign: 'center',
   paddingLeft: 0.1,
+};
+
+export const styleXTG036Norm = {
+  borderRight: 1,
+  borderBottom: 1,
+  borderColor: 'primary.main',
+  backgroundImage: 'linear-gradient( #FE929A,#FE929A,#FE929A, #F9EA7D, #F9EA7D, #F9EA7D)',
+  textAlign: 'center',
+  padding: 1,
 };

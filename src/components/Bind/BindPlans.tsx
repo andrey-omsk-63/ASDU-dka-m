@@ -34,7 +34,8 @@ const BindPlans = () => {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    marginTop: '-53.5vh',
+    marginTop: '-0.8vh',
+    //marginTop: '-52.5vh',
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -100,7 +101,7 @@ const BindPlans = () => {
             <b>Длитель-ть</b>
           </Grid>
           <Grid item xs={2} sx={styleXTG021}>
-            <b>Продление пред.</b>
+            <b>Продл-е пред</b>
           </Grid>
         </Grid>
       </>
@@ -129,9 +130,9 @@ const BindPlans = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ marginTop: -2.6, fontSize: fSize }}>
+      <Box sx={{ marginTop: 0, fontSize: fSize }}>
         <HeaderBattomTab />
-        <Box sx={{ height: '55vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
+        <Box sx={{ height: '53vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
     );
   };
@@ -205,9 +206,9 @@ const BindPlans = () => {
             </Box>
           </Grid>
         </Grid>
-        <Grid container sx={{ border: 0, height: '3vh' }}>
+        <Grid container sx={{ height: '3vh' }}>
           <Grid item xs={3.5}></Grid>
-          <Grid item xs sx={{ border: 0 }}>
+          <Grid item xs>
             <Button sx={styleButtInp} variant="contained">
               <b>Создать план</b>
             </Button>
@@ -221,9 +222,6 @@ const BindPlans = () => {
     return (
       <TabContext value={value}>
         <Box>
-          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
-            <b>Планы</b>
-          </Button>
           <OutputNormalBattom />
           <TabPanel value="69">
             <OutputModalBattom />
@@ -284,6 +282,9 @@ const BindPlans = () => {
       <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
+          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
+            <b>Планы</b>
+          </Button>
             <Grid item xs={12} sx={{ height: '24.4vh' }}>
               <TopTabInput />
             </Grid>
@@ -293,7 +294,7 @@ const BindPlans = () => {
             <Grid item xs sx={{ height: '0.5vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '62.2vh' }}>
+            <Grid item xs sx={{ height: '57.0vh' }}>
               <BattomTab />
             </Grid>
           </Grid>

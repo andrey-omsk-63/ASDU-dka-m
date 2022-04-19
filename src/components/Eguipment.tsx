@@ -122,7 +122,7 @@ const Eguipment = () => {
 
   const TopTabls = () => {
     return (
-      <Grid item xs={12} sx={{ marginTop: '-2vh', height: '67.8vh' }}>
+      <Grid item xs={12} sx={{ marginTop: '-2vh', height: '64.8vh' }}>
         <Grid container sx={styleBox}>
           <Grid item xs={12} sx={{ height: '46.5vh' }}>
             <HeaderTopTabls />

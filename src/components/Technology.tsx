@@ -428,7 +428,7 @@ const Technology = () => {
       </Box>
       <Box sx={{ marginTop: 1.5, marginLeft: -3, marginRight: -3 }}>
         <Grid container sx={styleBox}>
-          <Grid item xs sx={{ height: '18.0vh' }}></Grid>
+          <Grid item xs sx={{ height: '15.2vh' }}></Grid>
         </Grid>
       </Box>
     </Stack>

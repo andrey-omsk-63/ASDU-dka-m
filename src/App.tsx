@@ -20,6 +20,7 @@ import BindDiagram from './components/Bind/BindDiagram';
 import Journal from './components/Journal/Journal';
 
 import { DateRPU } from './interfaceRPU.d';
+import { dataRpu } from './otladkaRpuData';
 
 import IconAsdu from './IconAsdu';
 //import { dateRpu,  } from './AppStorege';
@@ -35,7 +36,7 @@ const App = () => {
     marginLeft: 0.5,
     marginTop: 0.7,
     //height: '92vh',
-    height: '88vh',
+    height: '85vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
     padding: 0.1,
@@ -104,15 +105,20 @@ const App = () => {
 
   const [pointsRpu, setPointsRpu] = React.useState<DateRPU>({} as DateRPU);
   const [isOpenRpu, setIsOpenRpu] = React.useState(false);
-  const ipAdress: string = 'http://localhost:3000/otladkaRpu.json';
-  //const ipAdress: string = 'http://192.168.115.114:3000/otladkaRpu.json';
+  //const ipAdress: string = 'http://localhost:3000/otladkaRpu.json';
+  // const ipAdress: string = 'http://192.168.115.114:3000/otladkaRpu.json';
 
-  React.useEffect(() => {
-    axios.get(ipAdress).then(({ data }) => {
-      setPointsRpu(data);
-      setIsOpenRpu(true);
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   axios.get(ipAdress).then(({ data }) => {
+  //     setPointsRpu(data);
+  //     setIsOpenRpu(true);
+  //   });
+  // }, []);
+
+  if (flagOpenRpu) {         // костыль
+    setPointsRpu(dataRpu);
+    setIsOpenRpu(true);
+  }
 
   if (isOpenRpu && flagOpenRpu) {
     dateRpuGl = pointsRpu;
@@ -123,7 +129,7 @@ const App = () => {
   const [value, setValue] = React.useState('1');
 
   return (
-    <Grid container sx={{ border: 2, height: '96vh' }}>
+    <Grid container sx={{ border: 2, height: '92vh' }}>
       <Grid container sx={{ border: 1, marginRight: 0.5 }}>
         <TabContext value={value}>
           <Grid item xs={2.6} sx={styleAppMenu}>
