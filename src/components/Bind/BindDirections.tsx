@@ -9,12 +9,16 @@ import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
 import BindRight from './BindComponents/BindRight';
 import { styleBox, styleButtBox, styleXTG01 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG011, styleXTG02, styleXTG021 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG03, styleXTG0341 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG030, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
-import { styleXTG032Norm, styleXTG033Norm, styleXTG034Norm } from './BindComponents/BindDirectionsStyle';
+import { styleXTG032Norm, styleXTG033Norm } from './BindComponents/BindDirectionsStyle';
+import { styleXTG034Norm } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG035Norm, styleXTG036Norm } from './BindComponents/BindDirectionsStyle';
 
@@ -22,14 +26,14 @@ import { DateRPU } from './../../interfaceRPU.d';
 import { dateRpuGl } from './../../App';
 
 let dateRpu: DateRPU;
+//let open = false;
 
 const BindDirections = () => {
   dateRpu = dateRpuGl;
   const [size, setSize] = React.useState(0);
+
   let styleSetWidth = 650;
-
   if (size > 770) styleSetWidth = size - 50;
-
   let fSize = 10.5;
   if (size > 900) fSize = 14;
   let fSizeInp = 10.5;
@@ -37,15 +41,19 @@ const BindDirections = () => {
 
   let kolFaz = dateRpu.timetophases.length;
   let xss = 11 / kolFaz;
-
-  let masReds = [0, 0, 0];
+  let xsss = 0.75;
   let napr = '';
 
-  // const searchInput: any = React.useRef(null);
-  // React.useEffect(() => {
-  //   // current property is refered to input element
-  //   searchInput.current.focus();
-  // }, []);
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    console.log('open2:', open);
+    setOpen(false);
+    //open = false;
+  };
+
+  // const handleToggle = () => {
+  //   setOpen(!open);
+  // };
 
   const styleSet = {
     position: 'absolute',
@@ -127,13 +135,13 @@ const BindDirections = () => {
     return resStrHeaderBattomTab;
   };
 
-  const OutputTopTab = (chego: any, styleXX: any,) => {
+  const OutputTopTab = (chego: any, styleXX: any) => {
     return (
       <Grid xs={0.75} item sx={styleXX}>
         {chego}
       </Grid>
-    )
-  }
+    );
+  };
 
   const StrokaTopTabNormal = (i: number) => {
     let begin = dateRpu.tirtonap[i].num + napr;
@@ -164,14 +172,11 @@ const BindDirections = () => {
 
   const StrokaTopTabModal = (i: number) => {
     let begin = dateRpu.tirtonap[i].num + napr;
+    xsss = 0.75;
 
     return (
       <Grid container key={i}>
         {OutputTopTab(begin, styleXTG03)}
-        {/* <Grid xs={0.75} item sx={styleXTG03}>
-          {dateRpu.tirtonap[i].num}
-          {napr}
-        </Grid> */}
         {InputTopTab(dateRpu.tirtonap[i].green, styleXTG032, i, 1)}
         {InputTopTab(dateRpu.tirtonap[i].yellow, styleXTG033, i, 2)}
         {InputTopTab(dateRpu.tirtonap[i].reds[0], styleXTG034, i, 3)}
@@ -213,6 +218,7 @@ const BindDirections = () => {
         resStr.push(StrokaTopTabModal(i));
       }
     }
+    // handleClose();
     return resStr;
   };
 
@@ -262,6 +268,12 @@ const BindDirections = () => {
         break;
       case 16:
         dateRpu.prom[i].gd = chego;
+        break;
+      case 21:
+        dateRpu.timetophases[i].tmax = chego;
+        break;
+      case 22:
+        dateRpu.timetophases[i].tmin = chego;
     }
   };
 
@@ -278,14 +290,14 @@ const BindDirections = () => {
     };
 
     return (
-      <Grid xs={0.75} item sx={styleXX}>
+      <Grid xs={xsss} item sx={styleXX}>
         <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
           <TextField
             size="small"
             onKeyPress={handleKey} //отключение Enter
+            type={'number'}
             inputProps={{ style: { fontSize: fSizeInp } }} // font size of input text
             value={valuen}
-            //ref={searchInput}
             onChange={handleChange}
             variant="standard"
           />
@@ -296,6 +308,7 @@ const BindDirections = () => {
 
   const StrokaBattomTabMaxMin = (titl: string, mode: string) => {
     let resStr: any = [];
+    xsss = xss;
     resStr.push(
       <Grid item key={Math.random()} xs={1} sx={styleXTG030}>
         {titl}
@@ -303,7 +316,11 @@ const BindDirections = () => {
     );
     for (let i = 0; i < kolFaz; i++) {
       let j = dateRpu.timetophases[i].tmax;
-      if (titl !== 'Тмах') j = dateRpu.timetophases[i].tmin;
+      let numCol = 21;
+      if (titl !== 'Тмах') {
+        j = dateRpu.timetophases[i].tmin;
+        numCol = 22;
+      }
       if (mode === 'Normal') {
         resStr.push(
           <Grid item key={Math.random()} xs={xss} sx={styleXTG030}>
@@ -311,13 +328,8 @@ const BindDirections = () => {
           </Grid>,
         );
       } else {
-        resStr.push(
-          <Grid item key={Math.random()} xs={xss} sx={styleXTG030}>
-            {j}
-          </Grid>,
-        );
+        resStr.push(InputTopTab(j, styleXTG030, i, numCol));
       }
-
     }
     return resStr;
   };
@@ -366,7 +378,9 @@ const BindDirections = () => {
   };
 
   const OutputModalTop = () => {
+    console.log('open1:', open);
     fSizeInp = 16;
+
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -374,9 +388,19 @@ const BindDirections = () => {
           <Grid container>
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
               <HeaderTopTab />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>{MassTopTab('Modal')}</Box>
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>
+                <Backdrop
+                  sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}
+                  open={open}
+                  onClick={handleClose}>
+                  <CircularProgress color="inherit" />
+                </Backdrop>
+                {MassTopTab('Modal')}
+                {handleClose()}
+              </Box>
             </Grid>
           </Grid>
+          {/* {handleClose()} */}
         </Box>
       </Modal>
     );
@@ -413,6 +437,7 @@ const BindDirections = () => {
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
             <b>Привязка выходов</b>
           </Button>
+
           <OutputNormalTop />
           <TabPanel value="33">
             <OutputModalTop />
@@ -441,6 +466,7 @@ const BindDirections = () => {
   const handleOpenModal = (nom: string) => {
     setOpenSet(true);
     setValueTC(nom);
+    setOpen(true);
   };
 
   const ModalEnd = () => {
