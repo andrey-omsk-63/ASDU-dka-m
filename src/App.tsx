@@ -8,7 +8,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 //import Modal from '@mui/material/Modal';
 
-import axios from 'axios';
+//import axios from 'axios';
 
 import Condition from './components/Condition';
 import Technology from './components/Technology';

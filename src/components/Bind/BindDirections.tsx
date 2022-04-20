@@ -27,8 +27,44 @@ import { dateRpuGl } from './../../App';
 
 let dateRpu: DateRPU;
 
+//let massFaza: Array<Array<number>> = [[]];
+//let massFaza: any = [[]];
+let massFaza: any = Array.from({ length: 10 }, () => Array.from({ length: 200 }, () => 0));
+let flagMassFaza = true;
+
 const BindDirections = () => {
   dateRpu = dateRpuGl;
+  let kolFaz = dateRpu.timetophases.length;
+
+  //let massFaza = Array.from({ length: 8 }, () => Array.from({ length: 3 }, () => 0));
+  //let massFaza: any = [[-1]];
+  //let massFaza: any = Array.from({ length: 8 }, () => Array.from({ length: 3 }, () => 0));
+  //console.log('massFaza0:', massFaza, massFaza.length, massFaza[0][0]);
+  console.log('dateRpu.naptoph:', dateRpu.naptoph[0].naps);
+  if (flagMassFaza) {
+    // столбец
+    for (let i = 0; i < kolFaz; i++) {
+      // строка
+      for (let j = 0; j < dateRpu.tirtonap.length; j++) {
+        if (dateRpu.naptoph[i].naps.includes(j + 1)) {
+          massFaza[i][j] = j + 1;
+        }
+      }
+    }
+
+    // massFaza[0][0] = 1;
+    // massFaza[0][1] = 1;
+    // massFaza[0][2] = 2;
+    // // let masss = massFaza[0];
+    // // massFaza.push(masss);
+    // massFaza[1][0] = 3;
+    // massFaza[1][1] = 14;
+    // massFaza[1][2] = 5;
+    flagMassFaza = false;
+  }
+
+  console.log('massFaza:', massFaza, massFaza.length);
+
   const [size, setSize] = React.useState(0);
 
   let styleSetWidth = 650;
@@ -36,10 +72,9 @@ const BindDirections = () => {
   let fSize = 10.5;
   if (size > 900) fSize = 14;
   let fSizeInp = 10.5;
-  let widthBlok = size / 220;
+  let widthBlok = size / 110;
 
-  let kolFaz = dateRpu.timetophases.length;
-  let xss = 11 / kolFaz;
+  let xss = 11.25 / kolFaz;
   let xsss = 0.75;
   let napr = '';
 
@@ -66,13 +101,6 @@ const BindDirections = () => {
     boxShadow: 24,
     paddingRight: 3,
     paddingTop: 3,
-  };
-
-  const styleBoxForm = {
-    '& > :not(style)': {
-      marginTop: 2,
-      width: widthBlok.toString() + 'ch',
-    },
   };
 
   const HeaderTopTab = () => {
@@ -117,23 +145,6 @@ const BindDirections = () => {
     );
   };
 
-  const HeaderBattomTab = () => {
-    let resStrHeaderBattomTab = [];
-    resStrHeaderBattomTab.push(
-      <Grid item key={Math.random()} xs={1} sx={styleXTG021}>
-        <b>Фаза</b>
-      </Grid>,
-    );
-    for (let i = 0; i < kolFaz; i++) {
-      resStrHeaderBattomTab.push(
-        <Grid item key={Math.random()} xs={xss} sx={styleXTG021}>
-          <b>{i + 1}</b>
-        </Grid>,
-      );
-    }
-    return resStrHeaderBattomTab;
-  };
-
   const OutputTopTab = (chego: any, styleXX: any) => {
     return (
       <Grid xs={0.75} item sx={styleXX}>
@@ -172,6 +183,7 @@ const BindDirections = () => {
   const StrokaTopTabModal = (i: number) => {
     let begin = dateRpu.tirtonap[i].num + napr;
     xsss = 0.75;
+    widthBlok = size / 220;
 
     return (
       <Grid container key={i}>
@@ -197,27 +209,31 @@ const BindDirections = () => {
     );
   };
 
+  const ReadNapravlenie = (i: number) => {
+    switch (dateRpu.tirtonap[i].type) {
+      case 1:
+        napr = ' Тран';
+        break;
+      case 2:
+        napr = ' Пеш';
+        break;
+      case 3:
+        napr = ' Пов';
+    }
+  };
+
   const MassTopTab = (mode: string) => {
     let resStr = [];
 
     for (let i = 0; i < dateRpu.tirtonap.length; i++) {
-      switch (dateRpu.tirtonap[i].type) {
-        case 1:
-          napr = ' Тран';
-          break;
-        case 2:
-          napr = ' Пеш';
-          break;
-        case 3:
-          napr = ' Пов';
-      }
+      ReadNapravlenie(i);
       if (mode === 'Normal') {
         resStr.push(StrokaTopTabNormal(i));
       } else {
         resStr.push(StrokaTopTabModal(i));
       }
     }
-    Output()
+    Output();
     return resStr;
   };
 
@@ -279,6 +295,13 @@ const BindDirections = () => {
   const InputTopTab = (kuda: number, styleXX: any, i: number, numCol: number) => {
     const [valuen, setValuen] = React.useState(kuda);
 
+    const styleBoxForm = {
+      '& > :not(style)': {
+        marginTop: 2,
+        width: widthBlok.toString() + 'ch',
+      },
+    };
+
     const handleChange = (event: any) => {
       setValuen(event.target.value);
       RecordInDateRpu(i, numCol, event.target.value);
@@ -294,7 +317,7 @@ const BindDirections = () => {
           <TextField
             size="small"
             onKeyPress={handleKey} //отключение Enter
-            type='number'
+            type="number"
             inputProps={{ style: { fontSize: fSizeInp } }} // font size of input text
             value={valuen}
             onChange={handleChange}
@@ -305,11 +328,77 @@ const BindDirections = () => {
     );
   };
 
+  const OutputNormalTop = () => {
+    fSizeInp = fSize;
+    return (
+      <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '43.5vh' }}>
+        <HeaderTopTab />
+        <Box sx={{ height: '38vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
+      </Box>
+    );
+  };
+
+  const OutputModalTop = () => {
+    fSizeInp = 16;
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSet}>
+          <ModalEnd />
+          <Grid container>
+            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
+              <HeaderTopTab />
+              <Box sx={{ overflowX: 'auto', height: '88vh' }}>
+                {open ? <Loader /> : <>{MassTopTab('Modal')}</>}
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Modal>
+    );
+  };
+
+  const TopTab = () => {
+    return (
+      <TabContext value={valueTC}>
+        <Box sx={{ border: 0 }}>
+          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
+            <b>Привязка выходов</b>
+          </Button>
+          <OutputNormalTop />
+          <TabPanel value="33">
+            <OutputModalTop />
+          </TabPanel>
+        </Box>
+      </TabContext>
+    );
+  };
+
+  //========================================
+
+  const HeaderBattomTab = () => {
+    let resStrHeaderBattomTab = [];
+    resStrHeaderBattomTab.push(
+      <Grid item key={Math.random()} xs={0.75} sx={styleXTG021}>
+        <b>Фаза</b>
+      </Grid>,
+    );
+    for (let i = 0; i < kolFaz; i++) {
+      resStrHeaderBattomTab.push(
+        <Grid item key={Math.random()} xs={xss} sx={styleXTG021}>
+          <b>{i + 1}</b>
+        </Grid>,
+      );
+    }
+    return resStrHeaderBattomTab;
+  };
+
   const StrokaBattomTabMaxMin = (titl: string, mode: string) => {
     let resStr: any = [];
     xsss = xss;
+    widthBlok = size / 110;
+
     resStr.push(
-      <Grid item key={Math.random()} xs={1} sx={styleXTG030}>
+      <Grid item key={Math.random()} xs={0.75} sx={styleXTG030}>
         {titl}
       </Grid>,
     );
@@ -337,9 +426,11 @@ const BindDirections = () => {
     let resStr: any = [];
 
     for (let i = 0; i < dateRpu.tirtonap.length; i++) {
+      ReadNapravlenie(i);
       resStr.push(
-        <Grid item key={Math.random()} xs={1} sx={styleXTG03}>
+        <Grid item key={Math.random()} xs={0.75} sx={styleXTG03}>
           {i + 1}
+          {napr}
         </Grid>,
       );
       for (let j = 0; j < kolFaz; j++) {
@@ -347,16 +438,6 @@ const BindDirections = () => {
       }
     }
     return resStr;
-  };
-
-  const OutputNormalTop = () => {
-    fSizeInp = fSize;
-    return (
-      <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '43.5vh' }}>
-        <HeaderTopTab />
-        <Box sx={{ height: '38vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
-      </Box>
-    );
   };
 
   const OutputNormalBattom = () => {
@@ -373,41 +454,6 @@ const BindDirections = () => {
           </Grid>
         </Box>
       </Box>
-    );
-  };
-
-  const Output = () => {
-    React.useEffect(() => {
-      setTimeout(() => {
-        setOpen(false);
-      }, 100);
-    }, []);
-  }
-
-  const Loader = () => {
-    return (
-      <Backdrop sx={styleBackdrop} open={open} onClick={handleClose}      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    )
-  }
-
-  const OutputModalTop = () => {
-    fSizeInp = 16;
-    return (
-      <Modal open={openSet} onClose={handleCloseSet}>
-        <Box sx={styleSet}>
-          <ModalEnd />
-          <Grid container>
-            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
-              <HeaderTopTab />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>
-                {open ? <Loader /> : <>{MassTopTab('Modal')}</>}
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Modal>
     );
   };
 
@@ -436,23 +482,6 @@ const BindDirections = () => {
     );
   };
 
-  const TopTab = () => {
-    return (
-      <TabContext value={valueTC}>
-        <Box sx={{ border: 0 }}>
-          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
-            <b>Привязка выходов</b>
-          </Button>
-          <OutputNormalTop />
-          <TabPanel value="33">
-            {/* {console.log('open3:', open)} */}
-            <OutputModalTop />
-          </TabPanel>
-        </Box>
-      </TabContext>
-    );
-  };
-
   const BattomTab = () => {
     return (
       <TabContext value={valueTC}>
@@ -466,6 +495,24 @@ const BindDirections = () => {
           </TabPanel>
         </Box>
       </TabContext>
+    );
+  };
+
+  //========================================
+
+  const Output = () => {
+    React.useEffect(() => {
+      setTimeout(() => {
+        setOpen(false);
+      }, 100);
+    }, []);
+  };
+
+  const Loader = () => {
+    return (
+      <Backdrop sx={styleBackdrop} open={open} onClick={handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     );
   };
 
@@ -507,7 +554,6 @@ const BindDirections = () => {
   };
 
   //отслеживание изменения размера экрана
-
   React.useLayoutEffect(() => {
     function updateSize() {
       setSize(window.innerWidth);
@@ -516,7 +562,6 @@ const BindDirections = () => {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-
 
   const BindLeft = () => {
     return (
