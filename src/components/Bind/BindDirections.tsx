@@ -26,7 +26,6 @@ import { DateRPU } from './../../interfaceRPU.d';
 import { dateRpuGl } from './../../App';
 
 let dateRpu: DateRPU;
-//let open = false;
 
 const BindDirections = () => {
   dateRpu = dateRpuGl;
@@ -48,12 +47,12 @@ const BindDirections = () => {
   const handleClose = () => {
     console.log('open2:', open);
     setOpen(false);
-    //open = false;
   };
 
-  // const handleToggle = () => {
-  //   setOpen(!open);
-  // };
+  const styleBackdrop = {
+    color: '#fff',
+    zIndex: (theme: any) => theme.zIndex.drawer + 1,
+  };
 
   const styleSet = {
     position: 'absolute',
@@ -218,7 +217,7 @@ const BindDirections = () => {
         resStr.push(StrokaTopTabModal(i));
       }
     }
-    // handleClose();
+    Output()
     return resStr;
   };
 
@@ -290,12 +289,12 @@ const BindDirections = () => {
     };
 
     return (
-      <Grid xs={xsss} item sx={styleXX}>
+      <Grid xs={xsss} key={Math.random()} item sx={styleXX}>
         <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
           <TextField
             size="small"
             onKeyPress={handleKey} //отключение Enter
-            type={'number'}
+            type='number'
             inputProps={{ style: { fontSize: fSizeInp } }} // font size of input text
             value={valuen}
             onChange={handleChange}
@@ -337,7 +336,7 @@ const BindDirections = () => {
   const StrokaBattomTab = () => {
     let resStr: any = [];
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < dateRpu.tirtonap.length; i++) {
       resStr.push(
         <Grid item key={Math.random()} xs={1} sx={styleXTG03}>
           {i + 1}
@@ -355,7 +354,7 @@ const BindDirections = () => {
     return (
       <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '43.5vh' }}>
         <HeaderTopTab />
-        <Box sx={{ height: '39vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
+        <Box sx={{ height: '38vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
       </Box>
     );
   };
@@ -368,7 +367,7 @@ const BindDirections = () => {
           {StrokaBattomTabMaxMin('Тмах', 'Normal')}
           {StrokaBattomTabMaxMin('Тмин', 'Normal')}
         </Grid>
-        <Box sx={{ height: '28.2vh', overflowX: 'auto' }}>
+        <Box sx={{ height: '27.2vh', overflowX: 'auto' }}>
           <Grid item container xs={12}>
             {StrokaBattomTab()}
           </Grid>
@@ -377,15 +376,24 @@ const BindDirections = () => {
     );
   };
 
+  const Output = () => {
+    React.useEffect(() => {
+      setTimeout(() => {
+        setOpen(false);
+      }, 100);
+    }, []);
+  }
+
+  const Loader = () => {
+    return (
+      <Backdrop sx={styleBackdrop} open={open} onClick={handleClose}      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    )
+  }
+
   const OutputModalTop = () => {
-    console.log('open1:', open);
     fSizeInp = 16;
-
-    const styleBackdrop = {
-      color: '#fff',
-      zIndex: (theme: any) => theme.zIndex.drawer + 1,
-    };
-
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -394,11 +402,7 @@ const BindDirections = () => {
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
               <HeaderTopTab />
               <Box sx={{ overflowX: 'auto', height: '88vh' }}>
-                <Backdrop sx={styleBackdrop} open={open} onClick={handleClose}>
-                  <CircularProgress color="inherit" />
-                </Backdrop>
-                {MassTopTab('Modal')}
-                {handleClose()}
+                {open ? <Loader /> : <>{MassTopTab('Modal')}</>}
               </Box>
             </Grid>
           </Grid>
@@ -408,6 +412,7 @@ const BindDirections = () => {
   };
 
   const OutputModalBattom = () => {
+    fSizeInp = 16;
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -438,9 +443,9 @@ const BindDirections = () => {
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
             <b>Привязка выходов</b>
           </Button>
-
           <OutputNormalTop />
           <TabPanel value="33">
+            {/* {console.log('open3:', open)} */}
             <OutputModalTop />
           </TabPanel>
         </Box>
@@ -494,7 +499,6 @@ const BindDirections = () => {
   const [openSet, setOpenSet] = React.useState(false);
 
   const handleCloseSet = (event: any, reason: string) => {
-    prompt('handleCloseSet');
     if (reason !== 'backdropClick') setOpenSet(false);
   };
 
@@ -512,7 +516,7 @@ const BindDirections = () => {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-  //prompt('3')
+
 
   const BindLeft = () => {
     return (

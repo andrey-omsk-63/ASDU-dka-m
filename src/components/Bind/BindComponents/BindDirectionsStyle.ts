@@ -9,7 +9,7 @@ export const styleButtBox = {
   fontSize: 19,
   maxHeight: '21px',
   minHeight: '21px',
-  marginTop: -2.4,
+  marginTop: -1.5,
   backgroundColor: 'white',
   color: '#5B1080',
   textTransform: 'unset !important',
@@ -42,7 +42,7 @@ export const styleXTG021 = {
   borderColor: 'primary.main',
   textAlign: 'center',
   backgroundColor: '#C0C0C0',
-  paddingTop: 1.2,
+  paddingTop: 1.8,
 };
 
 export const styleXTG03 = {

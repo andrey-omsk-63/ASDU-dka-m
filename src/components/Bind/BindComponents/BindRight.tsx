@@ -34,7 +34,7 @@ const BindRight = () => {
     fontSize: 18,
     maxHeight: '21px',
     minHeight: '21px',
-    marginTop: -3,
+    marginTop: -2.0,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',

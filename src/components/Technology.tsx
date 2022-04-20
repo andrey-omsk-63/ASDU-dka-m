@@ -38,7 +38,7 @@ const Technology = () => {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    marginTop: '-0.8vh',
+    marginTop: '-0.6vh',
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',

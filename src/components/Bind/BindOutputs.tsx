@@ -30,7 +30,8 @@ const BindOutputs = () => {
     fontSize: 19,
     maxHeight: '21px',
     minHeight: '21px',
-    marginTop: -3.5,
+    marginTop: '-1.8vh',
+    //marginTop: -3.5,
     backgroundColor: 'white',
     color: '#5B1080',
     textTransform: 'unset !important',
@@ -41,7 +42,7 @@ const BindOutputs = () => {
     borderColor: 'primary.main',
     textAlign: 'center',
     backgroundColor: '#C0C0C0',
-    paddingTop: 1,
+    paddingTop: 2,
   };
 
   const styleXTG03 = {
@@ -129,14 +130,14 @@ const BindOutputs = () => {
 
   const OutputNormal = () => {
     return (
-      <Box sx={{ height: '85vh', marginTop: -3, fontSize: fSize }}>
+      <Box sx={{ height: '85vh', marginTop: -2.5, fontSize: fSize }}>
         <HeaderLBindOutputs />
-        <Box sx={{ overflowX: 'auto', height: '78vh' }}>{StrokaBindOutputs()}</Box>
+        <Box sx={{ overflowX: 'auto', height: '76vh' }}>{StrokaBindOutputs()}</Box>
       </Box>
     );
   };
 
-  const OutputModal = (props: { Size: any }) => {
+  const OutputModal = () => {
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
@@ -217,7 +218,7 @@ const BindOutputs = () => {
             </Button>
             <OutputNormal />
             <TabPanel value="33">
-              <OutputModal Size={size} />
+              <OutputModal />
             </TabPanel>
           </Box>
         </TabContext>

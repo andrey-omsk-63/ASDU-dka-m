@@ -129,8 +129,8 @@ const App = () => {
   const [value, setValue] = React.useState('1');
 
   return (
-    <Grid container sx={{ border: 2, height: '92vh' }}>
-      <Grid container sx={{ border: 1, marginRight: 0.5 }}>
+    <Grid container sx={{ border: 0, height: '92vh' }}>
+      <Grid container sx={{ border: 0, marginRight: 0.5 }}>
         <TabContext value={value}>
           <Grid item xs={2.6} sx={styleAppMenu}>
             <Stack direction="column">
