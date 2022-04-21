@@ -117,9 +117,18 @@ export const styleXTG0341 = {
   borderRight: 1,
   borderBottom: 1,
   borderColor: 'primary.main',
-  backgroundColor: '#FE929A',
+  backgroundColor: '#FE929A',  //красный
   textAlign: 'center',
-  paddingLeft: 0.1,
+  //paddingLeft: 0.1,
+};
+
+export const styleXTG0342 = {
+  borderRight: 1,
+  borderBottom: 1,
+  borderColor: 'primary.main',
+  backgroundColor: '#59CB68',  //зелёный
+  textAlign: 'center',
+  //paddingLeft: 0.1,
 };
 
 export const styleXTG035 = {
