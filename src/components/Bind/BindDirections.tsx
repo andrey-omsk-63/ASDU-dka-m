@@ -29,6 +29,8 @@ let dateRpu: DateRPU;
 
 let massFaza: Array<Array<number>> = [[]];
 let flagMassFaza = true;
+let colonkaGlob = 0;
+let strokaGlob = 0;
 
 const BindDirections = () => {
   dateRpu = dateRpuGl;
@@ -36,7 +38,9 @@ const BindDirections = () => {
 
   // инициализация massFaza
   if (flagMassFaza) {
-    massFaza = Array.from({ length: kolFaz }, () => Array.from({ length: dateRpu.tirtonap.length }, () => 0));
+    massFaza = Array.from({ length: kolFaz }, () =>
+      Array.from({ length: dateRpu.tirtonap.length }, () => 0),
+    );
     // i - столбец
     for (let i = 0; i < kolFaz; i++) {
       // j - строка
@@ -60,7 +64,7 @@ const BindDirections = () => {
   if (size > 800) widthButtBatt = '12vh';
   if (size > 1100) widthButtBatt = '18vh';
   let heightButtBatt = '4.2vh';
-  if (size > 880) heightButtBatt = '3vh';
+  if (size > 880) heightButtBatt = '8.4vh';
   let fSizeInp = 10.5;
   let widthBlok = size / 110;
 
@@ -87,17 +91,19 @@ const BindDirections = () => {
     paddingTop: 3,
   };
 
-
   const ReadNapravlenie = (i: number) => {
     switch (dateRpu.tirtonap[i].type) {
       case 1:
         napr = ' Тран';
+        if (size > 800) napr = ' Трансп.';
         break;
       case 2:
         napr = ' Пеш';
+        if (size > 800) napr = ' Пешех.';
         break;
       case 3:
         napr = ' Пов';
+        if (size > 800) napr = ' Повор.';
     }
   };
 
@@ -299,7 +305,6 @@ const BindDirections = () => {
     );
   };
 
-
   const MassTopTab = (mode: string) => {
     let resStr = [];
 
@@ -413,47 +418,58 @@ const BindDirections = () => {
     height: heightButtBatt,
     width: widthButtBatt,
     backgroundColor: '#FE929A',
-    //color: '#FE929A',
   };
 
   const styleButtBattGreen = {
     height: heightButtBatt,
     width: widthButtBatt,
     backgroundColor: '#59CB68',
-    //color: '#59CB68',
   };
 
   const handleClickBattomTab = (i: number, j: number) => {
-    console.log('handleClic:', i, j)
+    colonkaGlob = i;
+    strokaGlob = j;
+    console.log('handleClic:', i, j);
+    console.log('massFaza[i][j]:', massFaza[i][j]);
+    if (massFaza[i][j] === 0) {
+      massFaza[i][j] = j + 1;
+    } else {
+      massFaza[i][j] = 0;
+    }
+    console.log('massFazaNew:', massFaza);
   };
 
   const StrokaBattomTab = (mode: string) => {
     let resStr: any = [];
-    let styleXX = styleXTG0341
+    let styleXX = styleXTG0341;
     let styleXXX = styleButtBattGreen;
 
     for (let j = 0; j < dateRpu.tirtonap.length; j++) {
       ReadNapravlenie(j);
-      let begin = (j + 1) + napr;
-      resStr.push(OutputTopTab(begin, styleXTG03),);
+      let begin = j + 1 + napr;
+      resStr.push(OutputTopTab(begin, styleXTG03));
       for (let i = 0; i < kolFaz; i++) {
         styleXX = styleXTG0341;
         styleXXX = styleButtBattRed;
+        //styleXXX = styleButtBattGreen;
         if (massFaza[i][j] > 0) {
           styleXX = styleXTG0342;
           styleXXX = styleButtBattGreen;
+          //styleXXX = styleButtBattRed;
         }
         if (mode !== 'Modal') {
-          resStr.push(<Grid item key={Math.random()} xs={xss} sx={styleXX}></Grid>)
+          resStr.push(<Grid item key={Math.random()} xs={xss} sx={styleXX}></Grid>);
         } else {
           resStr.push(
             <Grid item key={Math.random()} xs={xss} sx={styleXX}>
               <Button
                 key={i}
                 sx={styleXXX}
-                onClick={() => handleClickBattomTab(i, j)}>
-              </Button>
-            </Grid>);
+                // target={'_blank'}
+                // href="www.tukaweb.com"
+                onClick={() => handleClickBattomTab(i, j)}></Button>
+            </Grid>,
+          );
         }
       }
     }
@@ -477,20 +493,32 @@ const BindDirections = () => {
     );
   };
 
-  const OutputModalBattom = () => {
+  // const ReBuildTabl = (props: { colonka: number; stroka: number }) => {
+  //   return (
+  //     <Grid item container xs={12}>
+  //       {StrokaBattomTab('Modal')}
+  //     </Grid>
+  //   );
+  // };
+
+  const OutputModalBattom = (props: { colonka: number; stroka: number }) => {
     fSizeInp = 16;
+    let fntSize = 18;
+    if (size > 1200) fntSize = 23;
+    if (size > 1500) fntSize = 28;
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
           <ModalEnd />
           <Grid container>
-            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 18 }}>
+            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: fntSize }}>
               <Grid item container xs={12}>
                 {HeaderBattomTab()}
                 {StrokaBattomTabMaxMin('Тмах', 'Modal')}
                 {StrokaBattomTabMaxMin('Тмин', 'Modal')}
               </Grid>
-              <Box sx={{ overflowX: 'auto', height: '82vh' }}>
+              <Box sx={{ overflowX: 'auto', height: '77vh' }}>
+                {/* <ReBuildTabl colonka={colonkaGlob} stroka={strokaGlob} /> */}
                 <Grid item container xs={12}>
                   {StrokaBattomTab('Modal')}
                 </Grid>
@@ -511,7 +539,7 @@ const BindDirections = () => {
           </Button>
           <OutputNormalBattom />
           <TabPanel value="69">
-            <OutputModalBattom />
+            <OutputModalBattom colonka={colonkaGlob} stroka={strokaGlob} />
           </TabPanel>
         </Box>
       </TabContext>
