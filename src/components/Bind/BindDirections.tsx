@@ -29,8 +29,10 @@ let dateRpu: DateRPU;
 
 let massFaza: Array<Array<number>> = [[]];
 let flagMassFaza = true;
-let colonkaGlob = 0;
-let strokaGlob = 0;
+//let needRend = -1
+
+//let colonkaGlob = 0;
+//let strokaGlob = 0;
 
 const BindDirections = () => {
   dateRpu = dateRpuGl;
@@ -51,20 +53,21 @@ const BindDirections = () => {
       }
     }
     flagMassFaza = false;
-    console.log('massFaza:', massFaza, massFaza.length);
+    console.log('massFaza:', massFaza, Math.random());
   }
 
   const [size, setSize] = React.useState(0);
+  let sizeGl = window.innerWidth;
 
   let styleSetWidth = 650;
-  if (size > 770) styleSetWidth = size - 50;
+  if (sizeGl > 770) styleSetWidth = sizeGl - 50;
   let fSize = 10.5;
-  if (size > 900) fSize = 14;
+  if (sizeGl > 900) fSize = 14;
   let widthButtBatt = '6vh';
-  if (size > 800) widthButtBatt = '12vh';
-  if (size > 1100) widthButtBatt = '18vh';
+  if (sizeGl > 800) widthButtBatt = '12vh';
+  if (sizeGl > 1100) widthButtBatt = '18vh';
   let heightButtBatt = '4.2vh';
-  if (size > 880) heightButtBatt = '8.4vh';
+  if (sizeGl > 880) heightButtBatt = '8.4vh';
   let fSizeInp = 10.5;
   let widthBlok = size / 110;
 
@@ -165,6 +168,7 @@ const BindDirections = () => {
   const InputTopTab = (kuda: number, styleXX: any, i: number, numCol: number) => {
     const [valuen, setValuen] = React.useState(kuda);
 
+
     const styleBoxForm = {
       '& > :not(style)': {
         marginTop: 2,
@@ -174,6 +178,7 @@ const BindDirections = () => {
 
     const handleChange = (event: any) => {
       setValuen(event.target.value);
+      // let biba = event.target.value;
       RecordInDateRpu(i, numCol, event.target.value);
     };
 
@@ -182,7 +187,8 @@ const BindDirections = () => {
     };
 
     return (
-      <Grid xs={xsss} key={Math.random()} item sx={styleXX}>
+      // <Grid xs={xsss} key={Math.random()} item sx={styleXX}>
+      <Grid xs={xsss} item sx={styleXX}>
         <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
           <TextField
             size="small"
@@ -279,7 +285,7 @@ const BindDirections = () => {
   const StrokaTopTabModal = (i: number) => {
     let begin = dateRpu.tirtonap[i].num + napr;
     xsss = 0.75;
-    widthBlok = size / 220;
+    widthBlok = sizeGl / 220;
 
     return (
       <Grid container key={i}>
@@ -387,7 +393,7 @@ const BindDirections = () => {
   const StrokaBattomTabMaxMin = (titl: string, mode: string) => {
     let resStr: any = [];
     xsss = xss;
-    widthBlok = size / 110;
+    widthBlok = sizeGl / 110;
 
     resStr.push(
       <Grid item key={Math.random()} xs={0.75} sx={styleXTG030}>
@@ -427,16 +433,13 @@ const BindDirections = () => {
   };
 
   const handleClickBattomTab = (i: number, j: number) => {
-    colonkaGlob = i;
-    strokaGlob = j;
-    console.log('handleClic:', i, j);
-    console.log('massFaza[i][j]:', massFaza[i][j]);
     if (massFaza[i][j] === 0) {
       massFaza[i][j] = j + 1;
     } else {
       massFaza[i][j] = 0;
     }
-    console.log('massFazaNew:', massFaza);
+    setSize(window.innerWidth + Math.random())
+    console.log('massFazaNew:', massFaza,);
   };
 
   const StrokaBattomTab = (mode: string) => {
@@ -463,10 +466,8 @@ const BindDirections = () => {
           resStr.push(
             <Grid item key={Math.random()} xs={xss} sx={styleXX}>
               <Button
-                key={i}
+                // key={i}
                 sx={styleXXX}
-                // target={'_blank'}
-                // href="www.tukaweb.com"
                 onClick={() => handleClickBattomTab(i, j)}></Button>
             </Grid>,
           );
@@ -493,33 +494,25 @@ const BindDirections = () => {
     );
   };
 
-  // const ReBuildTabl = (props: { colonka: number; stroka: number }) => {
-  //   return (
-  //     <Grid item container xs={12}>
-  //       {StrokaBattomTab('Modal')}
-  //     </Grid>
-  //   );
-  // };
-
-  const OutputModalBattom = (props: { colonka: number; stroka: number }) => {
+  const OutputModalBattom = () => {
     fSizeInp = 16;
     let fntSize = 18;
-    if (size > 1200) fntSize = 23;
-    if (size > 1500) fntSize = 28;
+    if (sizeGl > 1200) fntSize = 21;
+    if (sizeGl > 1500) fntSize = 27;
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
           <ModalEnd />
           <Grid container>
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: fntSize }}>
-              <Grid item container xs={12}>
+              <Grid container>
                 {HeaderBattomTab()}
-                {StrokaBattomTabMaxMin('Тмах', 'Modal')}
-                {StrokaBattomTabMaxMin('Тмин', 'Modal')}
+                {StrokaBattomTabMaxMin('Тмах', 'Normal')}
+                {StrokaBattomTabMaxMin('Тмин', 'Normal')}
               </Grid>
-              <Box sx={{ overflowX: 'auto', height: '77vh' }}>
-                {/* <ReBuildTabl colonka={colonkaGlob} stroka={strokaGlob} /> */}
+              <Box sx={{ overflowX: 'auto', height: '69vh' }}>
                 <Grid item container xs={12}>
+
                   {StrokaBattomTab('Modal')}
                 </Grid>
               </Box>
@@ -539,7 +532,7 @@ const BindDirections = () => {
           </Button>
           <OutputNormalBattom />
           <TabPanel value="69">
-            <OutputModalBattom colonka={colonkaGlob} stroka={strokaGlob} />
+            <OutputModalBattom />
           </TabPanel>
         </Box>
       </TabContext>
@@ -615,6 +608,30 @@ const BindDirections = () => {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
+
+  // const [sizeRend, setSizeRend] = React.useState([0, 0]);
+
+  //   React.useLayoutEffect(() => {
+  //     function updateSize() {
+  //       setSizeRend([window.innerWidth, needRend]);
+  //     }
+  //     window.addEventListener('resize', updateSize);
+  //     updateSize();
+  //     return () => window.removeEventListener('resize', updateSize);
+  //   }, []);
+  //   console.log('needRend:', needRend)
+
+
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     setSizeRend([window.innerWidth, needRend]);
+  //   }
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   return () => window.removeEventListener('resize', updateSize);
+  // }, []);
+
+
 
   const BindLeft = () => {
     return (
