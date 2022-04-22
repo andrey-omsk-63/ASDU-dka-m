@@ -63,9 +63,10 @@ const BindDirections = () => {
   if (sizeGl > 770) styleSetWidth = sizeGl - 50;
   let fSize = 10.5;
   if (sizeGl > 900) fSize = 14;
-  let widthButtBatt = '6vh';
-  if (sizeGl > 800) widthButtBatt = '12vh';
-  if (sizeGl > 1100) widthButtBatt = '18vh';
+  let widthButtBatt = '7vh';
+  if (sizeGl > 800) widthButtBatt = '14vh';
+  if (sizeGl > 1100) widthButtBatt = '19.5vh';
+  if (sizeGl > 1500) widthButtBatt = '25vh';
   let heightButtBatt = '4.2vh';
   if (sizeGl > 880) heightButtBatt = '8.4vh';
   let fSizeInp = 10.5;
@@ -168,7 +169,6 @@ const BindDirections = () => {
   const InputTopTab = (kuda: number, styleXX: any, i: number, numCol: number) => {
     const [valuen, setValuen] = React.useState(kuda);
 
-
     const styleBoxForm = {
       '& > :not(style)': {
         marginTop: 2,
@@ -178,7 +178,6 @@ const BindDirections = () => {
 
     const handleChange = (event: any) => {
       setValuen(event.target.value);
-      // let biba = event.target.value;
       RecordInDateRpu(i, numCol, event.target.value);
     };
 
@@ -187,8 +186,7 @@ const BindDirections = () => {
     };
 
     return (
-      // <Grid xs={xsss} key={Math.random()} item sx={styleXX}>
-      <Grid xs={xsss} item sx={styleXX}>
+      <Grid item xs={xsss} sx={styleXX}>
         <Box component="form" sx={styleBoxForm} noValidate autoComplete="off">
           <TextField
             size="small"
@@ -409,12 +407,16 @@ const BindDirections = () => {
       }
       if (mode === 'Normal') {
         resStr.push(
-          <Grid item key={Math.random()} xs={xss} sx={styleXTG030}>
+          <Grid item key={i} xs={xss} sx={styleXTG030}>
             {j}
           </Grid>,
         );
       } else {
-        resStr.push(InputTopTab(j, styleXTG030, i, numCol));
+        resStr.push(
+          <Grid item key={i} xs={xss} sx={styleXTG030}>
+            {InputTopTab(j, styleXTG030, i, numCol)}
+          </Grid>,
+        );
       }
     }
     return resStr;
@@ -438,8 +440,8 @@ const BindDirections = () => {
     } else {
       massFaza[i][j] = 0;
     }
-    setSize(window.innerWidth + Math.random())
-    console.log('massFazaNew:', massFaza,);
+    setSize(window.innerWidth + Math.random());
+    //console.log('massFazaNew:', massFaza);
   };
 
   const StrokaBattomTab = (mode: string) => {
@@ -465,10 +467,7 @@ const BindDirections = () => {
         } else {
           resStr.push(
             <Grid item key={Math.random()} xs={xss} sx={styleXX}>
-              <Button
-                // key={i}
-                sx={styleXXX}
-                onClick={() => handleClickBattomTab(i, j)}></Button>
+              <Button sx={styleXXX} onClick={() => handleClickBattomTab(i, j)}></Button>
             </Grid>,
           );
         }
@@ -503,21 +502,18 @@ const BindDirections = () => {
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
           <ModalEnd />
-          <Grid container>
-            <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: fntSize }}>
-              <Grid container>
-                {HeaderBattomTab()}
-                {StrokaBattomTabMaxMin('Тмах', 'Normal')}
-                {StrokaBattomTabMaxMin('Тмин', 'Normal')}
-              </Grid>
-              <Box sx={{ overflowX: 'auto', height: '69vh' }}>
-                <Grid item container xs={12}>
-
-                  {StrokaBattomTab('Modal')}
-                </Grid>
-              </Box>
+          <Box sx={{ marginRight: 1, marginTop: -3, fontSize: fntSize }}>
+            <Grid item container xs={12}>
+              {HeaderBattomTab()}
+              {StrokaBattomTabMaxMin('Тмах', 'Modal')}
+              {StrokaBattomTabMaxMin('Тмин', 'Modal')}
             </Grid>
-          </Grid>
+            <Box sx={{ overflowX: 'auto', height: '69vh' }}>
+              <Grid item container xs={12}>
+                {StrokaBattomTab('Modal')}
+              </Grid>
+            </Box>
+          </Box>
         </Box>
       </Modal>
     );
@@ -621,7 +617,6 @@ const BindDirections = () => {
   //   }, []);
   //   console.log('needRend:', needRend)
 
-
   // React.useLayoutEffect(() => {
   //   function updateSize() {
   //     setSizeRend([window.innerWidth, needRend]);
@@ -630,8 +625,6 @@ const BindDirections = () => {
   //   updateSize();
   //   return () => window.removeEventListener('resize', updateSize);
   // }, []);
-
-
 
   const BindLeft = () => {
     return (
