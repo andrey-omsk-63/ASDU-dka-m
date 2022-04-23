@@ -1,3 +1,15 @@
+export const styleModalEnd = {
+  position: 'absolute',
+  top: '0%',
+  left: 'auto',
+  right: '-2%',
+  maxHeight: '21px',
+  minHeight: '21px',
+  width: '6%',
+  fontSize: 19,
+  color: 'black',
+};
+
 export const styleBox = {
   border: 1,
   borderRadius: 1,
@@ -20,14 +32,14 @@ export const styleXTG01 = {
   borderColor: 'primary.main',
   textAlign: 'center',
   backgroundColor: '#C0C0C0',
-  paddingTop: 1,
+  paddingTop: 1.5,
 };
 
 export const styleXTG011 = {
   borderColor: 'primary.main',
   textAlign: 'center',
   backgroundColor: '#C0C0C0',
-  paddingTop: 1,
+  paddingTop: 1.5,
 };
 
 export const styleXTG02 = {
@@ -117,7 +129,7 @@ export const styleXTG0341 = {
   borderRight: 1,
   borderBottom: 1,
   borderColor: 'primary.main',
-  backgroundColor: '#FE929A',  //красный
+  backgroundColor: '#FE929A', //красный
   textAlign: 'center',
   //paddingLeft: 0.1,
 };
@@ -126,7 +138,7 @@ export const styleXTG0342 = {
   borderRight: 1,
   borderBottom: 1,
   borderColor: 'primary.main',
-  backgroundColor: '#59CB68',  //зелёный
+  backgroundColor: '#59CB68', //зелёный
   textAlign: 'center',
   //paddingLeft: 0.1,
 };

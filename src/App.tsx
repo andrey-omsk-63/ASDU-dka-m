@@ -35,7 +35,6 @@ const App = () => {
     borderColor: '#F1F5FB',
     marginLeft: 0.5,
     marginTop: 0.7,
-    //height: '92vh',
     height: '85vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
@@ -115,7 +114,8 @@ const App = () => {
   //   });
   // }, []);
 
-  if (flagOpenRpu) {         // костыль
+  if (flagOpenRpu) {
+    // костыль
     setPointsRpu(dataRpu);
     setIsOpenRpu(true);
   }

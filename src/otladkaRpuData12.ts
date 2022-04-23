@@ -29,6 +29,26 @@ export const dataRpu = {
       naps: [3, 5],
     },
     {
+      nph: 1,
+      naps: [2, 4, 7],
+    },
+    {
+      nph: 2,
+      naps: [1, 5, 8],
+    },
+    {
+      nph: 3,
+      naps: [3, 4, 5, 6],
+    },
+    {
+      nph: 4,
+      naps: [2, 4],
+    },
+    {
+      nph: 5,
+      naps: [1, 5],
+    },
+    {
       nph: 7,
       naps: [4, 6],
     },
@@ -140,6 +160,31 @@ export const dataRpu = {
     },
     {
       nphase: 7,
+      tmax: 255,
+      tmin: 10,
+    },
+    {
+      nphase: 1,
+      tmax: 255,
+      tmin: 10,
+    },
+    {
+      nphase: 2,
+      tmax: 255,
+      tmin: 10,
+    },
+    {
+      nphase: 3,
+      tmax: 255,
+      tmin: 10,
+    },
+    {
+      nphase: 4,
+      tmax: 255,
+      tmin: 10,
+    },
+    {
+      nphase: 5,
       tmax: 255,
       tmin: 10,
     },

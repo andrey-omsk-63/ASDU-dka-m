@@ -18,7 +18,7 @@ import { styleXTG011, styleXTG02, styleXTG021 } from './BindComponents/BindDirec
 import { styleXTG03, styleXTG0341, styleXTG0342 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG030, styleXTG032, styleXTG033 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG032Norm, styleXTG033Norm } from './BindComponents/BindDirectionsStyle';
-import { styleXTG034Norm } from './BindComponents/BindDirectionsStyle';
+import { styleModalEnd, styleXTG034Norm } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG035Norm, styleXTG036Norm } from './BindComponents/BindDirectionsStyle';
 
@@ -29,10 +29,6 @@ let dateRpu: DateRPU;
 
 let massFaza: Array<Array<number>> = [[]];
 let flagMassFaza = true;
-//let needRend = -1
-
-//let colonkaGlob = 0;
-//let strokaGlob = 0;
 
 const BindDirections = () => {
   dateRpu = dateRpuGl;
@@ -53,7 +49,7 @@ const BindDirections = () => {
       }
     }
     flagMassFaza = false;
-    console.log('massFaza:', massFaza, Math.random());
+    //console.log('massFaza:', massFaza, Math.random());
   }
 
   const [size, setSize] = React.useState(0);
@@ -63,14 +59,11 @@ const BindDirections = () => {
   if (sizeGl > 770) styleSetWidth = sizeGl - 50;
   let fSize = 10.5;
   if (sizeGl > 900) fSize = 14;
-  let widthButtBatt = '7vh';
-  if (sizeGl > 800) widthButtBatt = '14vh';
-  if (sizeGl > 1100) widthButtBatt = '19.5vh';
-  if (sizeGl > 1500) widthButtBatt = '25vh';
+
+  let widthButtBatt = (sizeGl / (kolFaz + 1) - 6).toString() + 'px';
   let heightButtBatt = '4.2vh';
   if (sizeGl > 880) heightButtBatt = '8.4vh';
   let fSizeInp = 10.5;
-  let widthBlok = size / 110;
 
   let xss = 11.25 / kolFaz;
   let xsss = 0.75;
@@ -168,17 +161,27 @@ const BindDirections = () => {
 
   const InputTopTab = (kuda: number, styleXX: any, i: number, numCol: number) => {
     const [valuen, setValuen] = React.useState(kuda);
+    let maxi = 64;
+    let widthBlok = (sizeGl / 110 - 3).toString() + 'ch';
+    if (numCol > 20) {
+      maxi = 300;
+      widthBlok = (sizeGl / (kolFaz + 1) - 7).toString() + 'px';
+    }
 
     const styleBoxForm = {
       '& > :not(style)': {
         marginTop: 2,
-        width: widthBlok.toString() + 'ch',
+        width: widthBlok,
       },
     };
 
     const handleChange = (event: any) => {
-      setValuen(event.target.value);
-      RecordInDateRpu(i, numCol, event.target.value);
+      let valueInp = event.target.value;
+      if (valueInp > maxi) valueInp = maxi;
+      if (valueInp < 0) valueInp = 0;
+      setValuen(valueInp);
+
+      RecordInDateRpu(i, numCol, valueInp);
     };
 
     const handleKey = (event: any) => {
@@ -192,7 +195,7 @@ const BindDirections = () => {
             size="small"
             onKeyPress={handleKey} //отключение Enter
             type="number"
-            inputProps={{ style: { fontSize: fSizeInp } }} // font size of input text
+            inputProps={{ min: 0, max: maxi, style: { fontSize: fSizeInp } }}
             value={valuen}
             onChange={handleChange}
             variant="standard"
@@ -283,7 +286,6 @@ const BindDirections = () => {
   const StrokaTopTabModal = (i: number) => {
     let begin = dateRpu.tirtonap[i].num + napr;
     xsss = 0.75;
-    widthBlok = sizeGl / 220;
 
     return (
       <Grid container key={i}>
@@ -391,7 +393,7 @@ const BindDirections = () => {
   const StrokaBattomTabMaxMin = (titl: string, mode: string) => {
     let resStr: any = [];
     xsss = xss;
-    widthBlok = sizeGl / 110;
+    let widthBlok = sizeGl / 110;
 
     resStr.push(
       <Grid item key={Math.random()} xs={0.75} sx={styleXTG030}>
@@ -424,14 +426,18 @@ const BindDirections = () => {
 
   const styleButtBattRed = {
     height: heightButtBatt,
-    width: widthButtBatt,
+    maxWidth: widthButtBatt,
+    minWidth: widthButtBatt,
     backgroundColor: '#FE929A',
+    //border: 1,
   };
 
   const styleButtBattGreen = {
     height: heightButtBatt,
-    width: widthButtBatt,
+    maxWidth: widthButtBatt,
+    minWidth: widthButtBatt,
     backgroundColor: '#59CB68',
+    //border: 1,
   };
 
   const handleClickBattomTab = (i: number, j: number) => {
@@ -441,7 +447,6 @@ const BindDirections = () => {
       massFaza[i][j] = 0;
     }
     setSize(window.innerWidth + Math.random());
-    //console.log('massFazaNew:', massFaza);
   };
 
   const StrokaBattomTab = (mode: string) => {
@@ -565,18 +570,6 @@ const BindDirections = () => {
   };
 
   const ModalEnd = () => {
-    const styleModalEnd = {
-      position: 'absolute',
-      top: '0%',
-      left: 'auto',
-      right: '-2%',
-      maxHeight: '21px',
-      minHeight: '21px',
-      width: '6%',
-      fontSize: 19,
-      color: 'black',
-    };
-
     return (
       <Button sx={styleModalEnd} onClick={handleCloseSetBut}>
         <b>&#10006;</b>
@@ -604,27 +597,6 @@ const BindDirections = () => {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
   }, []);
-
-  // const [sizeRend, setSizeRend] = React.useState([0, 0]);
-
-  //   React.useLayoutEffect(() => {
-  //     function updateSize() {
-  //       setSizeRend([window.innerWidth, needRend]);
-  //     }
-  //     window.addEventListener('resize', updateSize);
-  //     updateSize();
-  //     return () => window.removeEventListener('resize', updateSize);
-  //   }, []);
-  //   console.log('needRend:', needRend)
-
-  // React.useLayoutEffect(() => {
-  //   function updateSize() {
-  //     setSizeRend([window.innerWidth, needRend]);
-  //   }
-  //   window.addEventListener('resize', updateSize);
-  //   updateSize();
-  //   return () => window.removeEventListener('resize', updateSize);
-  // }, []);
 
   const BindLeft = () => {
     return (
