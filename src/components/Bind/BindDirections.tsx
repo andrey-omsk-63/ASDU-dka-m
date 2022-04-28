@@ -57,12 +57,13 @@ const BindDirections = () => {
 
   let styleSetWidth = 650;
   if (sizeGl > 770) styleSetWidth = sizeGl - 50;
-  let fSize = 10.5;
-  if (sizeGl > 900) fSize = 14;
+  //let fSize = 10.5;
+  //if (sizeGl > 900) fSize = 14;
+  let fSize = ((sizeGl - 700) * 3.5 / 450) + 10.5
 
-  let widthButtBatt = (sizeGl / (kolFaz + 1) - 6).toString() + 'px';
-  let heightButtBatt = '4.2vh';
-  if (sizeGl > 880) heightButtBatt = '8.4vh';
+  let widthButtBatt = (sizeGl / (kolFaz + 1) - 5).toString() + 'px';
+  let heightButtBatt = '8.4vh';
+  //if (sizeGl > 880) heightButtBatt = '8.4vh';
   let fSizeInp = 10.5;
 
   let xss = 11.25 / kolFaz;
@@ -164,8 +165,8 @@ const BindDirections = () => {
     let maxi = 64;
     let widthBlok = (sizeGl / 110 - 3).toString() + 'ch';
     if (numCol > 20) {
-      maxi = 300;
-      widthBlok = (sizeGl / (kolFaz + 1) - 7).toString() + 'px';
+      maxi = 9999;
+      widthBlok = (sizeGl / (kolFaz + 1) - 10).toString() + 'px';
     }
 
     const styleBoxForm = {
@@ -403,7 +404,7 @@ const BindDirections = () => {
     for (let i = 0; i < kolFaz; i++) {
       let j = dateRpu.timetophases[i].tmax;
       let numCol = 21;
-      if (titl !== 'Тмах') {
+      if (titl.includes('min')) {
         j = dateRpu.timetophases[i].tmin;
         numCol = 22;
       }
@@ -429,7 +430,7 @@ const BindDirections = () => {
     maxWidth: widthButtBatt,
     minWidth: widthButtBatt,
     backgroundColor: '#FE929A',
-    //border: 1,
+    border: 0,
   };
 
   const styleButtBattGreen = {
@@ -437,7 +438,7 @@ const BindDirections = () => {
     maxWidth: widthButtBatt,
     minWidth: widthButtBatt,
     backgroundColor: '#59CB68',
-    //border: 1,
+    border: 0,
   };
 
   const handleClickBattomTab = (i: number, j: number) => {
@@ -486,10 +487,10 @@ const BindDirections = () => {
       <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '40.5vh' }}>
         <Grid item container xs={12}>
           {HeaderBattomTab()}
-          {StrokaBattomTabMaxMin('Тмах', 'Normal')}
-          {StrokaBattomTabMaxMin('Тмин', 'Normal')}
+          {StrokaBattomTabMaxMin('Tmax', 'Normal')}
+          {StrokaBattomTabMaxMin('Tmin', 'Normal')}
         </Grid>
-        <Box sx={{ height: '31.2vh', overflowX: 'auto' }}>
+        <Box sx={{ height: '31.8vh', overflowX: 'auto' }}>
           <Grid item container xs={12}>
             {StrokaBattomTab('Normal')}
           </Grid>
@@ -510,8 +511,8 @@ const BindDirections = () => {
           <Box sx={{ marginRight: 1, marginTop: -3, fontSize: fntSize }}>
             <Grid item container xs={12}>
               {HeaderBattomTab()}
-              {StrokaBattomTabMaxMin('Тмах', 'Modal')}
-              {StrokaBattomTabMaxMin('Тмин', 'Modal')}
+              {StrokaBattomTabMaxMin('T max', 'Modal')}
+              {StrokaBattomTabMaxMin('T min', 'Modal')}
             </Grid>
             <Box sx={{ overflowX: 'auto', height: '69vh' }}>
               <Grid item container xs={12}>
@@ -619,6 +620,8 @@ const BindDirections = () => {
       </Grid>
     );
   };
+
+  console.log('H:',window.innerHeight )
 
   return (
     <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>

@@ -35,7 +35,8 @@ const App = () => {
     borderColor: '#F1F5FB',
     marginLeft: 0.5,
     marginTop: 0.7,
-    height: '85vh',
+    //height: '85vh',
+    height: '90vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
     padding: 0.1,
@@ -126,10 +127,25 @@ const App = () => {
     console.log('dateRpuGl:', dateRpuGl);
   }
 
+  //отслеживание изменения размера экрана
+  const [size, setSize] = React.useState(0);
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize(window.innerWidth);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+
   const [value, setValue] = React.useState('1');
 
+  let heightGl = window.innerHeight.toString() + 'px';
+
   return (
-    <Grid container sx={{ border: 0, height: '92vh' }}>
+    // <Grid container sx={{ border: 2, height: '92vh' }}>
+    <Grid container sx={{ border: 2, height: heightGl }}>
       <Grid container sx={{ border: 0, marginRight: 0.5 }}>
         <TabContext value={value}>
           <Grid item xs={2.6} sx={styleAppMenu}>
