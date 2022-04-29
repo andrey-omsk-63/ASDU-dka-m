@@ -4,13 +4,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-// import TextField from '@mui/material/TextField';
-// import Modal from '@mui/material/Modal';
-
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
-
-//import axios from 'axios';
 
 const Eguipment = () => {
   const styleBox = {
@@ -122,7 +115,7 @@ const Eguipment = () => {
 
   const TopTabls = () => {
     return (
-      <Grid item xs={12} sx={{ marginTop: '-2vh', height: '64.8vh' }}>
+      <Grid item xs={12} sx={{ border: 0, marginTop: '-2vh', height: '72vh' }}>
         <Grid container sx={styleBox}>
           <Grid item xs={12} sx={{ height: '46.5vh' }}>
             <HeaderTopTabls />
@@ -130,7 +123,7 @@ const Eguipment = () => {
           </Grid>
         </Grid>
         <Grid container sx={{ border: 0 }}>
-          <Grid item xs={12} sx={{ height: '24.7vh' }}>
+          <Grid item xs={12} sx={{ height: '25vh' }}>
             <BattomTopTabls />
           </Grid>
         </Grid>
@@ -150,7 +143,7 @@ const Eguipment = () => {
       </Box>
       <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>
         <Grid container sx={styleBox}>
-          <Grid item xs sx={{ height: '19vh' }}></Grid>
+          <Grid item xs sx={{ border: 0, height: '19vh' }}></Grid>
         </Grid>
       </Box>
     </Stack>

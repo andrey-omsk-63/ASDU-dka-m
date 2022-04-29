@@ -128,16 +128,15 @@ const App = () => {
   }
 
   // //отслеживание изменения размера экрана
-  // const [size, setSize] = React.useState(0);
-  // React.useLayoutEffect(() => {
-  //   function updateSize() {
-  //     setSize(window.innerWidth);
-  //   }
-  //   window.addEventListener('resize', updateSize);
-  //   updateSize();
-  //   return () => window.removeEventListener('resize', updateSize);
-  // }, []);
-
+  const [size, setSize] = React.useState([0, 0]);
+  React.useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
   const [value, setValue] = React.useState('1');
 
@@ -145,7 +144,7 @@ const App = () => {
   let heightGl = window.innerHeight.toString() + 'px';
   //let widthGl = window.innerWidth.toString() + 'px';
 
-  //console.log('H1:',window.innerHeight,heightAv,window.screen.height, window.outerHeight)
+  //console.log('H1:', heightGl);
   //console.log('H2:',document.documentElement.clientHeight, document.documentElement.scrollHeight)
 
   return (
@@ -207,7 +206,7 @@ const App = () => {
         </TabContext>
       </Grid>
 
-      <Grid item xs sx={{ height: '0.5vh' }}></Grid>
+      {/* <Grid item xs sx={{ height: '0.5vh' }}></Grid> */}
 
       <Grid item xs={12} sx={styleAppPodv}>
         <Grid container>

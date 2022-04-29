@@ -57,7 +57,7 @@ const BindDirections = () => {
 
   let styleSetWidth = 650;
   if (sizeGl > 770) styleSetWidth = sizeGl - 50;
-  let fSize = ((sizeGl - 700) * 3.5 / 450) + 10.5
+  let fSize = ((sizeGl - 700) * 3.5) / 450 + 10.5;
 
   let widthButtBatt = (sizeGl / (kolFaz + 1) - 5).toString() + 'px';
   let heightButtBatt = '8.4vh';
@@ -174,11 +174,10 @@ const BindDirections = () => {
     };
 
     const handleChange = (event: any) => {
-      let valueInp = event.target.value;
+      let valueInp = event.target.value.replace(/^0+/, '');
       if (valueInp > maxi) valueInp = maxi;
       if (valueInp < 0) valueInp = 0;
       setValuen(valueInp);
-
       RecordInDateRpu(i, numCol, valueInp);
     };
 
@@ -329,7 +328,7 @@ const BindDirections = () => {
     return (
       <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '39.5vh' }}>
         <HeaderTopTab />
-        <Box sx={{ height: '34vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
+        <Box sx={{ height: '38vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
       </Box>
     );
   };
@@ -391,7 +390,7 @@ const BindDirections = () => {
   const StrokaBattomTabMaxMin = (titl: string, mode: string) => {
     let resStr: any = [];
     xsss = xss;
-    let widthBlok = sizeGl / 110;
+    //let widthBlok = sizeGl / 110;
 
     resStr.push(
       <Grid item key={Math.random()} xs={0.75} sx={styleXTG030}>
@@ -488,7 +487,7 @@ const BindDirections = () => {
           {StrokaBattomTabMaxMin('Tmax', 'Normal')}
           {StrokaBattomTabMaxMin('Tmin', 'Normal')}
         </Grid>
-        <Box sx={{ height: '34.5vh', overflowX: 'auto' }}>
+        <Box sx={{ height: '35vh', overflowX: 'auto' }}>
           <Grid item container xs={12}>
             {StrokaBattomTab('Normal')}
           </Grid>
@@ -602,15 +601,15 @@ const BindDirections = () => {
       <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
-            <Grid item xs={12} sx={{ border: 2, fontSize: fSize, height: '45.6vh' }}>
+            <Grid item xs={12} sx={{ border: 0, fontSize: fSize, height: '45.6vh' }}>
               <TopTab />
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs sx={{ height: '0.8vh' }}></Grid>
+            <Grid item xs sx={{ height: '0.4vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ border: 2, height: '45.6vh' }}>
+            <Grid item xs sx={{ border: 0, height: '45.6vh' }}>
               <BattomTab />
             </Grid>
           </Grid>
@@ -620,10 +619,10 @@ const BindDirections = () => {
   };
 
   return (
-    <Box sx={{  marginTop: -3, marginLeft: -3, marginRight: -3 }}>
+    <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
       <Grid container>
         <Grid item xs={12}>
-          <Grid container sx={{ border: 0, height: '93vh'  }}>
+          <Grid container sx={{ border: 0, height: '93vh' }}>
             <BindLeft />
             <Grid item xs={0.05}></Grid>
             <BindRight />

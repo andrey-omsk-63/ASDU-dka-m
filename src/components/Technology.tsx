@@ -418,17 +418,17 @@ const Technology = () => {
 
   return (
     <Stack direction="column">
-      <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
-        <Grid container>
-          {/* <Grid item xs={12} sx={{ height: '65.9vh' }}> */}
-          <Grid item xs={12} sx={{ height: '67.8vh' }}>
+      <Grid container>
+        <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
+          <Grid item xs={12} sx={{ border: 0, height: '70vh' }}>
             <TopTabls />
           </Grid>
-        </Grid>
-      </Box>
-      <Box sx={{ marginTop: 1.5, marginLeft: -3, marginRight: -3 }}>
+        </Box>
+      </Grid>
+
+      <Box sx={{ marginTop: 0, marginLeft: -3, marginRight: -3 }}>
         <Grid container sx={styleBox}>
-          <Grid item xs sx={{ height: '15.2vh' }}></Grid>
+          <Grid item xs sx={{ border: 0, height: '21.5vh' }}></Grid>
         </Grid>
       </Box>
     </Stack>

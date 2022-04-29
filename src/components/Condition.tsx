@@ -388,7 +388,7 @@ const Condition = () => {
       <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
         <Grid container>
           <Grid item xs={12}>
-            <Grid container sx={{ height: '62.3vh' }}>
+            <Grid container sx={{ border: 0, height: '63vh' }}>
               <ConditionColGrid01 />
               <Grid item xs={0.05}></Grid>
               <ConditionColGrid02 />
@@ -405,7 +405,7 @@ const Condition = () => {
     return (
       <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>
         <Grid container sx={styleBox01}>
-          <Grid item xs sx={{ height: '21.7vh' }}></Grid>
+          <Grid item xs sx={{ border: 0, height: '28vh' }}></Grid>
         </Grid>
       </Box>
     );
