@@ -57,13 +57,10 @@ const BindDirections = () => {
 
   let styleSetWidth = 650;
   if (sizeGl > 770) styleSetWidth = sizeGl - 50;
-  //let fSize = 10.5;
-  //if (sizeGl > 900) fSize = 14;
   let fSize = ((sizeGl - 700) * 3.5 / 450) + 10.5
 
   let widthButtBatt = (sizeGl / (kolFaz + 1) - 5).toString() + 'px';
   let heightButtBatt = '8.4vh';
-  //if (sizeGl > 880) heightButtBatt = '8.4vh';
   let fSizeInp = 10.5;
 
   let xss = 11.25 / kolFaz;
@@ -484,13 +481,14 @@ const BindDirections = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '40.5vh' }}>
+      // <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '40.5vh' }}>
+      <Box sx={{ marginTop: -2.5, fontSize: fSize }}>
         <Grid item container xs={12}>
           {HeaderBattomTab()}
           {StrokaBattomTabMaxMin('Tmax', 'Normal')}
           {StrokaBattomTabMaxMin('Tmin', 'Normal')}
         </Grid>
-        <Box sx={{ height: '31.8vh', overflowX: 'auto' }}>
+        <Box sx={{ height: '34.5vh', overflowX: 'auto' }}>
           <Grid item container xs={12}>
             {StrokaBattomTab('Normal')}
           </Grid>
@@ -604,7 +602,7 @@ const BindDirections = () => {
       <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
-            <Grid item xs={12} sx={{ border: 0, fontSize: fSize, height: '41.4vh' }}>
+            <Grid item xs={12} sx={{ border: 2, fontSize: fSize, height: '45.6vh' }}>
               <TopTab />
             </Grid>
           </Grid>
@@ -612,7 +610,7 @@ const BindDirections = () => {
             <Grid item xs sx={{ height: '0.8vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ border: 0, height: '41.8vh' }}>
+            <Grid item xs sx={{ border: 2, height: '45.6vh' }}>
               <BattomTab />
             </Grid>
           </Grid>
@@ -621,13 +619,11 @@ const BindDirections = () => {
     );
   };
 
-  console.log('H:',window.innerHeight )
-
   return (
-    <Box sx={{ marginTop: -3, marginLeft: -3, marginRight: -3 }}>
+    <Box sx={{  marginTop: -3, marginLeft: -3, marginRight: -3 }}>
       <Grid container>
         <Grid item xs={12}>
-          <Grid container sx={{ height: '85.7vh' }}>
+          <Grid container sx={{ border: 0, height: '93vh'  }}>
             <BindLeft />
             <Grid item xs={0.05}></Grid>
             <BindRight />

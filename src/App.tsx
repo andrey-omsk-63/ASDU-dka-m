@@ -30,13 +30,13 @@ let flagOpenRpu = true;
 
 const App = () => {
   const styleAppMenu = {
-    border: 1,
+    border: 0,
     borderRadius: 1,
     borderColor: '#F1F5FB',
     marginLeft: 0.5,
     marginTop: 0.7,
     //height: '85vh',
-    height: '90vh',
+    height: '92vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
     padding: 0.1,
@@ -127,26 +127,31 @@ const App = () => {
     console.log('dateRpuGl:', dateRpuGl);
   }
 
-  //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState(0);
-  React.useLayoutEffect(() => {
-    function updateSize() {
-      setSize(window.innerWidth);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
+  // //отслеживание изменения размера экрана
+  // const [size, setSize] = React.useState(0);
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     setSize(window.innerWidth);
+  //   }
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   return () => window.removeEventListener('resize', updateSize);
+  // }, []);
 
 
   const [value, setValue] = React.useState('1');
 
+  //let heightAv = window.screen.availHeight;       //получение доступного размера экрана
   let heightGl = window.innerHeight.toString() + 'px';
+  //let widthGl = window.innerWidth.toString() + 'px';
+
+  //console.log('H1:',window.innerHeight,heightAv,window.screen.height, window.outerHeight)
+  //console.log('H2:',document.documentElement.clientHeight, document.documentElement.scrollHeight)
 
   return (
     // <Grid container sx={{ border: 2, height: '92vh' }}>
-    <Grid container sx={{ border: 2, height: heightGl }}>
-      <Grid container sx={{ border: 0, marginRight: 0.5 }}>
+    <Grid container sx={{ height: heightGl }}>
+      <Grid container sx={{ marginRight: 0.5 }}>
         <TabContext value={value}>
           <Grid item xs={2.6} sx={styleAppMenu}>
             <Stack direction="column">
@@ -201,6 +206,9 @@ const App = () => {
           </Grid>
         </TabContext>
       </Grid>
+
+      <Grid item xs sx={{ height: '0.5vh' }}></Grid>
+
       <Grid item xs={12} sx={styleAppPodv}>
         <Grid container>
           <Grid item xs={1.7} sx={{ border: 0 }}>
