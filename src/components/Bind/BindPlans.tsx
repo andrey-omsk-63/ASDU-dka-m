@@ -111,7 +111,7 @@ const BindPlans = () => {
   const StrokaBattomTab = () => {
     let resStr = [];
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 27; i++) {
       resStr.push(
         <Grid key={Math.random()} container item xs={12}>
           <Grid key={Math.random()} xs={2} item sx={styleXTG03}>
@@ -130,9 +130,9 @@ const BindPlans = () => {
 
   const OutputNormalBattom = () => {
     return (
-      <Box sx={{ marginTop: 0, fontSize: fSize }}>
+      <Box sx={{ border: 0, marginTop: 0, fontSize: fSize }}>
         <HeaderBattomTab />
-        <Box sx={{ height: '53vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
+        <Box sx={{ border: 0, height: '59.5vh', overflowX: 'auto' }}>{StrokaBattomTab()}</Box>
       </Box>
     );
   };
@@ -282,9 +282,9 @@ const BindPlans = () => {
       <Grid item xs={9}>
         <Stack direction="column">
           <Grid container sx={styleBox}>
-          <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
-            <b>Планы</b>
-          </Button>
+            <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
+              <b>Планы</b>
+            </Button>
             <Grid item xs={12} sx={{ height: '24.4vh' }}>
               <TopTabInput />
             </Grid>
@@ -294,7 +294,7 @@ const BindPlans = () => {
             <Grid item xs sx={{ height: '0.5vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ height: '57.0vh' }}>
+            <Grid item xs>
               <BattomTab />
             </Grid>
           </Grid>
