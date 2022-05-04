@@ -27,6 +27,7 @@ import IconAsdu from './IconAsdu';
 
 export let dateRpuGl: DateRPU = {} as DateRPU;
 let flagOpenRpu = true;
+//let heightOld = 0;
 
 const App = () => {
   const styleAppMenu = {
@@ -51,9 +52,10 @@ const App = () => {
   };
 
   const styleButt01 = {
-    fontSize: 16.5,
-    maxHeight: '27px',
-    minHeight: '27px',
+    //fontSize: 16.5,
+    fontSize: 19,
+    maxHeight: '33px',
+    minHeight: '33px',
     marginTop: 4,
     backgroundColor: '#F1F5FB',
     color: 'black',
@@ -62,8 +64,8 @@ const App = () => {
 
   const styleButt02 = {
     fontSize: 16.5,
-    maxHeight: '27px',
-    minHeight: '27px',
+    maxHeight: '33px',
+    minHeight: '33px',
     marginTop: 4,
     backgroundColor: '#F1F5FB',
     color: '#003300',
@@ -127,25 +129,25 @@ const App = () => {
     console.log('dateRpuGl:', dateRpuGl);
   }
 
-  // //отслеживание изменения размера экрана
-  const [size, setSize] = React.useState([0, 0]);
-  React.useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
+  // отслеживание изменения размера экрана
+  // const [size, setSize] = React.useState([0, 0]);
+  // React.useLayoutEffect(() => {
+  //   function updateSize() {
+  //     setSize([window.innerWidth, window.innerHeight]);
+  //   }
+  //   window.addEventListener('resize', updateSize);
+  //   updateSize();
+  //   return () => window.removeEventListener('resize', updateSize);
+  // }, []);
 
   const [value, setValue] = React.useState('1');
 
   //let heightAv = window.screen.availHeight;       //получение доступного размера экрана
-  let heightGl = window.innerHeight.toString() + 'px';
+  //let heightGl = window.innerHeight.toString() + 'px';
   //let widthGl = window.innerWidth.toString() + 'px';
-
   //console.log('H1:', heightGl);
   //console.log('H2:',document.documentElement.clientHeight, document.documentElement.scrollHeight)
+  let heightGl = '100vh';
 
   return (
     // <Grid container sx={{ border: 2, height: '92vh' }}>
@@ -162,7 +164,7 @@ const App = () => {
               {ButtonKnobLevel1('Оборудование', '3')}
               <Grid container>
                 <Grid item xs>
-                  <Box sx={{ fontSize: 19, marginTop: 3, marginLeft: 2 }}>
+                  <Box sx={{ fontSize: 20.5, marginTop: 3, marginLeft: 2 }}>
                     <b>Привязка</b>
                   </Box>
                 </Grid>

@@ -27,6 +27,19 @@ export const styleButtBox = {
   textTransform: 'unset !important',
 };
 
+export const stylePlusMinus = {
+  fontSize: 19,
+  maxHeight: '21px',
+  minHeight: '21px',
+  marginLeft: '15px',
+  maxWidth: '3px',
+  minWidth: '3px',
+  marginTop: -1.5,
+  backgroundColor: 'white',
+  color: '#5B1080',
+  textTransform: 'unset !important',
+};
+
 export const styleXTG01 = {
   borderRight: 1,
   borderColor: 'primary.main',

@@ -8,6 +8,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -21,6 +22,8 @@ import { styleXTG032Norm, styleXTG033Norm } from './BindComponents/BindDirection
 import { styleModalEnd, styleXTG034Norm } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG035Norm, styleXTG036Norm } from './BindComponents/BindDirectionsStyle';
+import { stylePlusMinus } from './BindComponents/BindDirectionsStyle';
+
 
 import { DateRPU } from './../../interfaceRPU.d';
 import { dateRpuGl } from './../../App';
@@ -177,6 +180,7 @@ const BindDirections = () => {
       let valueInp = event.target.value.replace(/^0+/, '');
       if (valueInp > maxi) valueInp = maxi;
       if (valueInp < 0) valueInp = 0;
+      if (event.target.value === '') valueInp = 0;
       setValuen(valueInp);
       RecordInDateRpu(i, numCol, valueInp);
     };
@@ -342,7 +346,7 @@ const BindDirections = () => {
           <Grid container>
             <Grid item xs sx={{ marginRight: 1, marginTop: -3, fontSize: 16 }}>
               <HeaderTopTab />
-              <Box sx={{ overflowX: 'auto', height: '88vh' }}>
+              <Box sx={{ overflowX: 'auto', height: '69vh' }}>
                 {open ? <Loader /> : <>{MassTopTab('Modal')}</>}
               </Box>
             </Grid>
@@ -352,6 +356,92 @@ const BindDirections = () => {
     );
   };
 
+  const styleSetDirect = {
+    position: 'absolute',
+    marginTop: '5vh',
+    marginLeft: '5vh',
+    width: 200,
+    bgcolor: 'background.paper',
+    border: '3px solid #000',
+    borderColor: 'primary.main',
+    borderRadius: 2,
+    boxShadow: 24,
+    p: 2,
+  };
+
+  const styleSet1 = {
+    position: 'absolute',
+    marginTop: '1vh',
+    marginLeft: '1vh',
+    width: styleSetWidth,
+    bgcolor: 'background.paper',
+    border: '3px solid #000',
+    borderColor: 'primary.main',
+    borderRadius: 2,
+    boxShadow: 24,
+    paddingRight: 3,
+    paddingTop: 3,
+  };
+
+  const AddModalTop = () => {
+    const styleButtDirect = {
+      fontSize: 19,
+      maxHeight: '33px',
+      minHeight: '33px',
+      marginTop: 3,
+      backgroundColor: '#F1F5FB',
+      color: 'black',
+      textTransform: 'unset !important',
+    };
+
+    const styleModalEndDir = {
+      position: 'absolute',
+      top: '0%',
+      left: 'auto',
+      right: '-9%',
+      maxHeight: '21px',
+      minHeight: '21px',
+      width: '6%',
+      fontSize: 16,
+      color: 'black',
+    };
+
+    const ButtonKnob = (soob: string, val: number) => {
+      return (
+        <Grid container>
+          <Grid item xs>
+            <Button sx={styleButtDirect} variant="contained">
+              <b>{soob}</b>
+            </Button>
+          </Grid>
+        </Grid>
+      );
+    };
+
+    return (
+      <Box>
+        <Modal open={openSet} onClose={handleCloseSet}>
+          <Box sx={styleSet1}>
+            <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
+              <b>&#10006;</b>
+            </Button>
+            <Stack direction="column">
+              <Typography variant="h6" sx={{ color: '#5B1080' }}>Тип направления:</Typography>
+              {ButtonKnob('Транспортное', 1)}
+              {ButtonKnob('Пешеходное', 2)}
+              {ButtonKnob('Поворотное', 3)}
+              <Grid container>
+                <Grid item xs sx={{fontSize: 19, marginTop: 3, marginLeft: 2}}>
+                  Трамвайное
+                </Grid>
+              </Grid>
+            </Stack>
+          </Box>
+        </Modal>
+      </Box>
+    )
+  }
+
   const TopTab = () => {
     return (
       <TabContext value={valueTC}>
@@ -359,9 +449,20 @@ const BindDirections = () => {
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
             <b>Привязка выходов</b>
           </Button>
+
+          <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('34')}>
+            <b>+</b>
+          </Button>
+          <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('35')}>
+            <b>-</b>
+          </Button>
+
           <OutputNormalTop />
           <TabPanel value="33">
             <OutputModalTop />
+          </TabPanel>
+          <TabPanel value="34">
+            <AddModalTop />
           </TabPanel>
         </Box>
       </TabContext>
@@ -390,7 +491,6 @@ const BindDirections = () => {
   const StrokaBattomTabMaxMin = (titl: string, mode: string) => {
     let resStr: any = [];
     xsss = xss;
-    //let widthBlok = sizeGl / 110;
 
     resStr.push(
       <Grid item key={Math.random()} xs={0.75} sx={styleXTG030}>
@@ -529,6 +629,14 @@ const BindDirections = () => {
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
             <b>Привязка фаз</b>
           </Button>
+
+          <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('61')}>
+            <b>+</b>
+          </Button>
+          <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('62')}>
+            <b>-</b>
+          </Button>
+
           <OutputNormalBattom />
           <TabPanel value="69">
             <OutputModalBattom />
