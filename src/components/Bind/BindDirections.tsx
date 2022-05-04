@@ -22,11 +22,12 @@ import { styleXTG032Norm, styleXTG033Norm } from './BindComponents/BindDirection
 import { styleModalEnd, styleXTG034Norm } from './BindComponents/BindDirectionsStyle';
 import { styleXTG034, styleXTG035, styleXTG036 } from './BindComponents/BindDirectionsStyle';
 import { styleXTG035Norm, styleXTG036Norm } from './BindComponents/BindDirectionsStyle';
-import { stylePlusMinus } from './BindComponents/BindDirectionsStyle';
-
+import { stylePlusMinus, styleSetDirect } from './BindComponents/BindDirectionsStyle';
+import { styleButtDirect, styleModalEndDir } from './BindComponents/BindDirectionsStyle';
 
 import { DateRPU } from './../../interfaceRPU.d';
 import { dateRpuGl } from './../../App';
+import { makeStyles } from '@mui/material';
 
 let dateRpu: DateRPU;
 
@@ -52,7 +53,7 @@ const BindDirections = () => {
       }
     }
     flagMassFaza = false;
-    //console.log('massFaza:', massFaza, Math.random());
+    console.log('massFaza:', massFaza);
   }
 
   const [size, setSize] = React.useState(0);
@@ -356,61 +357,50 @@ const BindDirections = () => {
     );
   };
 
-  const styleSetDirect = {
-    position: 'absolute',
-    marginTop: '5vh',
-    marginLeft: '5vh',
-    width: 200,
-    bgcolor: 'background.paper',
-    border: '3px solid #000',
-    borderColor: 'primary.main',
-    borderRadius: 2,
-    boxShadow: 24,
-    p: 2,
-  };
-
-  const styleSet1 = {
-    position: 'absolute',
-    marginTop: '1vh',
-    marginLeft: '1vh',
-    width: styleSetWidth,
-    bgcolor: 'background.paper',
-    border: '3px solid #000',
-    borderColor: 'primary.main',
-    borderRadius: 2,
-    boxShadow: 24,
-    paddingRight: 3,
-    paddingTop: 3,
-  };
-
-  const AddModalTop = () => {
-    const styleButtDirect = {
-      fontSize: 19,
-      maxHeight: '33px',
-      minHeight: '33px',
-      marginTop: 3,
-      backgroundColor: '#F1F5FB',
-      color: 'black',
-      textTransform: 'unset !important',
+  const AddNormalTop = () => {
+    const [valueANT, setValueANT] = React.useState(0);
+    let lengthMas = dateRpu.tirtonap.length + 1;
+    let maskTirtonap = {
+      num: 0,
+      type: 0,
+      green: 0,
+      yellow: 0,
+      counter: 0,
+      reds: [0, 0, 0],
     };
 
-    const styleModalEndDir = {
-      position: 'absolute',
-      top: '0%',
-      left: 'auto',
-      right: '-9%',
-      maxHeight: '21px',
-      minHeight: '21px',
-      width: '6%',
-      fontSize: 16,
-      color: 'black',
+    let maskPrombase = {
+      nap: 0,
+      gd: 0,
+      gb: 0,
+      yel: 0,
+      red: 0,
+      ry: 0,
+    };
+
+    const AddRecordOutput = (val: number) => {
+      maskTirtonap.num = lengthMas;
+      //maskTirtonap.type = valueANT;
+      maskTirtonap.type = val;
+      dateRpu.tirtonap.push(maskTirtonap);
+      maskPrombase.nap = lengthMas;
+      dateRpu.prombase.push(maskPrombase);
+      dateRpu.prom.push(maskPrombase);
+      for (let i = 0; i < kolFaz; i++) {
+        massFaza[i][lengthMas - 1] = 0;
+      }
+
+      console.log('2:', dateRpu);
+      console.log('massFaza1:', massFaza);
+      //handleCloseSetBut();
+      setOpenSet(false);
     };
 
     const ButtonKnob = (soob: string, val: number) => {
       return (
         <Grid container>
           <Grid item xs>
-            <Button sx={styleButtDirect} variant="contained">
+            <Button sx={styleButtDirect} variant="contained" onClick={() => AddRecordOutput(val)}>
               <b>{soob}</b>
             </Button>
           </Grid>
@@ -421,26 +411,29 @@ const BindDirections = () => {
     return (
       <Box>
         <Modal open={openSet} onClose={handleCloseSet}>
-          <Box sx={styleSet1}>
+          <Box sx={styleSetDirect}>
             <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
               <b>&#10006;</b>
             </Button>
             <Stack direction="column">
-              <Typography variant="h6" sx={{ color: '#5B1080' }}>Тип направления:</Typography>
+              <Typography variant="h6" sx={{ color: '#5B1080' }}>
+                Тип направления:
+              </Typography>
               {ButtonKnob('Транспортное', 1)}
               {ButtonKnob('Пешеходное', 2)}
               {ButtonKnob('Поворотное', 3)}
               <Grid container>
-                <Grid item xs sx={{fontSize: 19, marginTop: 3, marginLeft: 2}}>
+                <Grid item xs sx={{ fontSize: 19, marginTop: 3, marginLeft: 2 }}>
                   Трамвайное
                 </Grid>
               </Grid>
             </Stack>
+            {/* <>{valueANT > 0 && <>{AddRecordOutput()}</>}</> */}
           </Box>
         </Modal>
       </Box>
-    )
-  }
+    );
+  };
 
   const TopTab = () => {
     return (
@@ -462,7 +455,7 @@ const BindDirections = () => {
             <OutputModalTop />
           </TabPanel>
           <TabPanel value="34">
-            <AddModalTop />
+            <AddNormalTop />
           </TabPanel>
         </Box>
       </TabContext>

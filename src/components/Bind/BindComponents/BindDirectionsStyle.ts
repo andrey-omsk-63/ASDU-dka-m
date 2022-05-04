@@ -193,3 +193,40 @@ export const styleXTG036Norm = {
   textAlign: 'center',
   padding: 1,
 };
+
+//== TopTab =======================================
+
+export const styleButtDirect = {
+  fontSize: 19,
+  maxHeight: '33px',
+  minHeight: '33px',
+  marginTop: 3,
+  backgroundColor: '#F1F5FB',
+  color: 'black',
+  textTransform: 'unset !important',
+};
+
+export const styleModalEndDir = {
+  position: 'absolute',
+  top: '0%',
+  left: 'auto',
+  right: '-9%',
+  maxHeight: '21px',
+  minHeight: '21px',
+  width: '6%',
+  fontSize: 16,
+  color: 'black',
+};
+
+export const styleSetDirect = {
+  position: 'absolute',
+  marginTop: '5vh',
+  marginLeft: '5vh',
+  width: 200,
+  bgcolor: 'background.paper',
+  border: '3px solid #000',
+  borderColor: 'primary.main',
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 2,
+};
