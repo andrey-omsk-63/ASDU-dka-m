@@ -358,7 +358,6 @@ const BindDirections = () => {
   };
 
   const AddNormalTop = () => {
-    const [valueANT, setValueANT] = React.useState(0);
     let lengthMas = dateRpu.tirtonap.length + 1;
     let maskTirtonap = {
       num: 0,
@@ -368,7 +367,6 @@ const BindDirections = () => {
       counter: 0,
       reds: [0, 0, 0],
     };
-
     let maskPrombase = {
       nap: 0,
       gd: 0,
@@ -380,7 +378,6 @@ const BindDirections = () => {
 
     const AddRecordOutput = (val: number) => {
       maskTirtonap.num = lengthMas;
-      //maskTirtonap.type = valueANT;
       maskTirtonap.type = val;
       dateRpu.tirtonap.push(maskTirtonap);
       maskPrombase.nap = lengthMas;
@@ -389,10 +386,8 @@ const BindDirections = () => {
       for (let i = 0; i < kolFaz; i++) {
         massFaza[i][lengthMas - 1] = 0;
       }
-
-      console.log('2:', dateRpu);
-      console.log('massFaza1:', massFaza);
-      //handleCloseSetBut();
+      // console.log('2:', dateRpu);
+      // console.log('massFaza1:', massFaza);
       setOpenSet(false);
     };
 
@@ -428,7 +423,6 @@ const BindDirections = () => {
                 </Grid>
               </Grid>
             </Stack>
-            {/* <>{valueANT > 0 && <>{AddRecordOutput()}</>}</> */}
           </Box>
         </Modal>
       </Box>
