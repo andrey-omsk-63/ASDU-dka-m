@@ -27,7 +27,6 @@ import { styleButtDirect, styleModalEndDir } from './BindComponents/BindDirectio
 
 import { DateRPU } from './../../interfaceRPU.d';
 import { dateRpuGl } from './../../App';
-import { makeStyles } from '@mui/material';
 
 let dateRpu: DateRPU;
 
@@ -164,7 +163,7 @@ const BindDirections = () => {
   const InputTopTab = (kuda: number, styleXX: any, i: number, numCol: number) => {
     const [valuen, setValuen] = React.useState(kuda);
     let maxi = 64;
-    let widthBlok = (sizeGl / 110 - 3).toString() + 'ch';
+    let widthBlok = (sizeGl / 16 - 8).toString() + 'px';
     if (numCol > 20) {
       maxi = 9999;
       widthBlok = (sizeGl / (kolFaz + 1) - 10).toString() + 'px';
@@ -333,7 +332,7 @@ const BindDirections = () => {
     return (
       <Box sx={{ marginTop: -2.1, fontSize: fSize, height: '39.5vh' }}>
         <HeaderTopTab />
-        <Box sx={{ height: '38vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
+        <Box sx={{ height: '37.5vh', overflowX: 'auto' }}>{MassTopTab('Normal')}</Box>
       </Box>
     );
   };
@@ -386,7 +385,7 @@ const BindDirections = () => {
       for (let i = 0; i < kolFaz; i++) {
         massFaza[i][lengthMas - 1] = 0;
       }
-      // console.log('2:', dateRpu);
+      // console.log('1:', dateRpu);
       // console.log('massFaza1:', massFaza);
       setOpenSet(false);
     };
@@ -404,30 +403,69 @@ const BindDirections = () => {
     };
 
     return (
-      <Box>
-        <Modal open={openSet} onClose={handleCloseSet}>
-          <Box sx={styleSetDirect}>
-            <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
-              <b>&#10006;</b>
-            </Button>
-            <Stack direction="column">
-              <Typography variant="h6" sx={{ color: '#5B1080' }}>
-                Тип направления:
-              </Typography>
-              {ButtonKnob('Транспортное', 1)}
-              {ButtonKnob('Пешеходное', 2)}
-              {ButtonKnob('Поворотное', 3)}
-              <Grid container>
-                <Grid item xs sx={{ fontSize: 19, marginTop: 3, marginLeft: 2 }}>
-                  Трамвайное
-                </Grid>
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSetDirect}>
+          <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
+            <b>&#10006;</b>
+          </Button>
+          <Stack direction="column">
+            <Typography variant="h6" sx={{ color: '#5B1080' }}>
+              Тип направления:
+            </Typography>
+            {ButtonKnob('Транспортное', 1)}
+            {ButtonKnob('Пешеходное', 2)}
+            {ButtonKnob('Поворотное', 3)}
+            <Grid container>
+              <Grid item xs sx={{ fontSize: 19, marginTop: 3, marginLeft: 2 }}>
+                Трамвайное
               </Grid>
-            </Stack>
-          </Box>
-        </Modal>
-      </Box>
+            </Grid>
+          </Stack>
+        </Box>
+      </Modal>
     );
   };
+
+  const DelNormalTop = () => {
+    let nomRecord = dateRpu.tirtonap.length - 1;
+    const HandleCloseDel = (val: number) => {
+      if (val === 1) {
+        dateRpu.tirtonap.pop();
+        dateRpu.prombase.pop();
+        dateRpu.prom.pop();
+        for (let i = 0; i < kolFaz; i++) {
+          massFaza[i].pop();
+        }
+      }
+      setOpenSet(false);
+    }
+
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSetDirect}>
+          <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
+            <b>&#10006;</b>
+          </Button>
+          <Stack direction="column">
+            <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
+              Удаление
+              направления №{dateRpu.tirtonap[nomRecord].num}<br />
+              Вы уверены в этом?
+            </Typography>
+            <Stack direction="row">
+              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(1)}>
+                Да
+              </Button>
+              <Grid item xs></Grid>
+              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(2)}>
+                Нет
+              </Button>
+            </Stack>
+          </Stack>
+        </Box>
+      </Modal>
+    )
+  }
 
   const TopTab = () => {
     return (
@@ -436,20 +474,21 @@ const BindDirections = () => {
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('33')}>
             <b>Привязка выходов</b>
           </Button>
-
           <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('34')}>
             <b>+</b>
           </Button>
           <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('35')}>
             <b>-</b>
           </Button>
-
           <OutputNormalTop />
           <TabPanel value="33">
             <OutputModalTop />
           </TabPanel>
           <TabPanel value="34">
             <AddNormalTop />
+          </TabPanel>
+          <TabPanel value="35">
+            <DelNormalTop />
           </TabPanel>
         </Box>
       </TabContext>
@@ -567,14 +606,13 @@ const BindDirections = () => {
 
   const OutputNormalBattom = () => {
     return (
-      // <Box sx={{ marginTop: -2.5, fontSize: fSize, height: '40.5vh' }}>
       <Box sx={{ marginTop: -2.5, fontSize: fSize }}>
         <Grid item container xs={12}>
           {HeaderBattomTab()}
           {StrokaBattomTabMaxMin('Tmax', 'Normal')}
           {StrokaBattomTabMaxMin('Tmin', 'Normal')}
         </Grid>
-        <Box sx={{ height: '35vh', overflowX: 'auto' }}>
+        <Box sx={{ height: '34.5vh', overflowX: 'auto' }}>
           <Grid item container xs={12}>
             {StrokaBattomTab('Normal')}
           </Grid>
@@ -609,6 +647,65 @@ const BindDirections = () => {
     );
   };
 
+  const AddNormalBattom = () => {
+    let colDirect = dateRpu.tirtonap.length;
+    let mass: Array<number> = [];
+    let maskTimetophases = {
+      nphase: 0,
+      tmax: 0,
+      tmin: 0
+    };
+    for (let i = 0; i < colDirect; i++) {
+      mass[i] = 0;
+    }
+    massFaza.push(mass)
+    maskTimetophases.nphase = kolFaz + 1;
+    dateRpu.timetophases.push(maskTimetophases);
+    console.log('3:', dateRpu);
+    console.log('massFaza3:', kolFaz, massFaza);
+  }
+
+  const DelNormalBattom = () => {
+    let nomRecord = dateRpu.tirtonap.length - 1;
+    const HandleCloseDel = (val: number) => {
+      if (val === 1) {
+        dateRpu.tirtonap.pop();
+        dateRpu.prombase.pop();
+        dateRpu.prom.pop();
+        for (let i = 0; i < kolFaz; i++) {
+          massFaza[i].pop();
+        }
+      }
+      setOpenSet(false);
+    }
+
+    return (
+      <Modal open={openSet} onClose={handleCloseSet}>
+        <Box sx={styleSetDirect}>
+          <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
+            <b>&#10006;</b>
+          </Button>
+          <Stack direction="column">
+            <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
+              Удаление
+              направления №{dateRpu.tirtonap[nomRecord].num}<br />
+              Вы уверены в этом?
+            </Typography>
+            <Stack direction="row">
+              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(1)}>
+                Да
+              </Button>
+              <Grid item xs></Grid>
+              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(2)}>
+                Нет
+              </Button>
+            </Stack>
+          </Stack>
+        </Box>
+      </Modal>
+    )
+  }
+
   const BattomTab = () => {
     return (
       <TabContext value={valueTC}>
@@ -616,17 +713,19 @@ const BindDirections = () => {
           <Button sx={styleButtBox} variant="contained" onClick={() => handleOpenModal('69')}>
             <b>Привязка фаз</b>
           </Button>
-
           <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('61')}>
             <b>+</b>
           </Button>
           <Button sx={stylePlusMinus} variant="contained" onClick={() => handleOpenModal('62')}>
             <b>-</b>
           </Button>
-
           <OutputNormalBattom />
           <TabPanel value="69">
             <OutputModalBattom />
+          </TabPanel>
+          {/* <TabPanel value="61"> обработка в handleOpenModal */}
+          <TabPanel value="62">
+            <DelNormalBattom />
           </TabPanel>
         </Box>
       </TabContext>
@@ -657,9 +756,14 @@ const BindDirections = () => {
   };
 
   const handleOpenModal = (nom: string) => {
-    setOpenSet(true);
-    setValueTC(nom);
-    setOpen(true);
+    if (nom === '61') {
+      AddNormalBattom()
+      setSize(window.innerWidth + Math.random());
+    } else {
+      setOpenSet(true);
+      setValueTC(nom);
+      setOpen(true);
+    }
   };
 
   const ModalEnd = () => {
@@ -704,7 +808,7 @@ const BindDirections = () => {
             <Grid item xs sx={{ height: '0.4vh' }}></Grid>
           </Grid>
           <Grid container sx={styleBox}>
-            <Grid item xs sx={{ border: 0, height: '45.6vh' }}>
+            <Grid item xs sx={{ border: 0, height: '45.3vh' }}>
               <BattomTab />
             </Grid>
           </Grid>

@@ -144,7 +144,6 @@ export const styleXTG0341 = {
   borderColor: 'primary.main',
   backgroundColor: '#FE929A', //красный
   textAlign: 'center',
-  //paddingLeft: 0.1,
 };
 
 export const styleXTG0342 = {
@@ -153,7 +152,6 @@ export const styleXTG0342 = {
   borderColor: 'primary.main',
   backgroundColor: '#59CB68', //зелёный
   textAlign: 'center',
-  //paddingLeft: 0.1,
 };
 
 export const styleXTG035 = {
