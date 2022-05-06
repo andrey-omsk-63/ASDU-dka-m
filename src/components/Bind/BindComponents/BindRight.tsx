@@ -8,11 +8,6 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Modal from '@mui/material/Modal';
 
-//import Tabs from '@mui/material/Tabs';
-//import Tab from '@mui/material/Tab';
-
-//import axios from 'axios';
-
 const BindRight = () => {
   let crossForm = 'Crossform';
   let fSize = 12.9;
@@ -21,7 +16,7 @@ const BindRight = () => {
   if (window.innerWidth > 720) openKnob = 'Открыть файл';
   if (window.innerWidth > 780) saveKnob = 'Сохранить файл';
   if (window.innerWidth > 1140) crossForm = 'Привязка Crossform';
-  if (window.innerWidth > 970) fSize = 17;
+  if (window.innerWidth > 985) fSize = 17.5;
 
   const styleBox = {
     border: 1,
@@ -41,10 +36,9 @@ const BindRight = () => {
   };
 
   const styleButtBing = {
-    //fontSize: 12,
     fontSize: fSize,
-    maxHeight: '18px',
-    minHeight: '18px',
+    maxHeight: '33px',
+    minHeight: '33px',
     marginBottom: 1.5,
     backgroundColor: 'white',
     color: 'black',
@@ -63,8 +57,6 @@ const BindRight = () => {
 
   const styleSet = {
     position: 'absolute',
-    // top: '12vh',
-    // right: '18vh',
     marginTop: '6vh',
     marginLeft: '6vh',
     width: 512,
@@ -105,10 +97,8 @@ const BindRight = () => {
               <Button sx={styleButtBingModal} variant="contained">
                 <b>Сохранить файл</b>
               </Button>
-
               <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
               <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
-
               <Button sx={styleButtBingModal} variant="contained">
                 <b>Записать ДК</b>
               </Button>
@@ -133,10 +123,8 @@ const BindRight = () => {
           <Grid container sx={{ fontSize: 21 }}>
             <Grid item xs={7}>
               <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Система:</Box>
-
               <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
               <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Контроллер:</Box>
-
               <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
               <Button sx={styleButtBingModal} variant="contained">
                 <b>Прочитать</b>
@@ -154,7 +142,7 @@ const BindRight = () => {
   const TopTab = () => {
     return (
       <Grid container sx={styleBox}>
-        <Grid item xs={12} sx={{ height: '33vh' }}>
+        <Grid item xs={12} sx={{ height: '45vh' }}>
           <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('21')}>
             <b>{crossForm}</b>
           </Button>
@@ -167,18 +155,14 @@ const BindRight = () => {
                   </Button>
                 </Grid>
               </Grid>
-
               <Button sx={styleButtBing} variant="contained">
                 <b>{saveKnob}</b>
               </Button>
-
               <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Файл привязки</Box>
               <Box sx={{ marginLeft: 1, marginBottom: 2 }}>{'<Не загружен>'}</Box>
-
               <Button sx={styleButtBing} variant="contained">
                 <b>Записать ДК</b>
               </Button>
-
               <Grid container>
                 <Grid item xs={12}>
                   <Button sx={styleButtBing} variant="contained">
@@ -186,7 +170,6 @@ const BindRight = () => {
                   </Button>
                 </Grid>
               </Grid>
-
               <Button sx={styleButtBing} variant="contained">
                 <b>Сравнить ДК</b>
               </Button>
@@ -201,18 +184,15 @@ const BindRight = () => {
     return (
       <Box sx={{ marginTop: 0.5 }}>
         <Grid container sx={styleBox}>
-          <Grid item xs={12} sx={{ height: '33vh' }}>
+          <Grid item xs={12} sx={{ height: '36vh' }}>
             <Button sx={styleButt} variant="contained" onClick={() => handleOpenModal('22')}>
               <b>Время</b>
             </Button>
-
             <Grid container sx={{ fontSize: fSize, marginTop: 1 }}>
               <Grid item xs={10}>
                 <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Система:</Box>
-
                 <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
                 <Box sx={{ marginLeft: 1, marginBottom: 0.5 }}>Контроллер:</Box>
-
                 <Box sx={{ marginLeft: 1, marginBottom: 2 }}>19:45:44 20.03.2022</Box>
                 <Grid container>
                   <Grid item xs={12}>

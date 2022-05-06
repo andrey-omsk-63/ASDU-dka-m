@@ -403,9 +403,9 @@ const Condition = () => {
 
   const BattomTab = () => {
     return (
-      <Box sx={{ marginTop: 0.5, marginLeft: -3, marginRight: -3 }}>
+      <Box sx={{ marginLeft: -3, marginRight: -3 }}>
         <Grid container sx={styleBox01}>
-          <Grid item xs sx={{ border: 0, height: '28vh' }}></Grid>
+          <Grid item xs sx={{ height: '28.5vh' }}></Grid>
         </Grid>
       </Box>
     );

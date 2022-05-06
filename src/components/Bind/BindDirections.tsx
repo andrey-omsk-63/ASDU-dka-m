@@ -36,6 +36,8 @@ let flagMassFaza = true;
 const BindDirections = () => {
   dateRpu = dateRpuGl;
   let kolFaz = dateRpu.timetophases.length;
+  const [size, setSize] = React.useState(0);
+  let sizeGl = window.innerWidth;
 
   // инициализация massFaza
   if (flagMassFaza) {
@@ -55,20 +57,19 @@ const BindDirections = () => {
     console.log('massFaza:', massFaza);
   }
 
-  const [size, setSize] = React.useState(0);
-  let sizeGl = window.innerWidth;
 
   let styleSetWidth = 650;
   if (sizeGl > 770) styleSetWidth = sizeGl - 50;
   let fSize = ((sizeGl - 700) * 3.5) / 450 + 10.5;
 
   let widthButtBatt = (sizeGl / (kolFaz + 1) - 5).toString() + 'px';
-  let heightButtBatt = '8.4vh';
+  let heightButtBatt = '6vh';
   let fSizeInp = 10.5;
 
   let xss = 11.25 / kolFaz;
   let xsss = 0.75;
   let napr = '';
+  let resStrBattomTab: any = [];
 
   const styleBackdrop = {
     color: '#fff',
@@ -88,6 +89,8 @@ const BindDirections = () => {
     paddingRight: 3,
     paddingTop: 3,
   };
+
+  //== Common ======================================
 
   const ReadNapravlenie = (i: number) => {
     switch (dateRpu.tirtonap[i].type) {
@@ -441,29 +444,33 @@ const BindDirections = () => {
     };
 
     return (
-      <Modal open={openSet} onClose={handleCloseSet}>
-        <Box sx={styleSetDirect}>
-          <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
-            <b>&#10006;</b>
-          </Button>
-          <Stack direction="column">
-            <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
-              Удаление направления №{dateRpu.tirtonap[nomRecord].num}
-              <br />
-              Вы уверены в этом?
-            </Typography>
-            <Stack direction="row">
-              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(1)}>
-                Да
+      <>
+        {nomRecord >= 0 && (
+          <Modal open={openSet} onClose={handleCloseSet}>
+            <Box sx={styleSetDirect}>
+              <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
+                <b>&#10006;</b>
               </Button>
-              <Grid item xs></Grid>
-              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(2)}>
-                Нет
-              </Button>
-            </Stack>
-          </Stack>
-        </Box>
-      </Modal>
+              <Stack direction="column">
+                <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
+                  Удаление направления №{dateRpu.tirtonap[nomRecord].num}
+                  <br />
+                  Вы уверены в этом?
+                </Typography>
+                <Stack direction="row">
+                  <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(1)}>
+                    Да
+                  </Button>
+                  <Grid item xs></Grid>
+                  <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(2)}>
+                    Нет
+                  </Button>
+                </Stack>
+              </Stack>
+            </Box>
+          </Modal>
+        )}
+      </>
     );
   };
 
@@ -504,12 +511,14 @@ const BindDirections = () => {
         <b>Фаза</b>
       </Grid>,
     );
-    for (let i = 0; i < kolFaz; i++) {
-      resStrHeaderBattomTab.push(
-        <Grid item key={Math.random()} xs={xss} sx={styleXTG021}>
-          <b>{i + 1}</b>
-        </Grid>,
-      );
+    if (kolFaz > 0) {
+      for (let i = 0; i < kolFaz; i++) {
+        resStrHeaderBattomTab.push(
+          <Grid item key={Math.random()} xs={xss} sx={styleXTG021}>
+            <b>{i + 1}</b>
+          </Grid>,
+        );
+      }
     }
     return resStrHeaderBattomTab;
   };
@@ -518,30 +527,33 @@ const BindDirections = () => {
     let resStr: any = [];
     xsss = xss;
 
-    resStr.push(
-      <Grid item key={Math.random()} xs={0.75} sx={styleXTG030}>
-        {titl}
-      </Grid>,
-    );
-    for (let i = 0; i < kolFaz; i++) {
-      let j = dateRpu.timetophases[i].tmax;
-      let numCol = 21;
-      if (titl.includes('min')) {
-        j = dateRpu.timetophases[i].tmin;
-        numCol = 22;
-      }
-      if (mode === 'Normal') {
-        resStr.push(
-          <Grid item key={i} xs={xss} sx={styleXTG030}>
-            {j}
-          </Grid>,
-        );
-      } else {
-        resStr.push(
-          <Grid item key={i} xs={xss} sx={styleXTG030}>
-            {InputTopTab(j, styleXTG030, i, numCol)}
-          </Grid>,
-        );
+
+    if (kolFaz > 0) {
+      resStr.push(
+        <Grid item key={Math.random()} xs={0.75} sx={styleXTG030}>
+          {titl}
+        </Grid>,
+      );
+      for (let i = 0; i < kolFaz; i++) {
+        let j = dateRpu.timetophases[i].tmax;
+        let numCol = 21;
+        if (titl.includes('min')) {
+          j = dateRpu.timetophases[i].tmin;
+          numCol = 22;
+        }
+        if (mode === 'Normal') {
+          resStr.push(
+            <Grid item key={i} xs={xss} sx={styleXTG030}>
+              {j}
+            </Grid>,
+          );
+        } else {
+          resStr.push(
+            <Grid item key={i} xs={xss} sx={styleXTG030}>
+              {InputTopTab(j, styleXTG030, i, numCol)}
+            </Grid>,
+          );
+        }
       }
     }
     return resStr;
@@ -573,33 +585,35 @@ const BindDirections = () => {
   };
 
   const StrokaBattomTab = (mode: string) => {
-    let resStr: any = [];
+    resStrBattomTab = [];
     let styleXX = styleXTG0341;
     let styleXXX = styleButtBattGreen;
 
-    for (let j = 0; j < dateRpu.tirtonap.length; j++) {
-      ReadNapravlenie(j);
-      let begin = j + 1 + napr;
-      resStr.push(OutputTopTab(begin, styleXTG03));
-      for (let i = 0; i < kolFaz; i++) {
-        styleXX = styleXTG0341;
-        styleXXX = styleButtBattRed;
-        if (massFaza[i][j] > 0) {
-          styleXX = styleXTG0342;
-          styleXXX = styleButtBattGreen;
-        }
-        if (mode !== 'Modal') {
-          resStr.push(<Grid item key={Math.random()} xs={xss} sx={styleXX}></Grid>);
-        } else {
-          resStr.push(
-            <Grid item key={Math.random()} xs={xss} sx={styleXX}>
-              <Button sx={styleXXX} onClick={() => handleClickBattomTab(i, j)}></Button>
-            </Grid>,
-          );
+    if (kolFaz > 0) {
+      for (let j = 0; j < dateRpu.tirtonap.length; j++) {
+        ReadNapravlenie(j);
+        let begin = j + 1 + napr;
+        resStrBattomTab.push(OutputTopTab(begin, styleXTG03));
+        for (let i = 0; i < kolFaz; i++) {
+          styleXX = styleXTG0341;
+          styleXXX = styleButtBattRed;
+          if (massFaza[i][j] > 0) {
+            styleXX = styleXTG0342;
+            styleXXX = styleButtBattGreen;
+          }
+          if (mode !== 'Modal') {
+            resStrBattomTab.push(<Grid item key={Math.random()} xs={xss} sx={styleXX}></Grid>);
+          } else {
+            resStrBattomTab.push(
+              <Grid item key={Math.random()} xs={xss} sx={styleXX}>
+                <Button sx={styleXXX} onClick={() => handleClickBattomTab(i, j)}></Button>
+              </Grid>,
+            );
+          }
         }
       }
     }
-    return resStr;
+    return resStrBattomTab;
   };
 
   const OutputNormalBattom = () => {
@@ -613,6 +627,7 @@ const BindDirections = () => {
         <Box sx={{ height: '34.5vh', overflowX: 'auto' }}>
           <Grid item container xs={12}>
             {StrokaBattomTab('Normal')}
+            {/* {resStrBattomTab} */}
           </Grid>
         </Box>
       </Box>
@@ -624,11 +639,13 @@ const BindDirections = () => {
     let fntSize = 18;
     if (sizeGl > 1200) fntSize = 21;
     if (sizeGl > 1500) fntSize = 27;
+
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
         <Box sx={styleSet}>
           <ModalEnd />
-          <Box sx={{ marginRight: 1, marginTop: -3, fontSize: fntSize }}>
+          {/* <Box sx={{ marginRight: 1, marginTop: -3, fontSize: fntSize }}> */}
+          <Box sx={{ marginRight: 1, marginTop: -3 }}>
             <Grid item container xs={12}>
               {HeaderBattomTab()}
               {StrokaBattomTabMaxMin('T max', 'Modal')}
@@ -637,6 +654,7 @@ const BindDirections = () => {
             <Box sx={{ overflowX: 'auto', height: '69vh' }}>
               <Grid item container xs={12}>
                 {StrokaBattomTab('Modal')}
+                {/* {resStrBattomTab} */}
               </Grid>
             </Box>
           </Box>
@@ -662,7 +680,7 @@ const BindDirections = () => {
   };
 
   const DelNormalBattom = () => {
-    let nomRecord = dateRpu.timetophases.length - 1;
+    let nomRecord = kolFaz - 1;
     const HandleCloseDel = (val: number) => {
       if (val === 1) {
         dateRpu.timetophases.pop();
@@ -672,29 +690,33 @@ const BindDirections = () => {
     };
 
     return (
-      <Modal open={openSet} onClose={handleCloseSet}>
-        <Box sx={styleSetDirect}>
-          <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
-            <b>&#10006;</b>
-          </Button>
-          <Stack direction="column">
-            <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
-              Удаление фазы №{dateRpu.timetophases[nomRecord].nphase}
-              <br />
-              Вы уверены в этом?
-            </Typography>
-            <Stack direction="row">
-              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(1)}>
-                Да
+      <>
+        {kolFaz > 0 && (
+          <Modal open={openSet} onClose={handleCloseSet}>
+            <Box sx={styleSetDirect}>
+              <Button sx={styleModalEndDir} onClick={handleCloseSetBut}>
+                <b>&#10006;</b>
               </Button>
-              <Grid item xs></Grid>
-              <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(2)}>
-                Нет
-              </Button>
-            </Stack>
-          </Stack>
-        </Box>
-      </Modal>
+              <Stack direction="column">
+                <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
+                  Удаление фазы №{dateRpu.timetophases[nomRecord].nphase}
+                  <br />
+                  Вы уверены в этом?
+                </Typography>
+                <Stack direction="row">
+                  <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(1)}>
+                    Да
+                  </Button>
+                  <Grid item xs></Grid>
+                  <Button sx={styleButtDirect} variant="contained" onClick={() => HandleCloseDel(2)}>
+                    Нет
+                  </Button>
+                </Stack>
+              </Stack>
+            </Box>
+          </Modal>
+        )}
+      </>
     );
   };
 

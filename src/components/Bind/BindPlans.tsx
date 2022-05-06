@@ -17,11 +17,11 @@ const BindPlans = () => {
   const [size, setSize] = React.useState(0);
   let formSett = ['План 0(РП)', 0];
 
-  let fSize = 11.5;
+  let fSize = 11;
   let styleSetWidth = 650;
 
   if (size > 770) styleSetWidth = size - 50;
-  if (size > 860) fSize = 14;
+  if (size > 860) fSize = 13.5;
 
   const styleBox = {
     border: 1,
@@ -85,23 +85,23 @@ const BindPlans = () => {
     return (
       <>
         <Grid item container xs={12}>
-          <Grid item xs={2} sx={styleXTG021}>
+          <Grid item xs={1.9} sx={styleXTG021}>
             <b>№ перекл.</b>
           </Grid>
-          <Grid item xs={2} sx={styleXTG021}>
+          <Grid item xs={1.9} sx={styleXTG021}>
             <b>Время вкл.</b>
           </Grid>
-          <Grid item xs={2} sx={styleXTG021}>
+          <Grid item xs={1.9} sx={styleXTG021}>
             <b>Типы фазы</b>
           </Grid>
-          <Grid item xs={2} sx={styleXTG021}>
+          <Grid item xs={1.9} sx={styleXTG021}>
             <b>№ фазы</b>
           </Grid>
-          <Grid item xs={2} sx={styleXTG021}>
+          <Grid item xs={1.9} sx={styleXTG021}>
             <b>Длитель-ть</b>
           </Grid>
-          <Grid item xs={2} sx={styleXTG021}>
-            <b>Продл-е пред</b>
+          <Grid item xs sx={styleXTG021}>
+            <b>Продление пред.</b>
           </Grid>
         </Grid>
       </>
@@ -117,11 +117,11 @@ const BindPlans = () => {
           <Grid key={Math.random()} xs={2} item sx={styleXTG03}>
             {i + 1}
           </Grid>
-          <Grid key={Math.random()} xs={2} item sx={styleXTG03}></Grid>
-          <Grid key={Math.random()} xs={2} item sx={styleXTG03}></Grid>
-          <Grid key={Math.random()} xs={2} item sx={styleXTG03}></Grid>
-          <Grid key={Math.random()} xs={2} item sx={styleXTG03}></Grid>
-          <Grid key={Math.random()} xs={2} item sx={styleXTG03}></Grid>
+          <Grid key={Math.random()} xs={1.9} item sx={styleXTG03}></Grid>
+          <Grid key={Math.random()} xs={1.9} item sx={styleXTG03}></Grid>
+          <Grid key={Math.random()} xs={1.9} item sx={styleXTG03}></Grid>
+          <Grid key={Math.random()} xs={1.9} item sx={styleXTG03}></Grid>
+          <Grid key={Math.random()} xs item sx={styleXTG03}></Grid>
         </Grid>,
       );
     }

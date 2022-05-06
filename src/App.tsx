@@ -27,7 +27,6 @@ import IconAsdu from './IconAsdu';
 
 export let dateRpuGl: DateRPU = {} as DateRPU;
 let flagOpenRpu = true;
-//let heightOld = 0;
 
 const App = () => {
   const styleAppMenu = {
@@ -36,7 +35,6 @@ const App = () => {
     borderColor: '#F1F5FB',
     marginLeft: 0.5,
     marginTop: 0.7,
-    //height: '85vh',
     height: '92vh',
     backgroundColor: '#F1F5FB',
     opacity: 0.88,
@@ -48,11 +46,9 @@ const App = () => {
     marginRight: 0.5,
     marginLeft: 0.5,
     height: '5vh',
-    //p: 1,
-  };
+   };
 
   const styleButt01 = {
-    //fontSize: 16.5,
     fontSize: 19,
     maxHeight: '33px',
     minHeight: '33px',
@@ -144,9 +140,6 @@ const App = () => {
 
   //let heightAv = window.screen.availHeight;       //получение доступного размера экрана
   //let heightGl = window.innerHeight.toString() + 'px';
-  //let widthGl = window.innerWidth.toString() + 'px';
-  //console.log('H1:', heightGl);
-  //console.log('H2:',document.documentElement.clientHeight, document.documentElement.scrollHeight)
   let heightGl = '100vh';
 
   return (
@@ -177,7 +170,6 @@ const App = () => {
               {ButtonKnobLevel1('Журнал', '5')}
             </Stack>
           </Grid>
-
           <Grid item xs sx={styleAppMenu}>
             <TabPanel value="0"></TabPanel>
             <TabPanel value="1">
@@ -207,9 +199,6 @@ const App = () => {
           </Grid>
         </TabContext>
       </Grid>
-
-      {/* <Grid item xs sx={{ height: '0.5vh' }}></Grid> */}
-
       <Grid item xs={12} sx={styleAppPodv}>
         <Grid container>
           <Grid item xs={1.7} sx={{ border: 0 }}>

@@ -270,7 +270,6 @@ const JournalLogins = (props: { logName: string }) => {
       <TextField
         size="small"
         onKeyPress={handleKey} //отключение Enter
-        //label="Поиск"
         inputProps={{ style: { fontSize: 14 } }} // font size of input text
         InputLabelProps={{ style: { fontSize: 14 } }} // font size of input label
         value={valuen}
