@@ -438,7 +438,7 @@ const BindDirections = () => {
         }
       }
       setOpenSet(false);
-    }
+    };
 
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
@@ -448,8 +448,8 @@ const BindDirections = () => {
           </Button>
           <Stack direction="column">
             <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
-              Удаление
-              направления №{dateRpu.tirtonap[nomRecord].num}<br />
+              Удаление направления №{dateRpu.tirtonap[nomRecord].num}
+              <br />
               Вы уверены в этом?
             </Typography>
             <Stack direction="row">
@@ -464,8 +464,8 @@ const BindDirections = () => {
           </Stack>
         </Box>
       </Modal>
-    )
-  }
+    );
+  };
 
   const TopTab = () => {
     return (
@@ -584,11 +584,9 @@ const BindDirections = () => {
       for (let i = 0; i < kolFaz; i++) {
         styleXX = styleXTG0341;
         styleXXX = styleButtBattRed;
-        //styleXXX = styleButtBattGreen;
         if (massFaza[i][j] > 0) {
           styleXX = styleXTG0342;
           styleXXX = styleButtBattGreen;
-          //styleXXX = styleButtBattRed;
         }
         if (mode !== 'Modal') {
           resStr.push(<Grid item key={Math.random()} xs={xss} sx={styleXX}></Grid>);
@@ -653,31 +651,25 @@ const BindDirections = () => {
     let maskTimetophases = {
       nphase: 0,
       tmax: 0,
-      tmin: 0
+      tmin: 0,
     };
     for (let i = 0; i < colDirect; i++) {
       mass[i] = 0;
     }
-    massFaza.push(mass)
+    massFaza.push(mass);
     maskTimetophases.nphase = kolFaz + 1;
     dateRpu.timetophases.push(maskTimetophases);
-    console.log('3:', dateRpu);
-    console.log('massFaza3:', kolFaz, massFaza);
-  }
+  };
 
   const DelNormalBattom = () => {
-    let nomRecord = dateRpu.tirtonap.length - 1;
+    let nomRecord = dateRpu.timetophases.length - 1;
     const HandleCloseDel = (val: number) => {
       if (val === 1) {
-        dateRpu.tirtonap.pop();
-        dateRpu.prombase.pop();
-        dateRpu.prom.pop();
-        for (let i = 0; i < kolFaz; i++) {
-          massFaza[i].pop();
-        }
+        dateRpu.timetophases.pop();
+        massFaza.splice(nomRecord, 1);
       }
       setOpenSet(false);
-    }
+    };
 
     return (
       <Modal open={openSet} onClose={handleCloseSet}>
@@ -687,8 +679,8 @@ const BindDirections = () => {
           </Button>
           <Stack direction="column">
             <Typography variant="h6" sx={{ textAlign: 'center', color: '#5B1080' }}>
-              Удаление
-              направления №{dateRpu.tirtonap[nomRecord].num}<br />
+              Удаление фазы №{dateRpu.timetophases[nomRecord].nphase}
+              <br />
               Вы уверены в этом?
             </Typography>
             <Stack direction="row">
@@ -703,8 +695,8 @@ const BindDirections = () => {
           </Stack>
         </Box>
       </Modal>
-    )
-  }
+    );
+  };
 
   const BattomTab = () => {
     return (
@@ -757,7 +749,7 @@ const BindDirections = () => {
 
   const handleOpenModal = (nom: string) => {
     if (nom === '61') {
-      AddNormalBattom()
+      AddNormalBattom();
       setSize(window.innerWidth + Math.random());
     } else {
       setOpenSet(true);
